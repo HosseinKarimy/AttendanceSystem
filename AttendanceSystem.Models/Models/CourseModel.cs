@@ -13,6 +13,7 @@ public class CourseModel
     public DateTime? FinalExam { get; set; }
 
     [Required]
+    public int TeacherId { get; set; }
     public TeacherModel Teacher { get; set; }
 
     public List<SectionModel> Sections { get; set; }

@@ -23,5 +23,5 @@ public class TeacherModel
 
     public DateTime? BirthDate { get ; set; }
 
-    //list of Course
+    public List<CourseModel> Courses { get; set; }
 }
