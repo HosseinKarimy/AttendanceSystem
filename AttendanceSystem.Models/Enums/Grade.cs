@@ -8,6 +8,7 @@ namespace Models.Enums
 {
     public enum Grade
     {
+        none,
         AssociateDegree,
         Bachelor,
         Master,

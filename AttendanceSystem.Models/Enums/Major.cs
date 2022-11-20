@@ -8,6 +8,7 @@ namespace Models.Enums
 {
     public enum Major
     {
+        none,
         Computer,
         Electronics,
         Mechanics,

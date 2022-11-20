@@ -10,7 +10,7 @@ public class SectionModel
     [Required]
     public TimeSpan ClassDuration { get; set; }
     [Required]
-    public DateTime Date { get; set; }
+    public DayOfWeek Day { get; set; }
 
     public List<StudentStatusModel> StudentsStatus { get; set; } = new();
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models.Models;
 
-[Index(propertyNames: nameof(UserName), IsUnique = true)]
+[Index(propertyNames: nameof(TeacherId), IsUnique = true)]
 public class TeacherModel
 {
     [Key]
@@ -17,7 +17,7 @@ public class TeacherModel
 
     [StringLength(50, MinimumLength = 8)]
     [Required]
-    public string UserName { get; set; }
+    public string TeacherId { get; set; }
     [Required]
     public string Password { get; set; }
 

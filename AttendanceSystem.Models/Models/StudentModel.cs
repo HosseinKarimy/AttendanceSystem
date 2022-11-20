@@ -22,6 +22,9 @@ public class StudentModel
     public string Password { get; set; }
 
     [Required]
+    public int EntryYear { get; set; }
+
+    [Required]
     public Major Major { get; set; }
     [Required]
     public Grade Grade { get; set; }
