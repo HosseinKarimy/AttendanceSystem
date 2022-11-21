@@ -14,21 +14,21 @@ public class Repository<T> : IRepository<T> where T : class
 
     public void Add(T entity)
     {
-        throw new NotImplementedException();
+        DbSet.Add(entity);
     }
 
     public void Delete(T entity)
     {
-        throw new NotImplementedException();
+        DbSet.Remove(entity);
     }
 
     public List<T> GetAll()
     {
-        throw new NotImplementedException();
+        return DbSet.ToList();
     }
 
     public void Update(T entity)
     {
-        throw new NotImplementedException();
+        DbSet.Update(entity);
     }
 }
