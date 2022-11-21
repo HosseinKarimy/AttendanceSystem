@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.Models;
 
@@ -14,6 +15,9 @@ public class StudentModel
     [Required]
     public string LastName { get; set; }
     public string FatherName { get; set; }
+
+    [NotMapped]
+    public string FullName { get; set; }
 
     [StringLength(50,MinimumLength =8)]
     [Required]
