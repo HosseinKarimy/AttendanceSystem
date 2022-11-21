@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceSystem.Models", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceSystem.WinFormUI", "AttendanceSystem.WinFormUI\AttendanceSystem.WinFormUI.csproj", "{DF559BB5-C752-49C6-848E-95C91B3D5688}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceSystem.DataAccess", "AttendanceSystem.DataAccess\AttendanceSystem.DataAccess.csproj", "{45115390-2AD9-475D-8F83-1310AA22AA23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DF559BB5-C752-49C6-848E-95C91B3D5688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF559BB5-C752-49C6-848E-95C91B3D5688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF559BB5-C752-49C6-848E-95C91B3D5688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45115390-2AD9-475D-8F83-1310AA22AA23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45115390-2AD9-475D-8F83-1310AA22AA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45115390-2AD9-475D-8F83-1310AA22AA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45115390-2AD9-475D-8F83-1310AA22AA23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
