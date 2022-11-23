@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem.WinFormUI
 {
-    public partial class DisplayDataForm : Form
+    public partial class SearchForm : Form
     {
-        public DisplayDataForm()
+        public SearchForm()
         {
             InitializeComponent();
         }

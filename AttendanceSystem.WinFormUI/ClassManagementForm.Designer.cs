@@ -54,6 +54,7 @@
             this.StudentSectionTabPage = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.NameHeader = new System.Windows.Forms.ColumnHeader();
             this.StudentIdHeader = new System.Windows.Forms.ColumnHeader();
@@ -387,6 +388,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button8);
             this.groupBox2.Controls.Add(this.listView1);
             this.groupBox2.Controls.Add(this.panel2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -396,6 +398,17 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Select students";
+            // 
+            // button8
+            // 
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.button8.Location = new System.Drawing.Point(6, 332);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(185, 54);
+            this.button8.TabIndex = 3;
+            this.button8.Text = "Add Students To Course";
+            this.button8.UseVisualStyleBackColor = false;
             // 
             // listView1
             // 
@@ -444,7 +457,7 @@
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(6, 22);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(188, 367);
+            this.panel2.Size = new System.Drawing.Size(188, 203);
             this.panel2.TabIndex = 0;
             // 
             // checkBox1
@@ -462,6 +475,7 @@
             // 
             this.EntryYearNumric.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.EntryYearNumric.Enabled = false;
             this.EntryYearNumric.Location = new System.Drawing.Point(3, 162);
             this.EntryYearNumric.Maximum = new decimal(new int[] {
             1395,
@@ -693,5 +707,6 @@
         private ColumnHeader MajorHeader;
         private ColumnHeader EntryYearHeader;
         private CheckBox checkBox1;
+        private Button button8;
     }
 }

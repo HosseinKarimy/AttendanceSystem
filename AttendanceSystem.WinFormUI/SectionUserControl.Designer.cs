@@ -30,7 +30,7 @@
         {
             this.MainPanel = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.ClassDurationMAskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
@@ -42,7 +42,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.Controls.Add(this.textBox1);
-            this.MainPanel.Controls.Add(this.maskedTextBox1);
+            this.MainPanel.Controls.Add(this.ClassDurationMAskedTextBox);
             this.MainPanel.Controls.Add(this.label2);
             this.MainPanel.Controls.Add(this.label1);
             this.MainPanel.Location = new System.Drawing.Point(4, 4);
@@ -59,16 +59,16 @@
             this.textBox1.Size = new System.Drawing.Size(108, 23);
             this.textBox1.TabIndex = 2;
             // 
-            // maskedTextBox1
+            // ClassDurationMAskedTextBox
             // 
-            this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ClassDurationMAskedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(94, 4);
-            this.maskedTextBox1.Mask = "90:00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(108, 23);
-            this.maskedTextBox1.TabIndex = 1;
-            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
+            this.ClassDurationMAskedTextBox.Location = new System.Drawing.Point(94, 4);
+            this.ClassDurationMAskedTextBox.Mask = "90:00";
+            this.ClassDurationMAskedTextBox.Name = "ClassDurationMAskedTextBox";
+            this.ClassDurationMAskedTextBox.Size = new System.Drawing.Size(108, 23);
+            this.ClassDurationMAskedTextBox.TabIndex = 1;
+            this.ClassDurationMAskedTextBox.ValidatingType = typeof(System.DateTime);
             // 
             // label2
             // 
@@ -107,7 +107,7 @@
 
         private Panel MainPanel;
         private TextBox textBox1;
-        private MaskedTextBox maskedTextBox1;
+        private MaskedTextBox ClassDurationMAskedTextBox;
         private Label label2;
         private Label label1;
     }

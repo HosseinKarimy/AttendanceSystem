@@ -9,7 +9,7 @@ namespace AttendanceSystem.WinFormUI
 
         private void DisplayDataButton_Click(object sender, EventArgs e)
         {
-            var newForm = new DisplayDataForm();
+            var newForm = new SearchForm();
             newForm.TopLevel = false;
             newForm.Dock = DockStyle.Fill;
             ContainerPanel.Controls.Clear();

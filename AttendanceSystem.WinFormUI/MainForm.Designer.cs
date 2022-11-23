@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.ToolBarPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.UserManagmentButton = new System.Windows.Forms.Button();
             this.ClassManagementButton = new System.Windows.Forms.Button();
             this.AttendanceListButton = new System.Windows.Forms.Button();
@@ -43,7 +42,6 @@
             // ToolBarPanel
             // 
             this.ToolBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ToolBarPanel.Controls.Add(this.button1);
             this.ToolBarPanel.Controls.Add(this.UserManagmentButton);
             this.ToolBarPanel.Controls.Add(this.ClassManagementButton);
             this.ToolBarPanel.Controls.Add(this.AttendanceListButton);
@@ -54,19 +52,6 @@
             this.ToolBarPanel.Name = "ToolBarPanel";
             this.ToolBarPanel.Size = new System.Drawing.Size(149, 664);
             this.ToolBarPanel.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(0, 260);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 39);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Teacher Managment";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // UserManagmentButton
             // 
@@ -176,6 +161,5 @@
         private Button AttendanceListButton;
         private Button DisplayDataButton;
         private Panel panel1;
-        private Button button1;
     }
 }
