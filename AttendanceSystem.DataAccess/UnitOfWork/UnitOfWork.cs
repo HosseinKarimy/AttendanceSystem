@@ -28,7 +28,11 @@ namespace AttendanceSystem.DataAccess.UnitOfWork
         public IStudentRepository StudentRepository => _StudentRepository;
         public IStudentStatusRepository StudentStatusRepository => _StudentStatusRepository;
         public ITeacherRepository TeacherRepository => _TeacherRepository;
-                    
+
+        public void ClearTracker()
+        {
+            _appDbContext.ChangeTracker.Clear();
+        }
 
         public void Save()
         {

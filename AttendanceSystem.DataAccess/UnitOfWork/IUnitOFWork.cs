@@ -15,6 +15,7 @@ namespace AttendanceSystem.DataAccess.UnitOfWork
         public IStudentStatusRepository StudentStatusRepository { get; }
         public ITeacherRepository TeacherRepository { get; }
 
-        void Save();
+        public void Save();
+        public void ClearTracker();
     }
 }
