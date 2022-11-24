@@ -29,31 +29,35 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.ResetLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.StudentEntryYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.StudentCreateSaveButton = new System.Windows.Forms.Button();
+            this.StudentBODDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StudentGradeComboBox = new System.Windows.Forms.ComboBox();
             this.StudentMajorComboBox = new System.Windows.Forms.ComboBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.StudentIdTextBox = new System.Windows.Forms.TextBox();
+            this.StudentFatherNameTextBox = new System.Windows.Forms.TextBox();
+            this.StudentLastNameTextBox = new System.Windows.Forms.TextBox();
+            this.StudentFirstNameTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.StudentsListView = new System.Windows.Forms.ListView();
+            this.StudentDeleteButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.UserTabControl = new System.Windows.Forms.TabControl();
+            this.StudentTabPage = new System.Windows.Forms.TabPage();
+            this.TeacherTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.button2 = new System.Windows.Forms.Button();
+            this.TeacherSaveEditButton = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.TeacherIdTextBox = new System.Windows.Forms.TextBox();
             this.TeacherFatherNameTextBox = new System.Windows.Forms.TextBox();
@@ -64,20 +68,20 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.TeacherDeleteButton = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.TeachersListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StudentEntryYearNumericUpDown)).BeginInit();
             this.MainPanel.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.UserTabControl.SuspendLayout();
+            this.StudentTabPage.SuspendLayout();
+            this.TeacherTabPage.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -97,17 +101,20 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
+            this.splitContainer1.Panel1.Controls.Add(this.ResetLinkLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentEntryYearNumericUpDown);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentCreateSaveButton);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentBODDateTimePicker);
             this.splitContainer1.Panel1.Controls.Add(this.StudentGradeComboBox);
             this.splitContainer1.Panel1.Controls.Add(this.StudentMajorComboBox);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox5);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox4);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox3);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentIdTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentFatherNameTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentLastNameTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentFirstNameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.label8);
             this.splitContainer1.Panel1.Controls.Add(this.label9);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -116,40 +123,62 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.splitContainer1.Panel2.Controls.Add(this.button3);
+            this.splitContainer1.Panel2.Controls.Add(this.StudentsListView);
+            this.splitContainer1.Panel2.Controls.Add(this.StudentDeleteButton);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.listBox1);
             this.splitContainer1.Size = new System.Drawing.Size(812, 421);
             this.splitContainer1.SplitterDistance = 512;
             this.splitContainer1.TabIndex = 0;
             // 
-            // button1
+            // ResetLinkLabel
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ResetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ResetLinkLabel.AutoSize = true;
+            this.ResetLinkLabel.Location = new System.Drawing.Point(12, 347);
+            this.ResetLinkLabel.Name = "ResetLinkLabel";
+            this.ResetLinkLabel.Size = new System.Drawing.Size(35, 15);
+            this.ResetLinkLabel.TabIndex = 6;
+            this.ResetLinkLabel.TabStop = true;
+            this.ResetLinkLabel.Text = "Reset";
+            this.ResetLinkLabel.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.ResetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetLinkLabel_LinkClicked);
+            // 
+            // StudentEntryYearNumericUpDown
+            // 
+            this.StudentEntryYearNumericUpDown.Location = new System.Drawing.Point(94, 162);
+            this.StudentEntryYearNumericUpDown.Name = "StudentEntryYearNumericUpDown";
+            this.StudentEntryYearNumericUpDown.Size = new System.Drawing.Size(162, 23);
+            this.StudentEntryYearNumericUpDown.TabIndex = 5;
+            // 
+            // StudentCreateSaveButton
+            // 
+            this.StudentCreateSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.button1.Location = new System.Drawing.Point(3, 365);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(506, 53);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Save/Create";
-            this.button1.UseVisualStyleBackColor = false;
+            this.StudentCreateSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentCreateSaveButton.Location = new System.Drawing.Point(3, 365);
+            this.StudentCreateSaveButton.Name = "StudentCreateSaveButton";
+            this.StudentCreateSaveButton.Size = new System.Drawing.Size(506, 53);
+            this.StudentCreateSaveButton.TabIndex = 4;
+            this.StudentCreateSaveButton.Text = "Save/Create";
+            this.StudentCreateSaveButton.UseVisualStyleBackColor = false;
+            this.StudentCreateSaveButton.Click += new System.EventHandler(this.StudentCreateSaveButton_Click);
             // 
-            // dateTimePicker1
+            // StudentBODDateTimePicker
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.StudentBODDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(328, 103);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(168, 23);
-            this.dateTimePicker1.TabIndex = 3;
+            this.StudentBODDateTimePicker.Location = new System.Drawing.Point(328, 103);
+            this.StudentBODDateTimePicker.Name = "StudentBODDateTimePicker";
+            this.StudentBODDateTimePicker.Size = new System.Drawing.Size(168, 23);
+            this.StudentBODDateTimePicker.TabIndex = 3;
             // 
             // StudentGradeComboBox
             // 
             this.StudentGradeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StudentGradeComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentGradeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.StudentGradeComboBox.FormattingEnabled = true;
             this.StudentGradeComboBox.Location = new System.Drawing.Point(328, 133);
             this.StudentGradeComboBox.Name = "StudentGradeComboBox";
@@ -159,49 +188,50 @@
             // StudentMajorComboBox
             // 
             this.StudentMajorComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentMajorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.StudentMajorComboBox.FormattingEnabled = true;
             this.StudentMajorComboBox.Location = new System.Drawing.Point(94, 133);
             this.StudentMajorComboBox.Name = "StudentMajorComboBox";
             this.StudentMajorComboBox.Size = new System.Drawing.Size(162, 23);
             this.StudentMajorComboBox.TabIndex = 2;
             // 
-            // textBox5
+            // StudentIdTextBox
             // 
-            this.textBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox5.Location = new System.Drawing.Point(94, 102);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(162, 23);
-            this.textBox5.TabIndex = 1;
+            this.StudentIdTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentIdTextBox.Location = new System.Drawing.Point(94, 102);
+            this.StudentIdTextBox.Name = "StudentIdTextBox";
+            this.StudentIdTextBox.Size = new System.Drawing.Size(162, 23);
+            this.StudentIdTextBox.TabIndex = 1;
             // 
-            // textBox4
+            // StudentFatherNameTextBox
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.StudentFatherNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox4.Location = new System.Drawing.Point(94, 73);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(402, 23);
-            this.textBox4.TabIndex = 1;
+            this.StudentFatherNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentFatherNameTextBox.Location = new System.Drawing.Point(94, 73);
+            this.StudentFatherNameTextBox.Name = "StudentFatherNameTextBox";
+            this.StudentFatherNameTextBox.Size = new System.Drawing.Size(402, 23);
+            this.StudentFatherNameTextBox.TabIndex = 1;
             // 
-            // textBox3
+            // StudentLastNameTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.StudentLastNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox3.Location = new System.Drawing.Point(94, 43);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(402, 23);
-            this.textBox3.TabIndex = 1;
+            this.StudentLastNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentLastNameTextBox.Location = new System.Drawing.Point(94, 43);
+            this.StudentLastNameTextBox.Name = "StudentLastNameTextBox";
+            this.StudentLastNameTextBox.Size = new System.Drawing.Size(402, 23);
+            this.StudentLastNameTextBox.TabIndex = 1;
             // 
-            // textBox2
+            // StudentFirstNameTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.StudentFirstNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox2.Location = new System.Drawing.Point(94, 13);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(402, 23);
-            this.textBox2.TabIndex = 1;
+            this.StudentFirstNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentFirstNameTextBox.Location = new System.Drawing.Point(94, 13);
+            this.StudentFirstNameTextBox.Name = "StudentFirstNameTextBox";
+            this.StudentFirstNameTextBox.Size = new System.Drawing.Size(402, 23);
+            this.StudentFirstNameTextBox.TabIndex = 1;
             // 
             // label8
             // 
@@ -229,6 +259,15 @@
             this.label7.Size = new System.Drawing.Size(41, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "Major:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 164);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Entry year:";
             // 
             // label5
             // 
@@ -266,6 +305,35 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "First Name:";
             // 
+            // StudentsListView
+            // 
+            this.StudentsListView.AllowColumnReorder = true;
+            this.StudentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentsListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentsListView.FullRowSelect = true;
+            this.StudentsListView.Location = new System.Drawing.Point(3, 3);
+            this.StudentsListView.MultiSelect = false;
+            this.StudentsListView.Name = "StudentsListView";
+            this.StudentsListView.ShowItemToolTips = true;
+            this.StudentsListView.Size = new System.Drawing.Size(290, 382);
+            this.StudentsListView.TabIndex = 4;
+            this.StudentsListView.UseCompatibleStateImageBehavior = false;
+            this.StudentsListView.View = System.Windows.Forms.View.Details;
+            this.StudentsListView.ItemActivate += new System.EventHandler(this.StudentsListView_ItemActivate);
+            // 
+            // StudentDeleteButton
+            // 
+            this.StudentDeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentDeleteButton.Location = new System.Drawing.Point(228, 391);
+            this.StudentDeleteButton.Name = "StudentDeleteButton";
+            this.StudentDeleteButton.Size = new System.Drawing.Size(65, 23);
+            this.StudentDeleteButton.TabIndex = 3;
+            this.StudentDeleteButton.Text = "Delete";
+            this.StudentDeleteButton.UseVisualStyleBackColor = true;
+            this.StudentDeleteButton.Click += new System.EventHandler(this.StudentDeleteButton_Click);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -286,19 +354,6 @@
             this.textBox1.Size = new System.Drawing.Size(173, 23);
             this.textBox1.TabIndex = 1;
             // 
-            // listBox1
-            // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(3, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(290, 379);
-            this.listBox1.TabIndex = 0;
-            // 
             // MainPanel
             // 
             this.MainPanel.Controls.Add(this.splitContainer1);
@@ -308,41 +363,41 @@
             this.MainPanel.Size = new System.Drawing.Size(812, 421);
             this.MainPanel.TabIndex = 0;
             // 
-            // tabControl1
+            // UserTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.Padding = new System.Drawing.Point(0, 0);
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(826, 455);
-            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl1.TabIndex = 1;
+            this.UserTabControl.Controls.Add(this.StudentTabPage);
+            this.UserTabControl.Controls.Add(this.TeacherTabPage);
+            this.UserTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserTabControl.Location = new System.Drawing.Point(0, 0);
+            this.UserTabControl.Margin = new System.Windows.Forms.Padding(0);
+            this.UserTabControl.Name = "UserTabControl";
+            this.UserTabControl.Padding = new System.Drawing.Point(0, 0);
+            this.UserTabControl.SelectedIndex = 0;
+            this.UserTabControl.Size = new System.Drawing.Size(826, 455);
+            this.UserTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.UserTabControl.TabIndex = 1;
             // 
-            // tabPage1
+            // StudentTabPage
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.tabPage1.Controls.Add(this.MainPanel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(818, 427);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Students";
+            this.StudentTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
+            this.StudentTabPage.Controls.Add(this.MainPanel);
+            this.StudentTabPage.Location = new System.Drawing.Point(4, 24);
+            this.StudentTabPage.Name = "StudentTabPage";
+            this.StudentTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.StudentTabPage.Size = new System.Drawing.Size(818, 427);
+            this.StudentTabPage.TabIndex = 0;
+            this.StudentTabPage.Text = "Students";
             // 
-            // tabPage2
+            // TeacherTabPage
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Turquoise;
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(818, 427);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Teachers";
+            this.TeacherTabPage.BackColor = System.Drawing.Color.Turquoise;
+            this.TeacherTabPage.Controls.Add(this.panel2);
+            this.TeacherTabPage.Location = new System.Drawing.Point(4, 24);
+            this.TeacherTabPage.Name = "TeacherTabPage";
+            this.TeacherTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.TeacherTabPage.Size = new System.Drawing.Size(818, 427);
+            this.TeacherTabPage.TabIndex = 1;
+            this.TeacherTabPage.Text = "Teachers";
             // 
             // panel2
             // 
@@ -364,7 +419,7 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.splitContainer2.Panel1.Controls.Add(this.button2);
+            this.splitContainer2.Panel1.Controls.Add(this.TeacherSaveEditButton);
             this.splitContainer2.Panel1.Controls.Add(this.dateTimePicker2);
             this.splitContainer2.Panel1.Controls.Add(this.TeacherIdTextBox);
             this.splitContainer2.Panel1.Controls.Add(this.TeacherFatherNameTextBox);
@@ -379,25 +434,25 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.splitContainer2.Panel2.Controls.Add(this.button4);
+            this.splitContainer2.Panel2.Controls.Add(this.TeachersListView);
+            this.splitContainer2.Panel2.Controls.Add(this.TeacherDeleteButton);
             this.splitContainer2.Panel2.Controls.Add(this.textBox6);
             this.splitContainer2.Panel2.Controls.Add(this.label16);
-            this.splitContainer2.Panel2.Controls.Add(this.listBox2);
             this.splitContainer2.Size = new System.Drawing.Size(812, 421);
             this.splitContainer2.SplitterDistance = 512;
             this.splitContainer2.TabIndex = 0;
             // 
-            // button2
+            // TeacherSaveEditButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TeacherSaveEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.button2.Location = new System.Drawing.Point(3, 365);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(506, 53);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Save/Create";
-            this.button2.UseVisualStyleBackColor = false;
+            this.TeacherSaveEditButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.TeacherSaveEditButton.Location = new System.Drawing.Point(3, 365);
+            this.TeacherSaveEditButton.Name = "TeacherSaveEditButton";
+            this.TeacherSaveEditButton.Size = new System.Drawing.Size(506, 53);
+            this.TeacherSaveEditButton.TabIndex = 4;
+            this.TeacherSaveEditButton.Text = "Save/Create";
+            this.TeacherSaveEditButton.UseVisualStyleBackColor = false;
             // 
             // dateTimePicker2
             // 
@@ -491,57 +546,14 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "First Name:";
             // 
-            // label16
+            // TeacherDeleteButton
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(3, 394);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(45, 15);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "Search:";
-            // 
-            // listBox2
-            // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 15;
-            this.listBox2.Location = new System.Drawing.Point(3, 3);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(290, 379);
-            this.listBox2.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(826, 455);
-            this.panel1.TabIndex = 2;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(228, 391);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(226, 391);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(65, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.TeacherDeleteButton.Location = new System.Drawing.Point(226, 391);
+            this.TeacherDeleteButton.Name = "TeacherDeleteButton";
+            this.TeacherDeleteButton.Size = new System.Drawing.Size(65, 23);
+            this.TeacherDeleteButton.TabIndex = 5;
+            this.TeacherDeleteButton.Text = "Delete";
+            this.TeacherDeleteButton.UseVisualStyleBackColor = true;
             // 
             // textBox6
             // 
@@ -552,6 +564,44 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(173, 23);
             this.textBox6.TabIndex = 4;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(3, 394);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(45, 15);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Search:";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.UserTabControl);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(826, 455);
+            this.panel1.TabIndex = 2;
+            // 
+            // TeachersListView
+            // 
+            this.TeachersListView.AllowColumnReorder = true;
+            this.TeachersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TeachersListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.TeachersListView.FullRowSelect = true;
+            this.TeachersListView.Location = new System.Drawing.Point(3, 3);
+            this.TeachersListView.MultiSelect = false;
+            this.TeachersListView.Name = "TeachersListView";
+            this.TeachersListView.ShowItemToolTips = true;
+            this.TeachersListView.Size = new System.Drawing.Size(290, 382);
+            this.TeachersListView.TabIndex = 6;
+            this.TeachersListView.UseCompatibleStateImageBehavior = false;
+            this.TeachersListView.View = System.Windows.Forms.View.Details;
             // 
             // UserManagement
             // 
@@ -570,10 +620,11 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StudentEntryYearNumericUpDown)).EndInit();
             this.MainPanel.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.UserTabControl.ResumeLayout(false);
+            this.StudentTabPage.ResumeLayout(false);
+            this.TeacherTabPage.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
@@ -589,14 +640,14 @@
         #endregion
 
         private SplitContainer splitContainer1;
-        private Button button1;
-        private DateTimePicker dateTimePicker1;
+        private Button StudentCreateSaveButton;
+        private DateTimePicker StudentBODDateTimePicker;
         private ComboBox StudentGradeComboBox;
         private ComboBox StudentMajorComboBox;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox StudentIdTextBox;
+        private TextBox StudentFatherNameTextBox;
+        private TextBox StudentLastNameTextBox;
+        private TextBox StudentFirstNameTextBox;
         private Label label8;
         private Label label9;
         private Label label7;
@@ -606,15 +657,14 @@
         private Label label2;
         private Label label1;
         private TextBox textBox1;
-        private ListBox listBox1;
         private Panel MainPanel;
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private TabControl UserTabControl;
+        private TabPage StudentTabPage;
+        private TabPage TeacherTabPage;
         private Panel panel1;
         private Panel panel2;
         private SplitContainer splitContainer2;
-        private Button button2;
+        private Button TeacherSaveEditButton;
         private DateTimePicker dateTimePicker2;
         private TextBox TeacherIdTextBox;
         private TextBox TeacherFatherNameTextBox;
@@ -626,9 +676,13 @@
         private Label label14;
         private Label label15;
         private Label label16;
-        private ListBox listBox2;
-        private Button button3;
-        private Button button4;
+        private Button StudentDeleteButton;
+        private Button TeacherDeleteButton;
         private TextBox textBox6;
+        private NumericUpDown StudentEntryYearNumericUpDown;
+        private Label label6;
+        private ListView StudentsListView;
+        private LinkLabel ResetLinkLabel;
+        private ListView TeachersListView;
     }
 }
