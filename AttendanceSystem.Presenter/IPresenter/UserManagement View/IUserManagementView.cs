@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceSystem.Presenter.IPresenter
 {
-    public partial interface IUserManagementView : IMultiActionForms
+    public partial interface IUserManagementView : IMultiActionForms , IResultFeedback
     {        
     }
 }

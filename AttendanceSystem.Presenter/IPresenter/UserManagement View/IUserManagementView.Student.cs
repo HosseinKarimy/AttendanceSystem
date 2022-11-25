@@ -10,7 +10,9 @@ namespace AttendanceSystem.Presenter.IPresenter
     public partial interface IUserManagementView
     {
         public StudentModel StudentModel { get; set; }
+        public List<StudentModel> Students { get; set; }
 
+        public event EventHandler LoadStudents;
         public event EventHandler StudentSaveEdit;
         public event EventHandler StudentDelete;
     }

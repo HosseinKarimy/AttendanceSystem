@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ResetLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.StudentFormResetLinkLabel = new System.Windows.Forms.LinkLabel();
             this.StudentEntryYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.StudentCreateSaveButton = new System.Windows.Forms.Button();
             this.StudentBODDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -50,15 +50,16 @@
             this.StudentsListView = new System.Windows.Forms.ListView();
             this.StudentDeleteButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.StudentSearchTextBox = new System.Windows.Forms.TextBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.UserTabControl = new System.Windows.Forms.TabControl();
             this.StudentTabPage = new System.Windows.Forms.TabPage();
             this.TeacherTabPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.TeacherSaveEditButton = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.TeacherFormResetLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.TeacherCreateSaveButton = new System.Windows.Forms.Button();
+            this.TeacherBODDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.TeacherIdTextBox = new System.Windows.Forms.TextBox();
             this.TeacherFatherNameTextBox = new System.Windows.Forms.TextBox();
             this.TeacherLastNameTextBox = new System.Windows.Forms.TextBox();
@@ -68,11 +69,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.TeachersListView = new System.Windows.Forms.ListView();
             this.TeacherDeleteButton = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.TeacherSearchTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.TeachersListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -101,7 +102,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.splitContainer1.Panel1.Controls.Add(this.ResetLinkLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.StudentFormResetLinkLabel);
             this.splitContainer1.Panel1.Controls.Add(this.StudentEntryYearNumericUpDown);
             this.splitContainer1.Panel1.Controls.Add(this.StudentCreateSaveButton);
             this.splitContainer1.Panel1.Controls.Add(this.StudentBODDateTimePicker);
@@ -126,23 +127,23 @@
             this.splitContainer1.Panel2.Controls.Add(this.StudentsListView);
             this.splitContainer1.Panel2.Controls.Add(this.StudentDeleteButton);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.StudentSearchTextBox);
             this.splitContainer1.Size = new System.Drawing.Size(812, 421);
             this.splitContainer1.SplitterDistance = 512;
             this.splitContainer1.TabIndex = 0;
             // 
-            // ResetLinkLabel
+            // StudentFormResetLinkLabel
             // 
-            this.ResetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ResetLinkLabel.AutoSize = true;
-            this.ResetLinkLabel.Location = new System.Drawing.Point(12, 347);
-            this.ResetLinkLabel.Name = "ResetLinkLabel";
-            this.ResetLinkLabel.Size = new System.Drawing.Size(35, 15);
-            this.ResetLinkLabel.TabIndex = 6;
-            this.ResetLinkLabel.TabStop = true;
-            this.ResetLinkLabel.Text = "Reset";
-            this.ResetLinkLabel.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.ResetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetLinkLabel_LinkClicked);
+            this.StudentFormResetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.StudentFormResetLinkLabel.AutoSize = true;
+            this.StudentFormResetLinkLabel.Location = new System.Drawing.Point(3, 347);
+            this.StudentFormResetLinkLabel.Name = "StudentFormResetLinkLabel";
+            this.StudentFormResetLinkLabel.Size = new System.Drawing.Size(35, 15);
+            this.StudentFormResetLinkLabel.TabIndex = 6;
+            this.StudentFormResetLinkLabel.TabStop = true;
+            this.StudentFormResetLinkLabel.Text = "Reset";
+            this.StudentFormResetLinkLabel.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.StudentFormResetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ResetLinkLabel_LinkClicked);
             // 
             // StudentEntryYearNumericUpDown
             // 
@@ -344,15 +345,16 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Search:";
             // 
-            // textBox1
+            // StudentSearchTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.StudentSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox1.Location = new System.Drawing.Point(47, 391);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(173, 23);
-            this.textBox1.TabIndex = 1;
+            this.StudentSearchTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.StudentSearchTextBox.Location = new System.Drawing.Point(47, 391);
+            this.StudentSearchTextBox.Name = "StudentSearchTextBox";
+            this.StudentSearchTextBox.Size = new System.Drawing.Size(173, 23);
+            this.StudentSearchTextBox.TabIndex = 1;
+            this.StudentSearchTextBox.TextChanged += new System.EventHandler(this.StudentSearchTextBox_TextChanged);
             // 
             // MainPanel
             // 
@@ -419,8 +421,9 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
-            this.splitContainer2.Panel1.Controls.Add(this.TeacherSaveEditButton);
-            this.splitContainer2.Panel1.Controls.Add(this.dateTimePicker2);
+            this.splitContainer2.Panel1.Controls.Add(this.TeacherFormResetLinkLabel);
+            this.splitContainer2.Panel1.Controls.Add(this.TeacherCreateSaveButton);
+            this.splitContainer2.Panel1.Controls.Add(this.TeacherBODDateTimePicker);
             this.splitContainer2.Panel1.Controls.Add(this.TeacherIdTextBox);
             this.splitContainer2.Panel1.Controls.Add(this.TeacherFatherNameTextBox);
             this.splitContainer2.Panel1.Controls.Add(this.TeacherLastNameTextBox);
@@ -436,32 +439,46 @@
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
             this.splitContainer2.Panel2.Controls.Add(this.TeachersListView);
             this.splitContainer2.Panel2.Controls.Add(this.TeacherDeleteButton);
-            this.splitContainer2.Panel2.Controls.Add(this.textBox6);
+            this.splitContainer2.Panel2.Controls.Add(this.TeacherSearchTextBox);
             this.splitContainer2.Panel2.Controls.Add(this.label16);
             this.splitContainer2.Size = new System.Drawing.Size(812, 421);
             this.splitContainer2.SplitterDistance = 512;
             this.splitContainer2.TabIndex = 0;
             // 
-            // TeacherSaveEditButton
+            // TeacherFormResetLinkLabel
             // 
-            this.TeacherSaveEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TeacherFormResetLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TeacherFormResetLinkLabel.AutoSize = true;
+            this.TeacherFormResetLinkLabel.Location = new System.Drawing.Point(3, 347);
+            this.TeacherFormResetLinkLabel.Name = "TeacherFormResetLinkLabel";
+            this.TeacherFormResetLinkLabel.Size = new System.Drawing.Size(35, 15);
+            this.TeacherFormResetLinkLabel.TabIndex = 7;
+            this.TeacherFormResetLinkLabel.TabStop = true;
+            this.TeacherFormResetLinkLabel.Text = "Reset";
+            this.TeacherFormResetLinkLabel.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.TeacherFormResetLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.TeacherFormResetLinkLabel_LinkClicked);
+            // 
+            // TeacherCreateSaveButton
+            // 
+            this.TeacherCreateSaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TeacherSaveEditButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.TeacherSaveEditButton.Location = new System.Drawing.Point(3, 365);
-            this.TeacherSaveEditButton.Name = "TeacherSaveEditButton";
-            this.TeacherSaveEditButton.Size = new System.Drawing.Size(506, 53);
-            this.TeacherSaveEditButton.TabIndex = 4;
-            this.TeacherSaveEditButton.Text = "Save/Create";
-            this.TeacherSaveEditButton.UseVisualStyleBackColor = false;
+            this.TeacherCreateSaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.TeacherCreateSaveButton.Location = new System.Drawing.Point(3, 365);
+            this.TeacherCreateSaveButton.Name = "TeacherCreateSaveButton";
+            this.TeacherCreateSaveButton.Size = new System.Drawing.Size(506, 53);
+            this.TeacherCreateSaveButton.TabIndex = 4;
+            this.TeacherCreateSaveButton.Text = "Save/Create";
+            this.TeacherCreateSaveButton.UseVisualStyleBackColor = false;
+            this.TeacherCreateSaveButton.Click += new System.EventHandler(this.TeacherCreateSaveButton_Click);
             // 
-            // dateTimePicker2
+            // TeacherBODDateTimePicker
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TeacherBODDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(328, 103);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(167, 23);
-            this.dateTimePicker2.TabIndex = 3;
+            this.TeacherBODDateTimePicker.Location = new System.Drawing.Point(328, 103);
+            this.TeacherBODDateTimePicker.Name = "TeacherBODDateTimePicker";
+            this.TeacherBODDateTimePicker.Size = new System.Drawing.Size(167, 23);
+            this.TeacherBODDateTimePicker.TabIndex = 3;
             // 
             // TeacherIdTextBox
             // 
@@ -546,24 +563,45 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "First Name:";
             // 
+            // TeachersListView
+            // 
+            this.TeachersListView.AllowColumnReorder = true;
+            this.TeachersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TeachersListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.TeachersListView.FullRowSelect = true;
+            this.TeachersListView.Location = new System.Drawing.Point(3, 3);
+            this.TeachersListView.MultiSelect = false;
+            this.TeachersListView.Name = "TeachersListView";
+            this.TeachersListView.ShowItemToolTips = true;
+            this.TeachersListView.Size = new System.Drawing.Size(290, 382);
+            this.TeachersListView.TabIndex = 6;
+            this.TeachersListView.UseCompatibleStateImageBehavior = false;
+            this.TeachersListView.View = System.Windows.Forms.View.Details;
+            this.TeachersListView.ItemActivate += new System.EventHandler(this.TeachersListView_ItemActivate);
+            // 
             // TeacherDeleteButton
             // 
+            this.TeacherDeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TeacherDeleteButton.Location = new System.Drawing.Point(226, 391);
             this.TeacherDeleteButton.Name = "TeacherDeleteButton";
             this.TeacherDeleteButton.Size = new System.Drawing.Size(65, 23);
             this.TeacherDeleteButton.TabIndex = 5;
             this.TeacherDeleteButton.Text = "Delete";
             this.TeacherDeleteButton.UseVisualStyleBackColor = true;
+            this.TeacherDeleteButton.Click += new System.EventHandler(this.TeacherDeleteButton_Click);
             // 
-            // textBox6
+            // TeacherSearchTextBox
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TeacherSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox6.Location = new System.Drawing.Point(45, 391);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(173, 23);
-            this.textBox6.TabIndex = 4;
+            this.TeacherSearchTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.TeacherSearchTextBox.Location = new System.Drawing.Point(45, 391);
+            this.TeacherSearchTextBox.Name = "TeacherSearchTextBox";
+            this.TeacherSearchTextBox.Size = new System.Drawing.Size(173, 23);
+            this.TeacherSearchTextBox.TabIndex = 4;
+            this.TeacherSearchTextBox.TextChanged += new System.EventHandler(this.TeacherSearchTextBox_TextChanged);
             // 
             // label16
             // 
@@ -585,23 +623,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(826, 455);
             this.panel1.TabIndex = 2;
-            // 
-            // TeachersListView
-            // 
-            this.TeachersListView.AllowColumnReorder = true;
-            this.TeachersListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TeachersListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.TeachersListView.FullRowSelect = true;
-            this.TeachersListView.Location = new System.Drawing.Point(3, 3);
-            this.TeachersListView.MultiSelect = false;
-            this.TeachersListView.Name = "TeachersListView";
-            this.TeachersListView.ShowItemToolTips = true;
-            this.TeachersListView.Size = new System.Drawing.Size(290, 382);
-            this.TeachersListView.TabIndex = 6;
-            this.TeachersListView.UseCompatibleStateImageBehavior = false;
-            this.TeachersListView.View = System.Windows.Forms.View.Details;
             // 
             // UserManagement
             // 
@@ -656,7 +677,7 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox StudentSearchTextBox;
         private Panel MainPanel;
         private TabControl UserTabControl;
         private TabPage StudentTabPage;
@@ -664,8 +685,8 @@
         private Panel panel1;
         private Panel panel2;
         private SplitContainer splitContainer2;
-        private Button TeacherSaveEditButton;
-        private DateTimePicker dateTimePicker2;
+        private Button TeacherCreateSaveButton;
+        private DateTimePicker TeacherBODDateTimePicker;
         private TextBox TeacherIdTextBox;
         private TextBox TeacherFatherNameTextBox;
         private TextBox TeacherLastNameTextBox;
@@ -678,11 +699,12 @@
         private Label label16;
         private Button StudentDeleteButton;
         private Button TeacherDeleteButton;
-        private TextBox textBox6;
+        private TextBox TeacherSearchTextBox;
         private NumericUpDown StudentEntryYearNumericUpDown;
         private Label label6;
         private ListView StudentsListView;
-        private LinkLabel ResetLinkLabel;
+        private LinkLabel StudentFormResetLinkLabel;
         private ListView TeachersListView;
+        private LinkLabel TeacherFormResetLinkLabel;
     }
 }
