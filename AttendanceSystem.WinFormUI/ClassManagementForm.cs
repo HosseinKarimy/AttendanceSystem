@@ -296,7 +296,8 @@ public partial class ClassManagementForm : Form, IClassManagementView
         {
             MessageBox.Show("Please Select Teacher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
-        }
+        }       
+
         CourseModel = new()
         {
             Name = CourseNameTextBox.Text,
