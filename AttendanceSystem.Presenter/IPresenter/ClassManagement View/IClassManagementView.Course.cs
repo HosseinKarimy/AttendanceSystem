@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace AttendanceSystem.Presenter.IPresenter;
 
-public partial interface IClassManagementView
+public partial interface IClassManagementView : ISectionUCView
 {
     public CourseModel CourseModel { get; set; }
 
     public List<TeacherModel> Teachers { get; set; }
 
     public event EventHandler CourseSaveEdit;
+    public event EventHandler LoadTeachers;
 }
