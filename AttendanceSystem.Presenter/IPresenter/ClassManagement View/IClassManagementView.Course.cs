@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceSystem.Presenter.IPresenter;
 
-public partial interface IClassManagementView : ISectionUCView
+public partial interface IClassManagementView
 {
     public CourseModel CourseModel { get; set; }
 

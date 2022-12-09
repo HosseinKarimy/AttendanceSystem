@@ -16,34 +16,9 @@ namespace AttendanceSystem.Presenter.Presenter.ClassManegementPresenter
         {
             view.LoadStudents += View_LoadStudents;
             view.Search += View_Search;
-            view.AddSection += View_AddSection;
         }
 
-        private void View_AddSection(object? sender, EventArgs e)
-        {
-            try
-            {
-                ModelValidation.IsValid<SectionModel>(view.SectionModel);
-                unitOFWork.SectionRepository.Add(view.SectionModel);
-                unitOFWork.Save();
-                view.IsSucess = true;
-                view.Message = "Added Successfully";
-            }
-            catch (Exception ex)
-            {
-                view.IsSucess = false;
-                if (ex.InnerException is not null)
-                    view.Message = ex.InnerException.Message;
-                else
-                    view.Message = ex.Message;
-
-            }
-            finally
-            {
-                unitOFWork.ClearTracker();
-            }
-        }
-
+       
         private void View_Search(object? sender, EventArgs e)
         {
             var searchModel = view.SearchStudentModel;

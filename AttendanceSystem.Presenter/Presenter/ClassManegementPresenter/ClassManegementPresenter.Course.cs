@@ -9,7 +9,6 @@ public partial class ClassManegementPresenter
 {
     private void RaiseCourseEvents()
     {
-        view.RemoveSection += View_RemoveSection;
         view.LoadTeachers += View_LoadTeachers;
         view.CourseSaveEdit += View_CourseSaveEdit;
     }
@@ -30,12 +29,54 @@ public partial class ClassManegementPresenter
                 }
                 view.CourseModel.Students = students;
 
-                //load sections from db
-                var sections = new List<SectionModel>();
-                foreach (SectionModel section in view.CourseModel.Sections)
+                //load sections 
+                var baseSections = new List<SectionModel>();
+                int SectionPerWeek = view.CourseModel.Sections.Count;
+                DayOfWeek StartDayOfWeek = view.CourseModel.CourseStartDate.DayOfWeek;
+                DateOnly FirstDayDate = new DateOnly(view.CourseModel.CourseStartDate.Year, view.CourseModel.CourseStartDate.Month , view.CourseModel.CourseStartDate.Day);
+                for (int i = 0; i < SectionPerWeek; i++)
                 {
-                    sections.Add(unitOFWork.SectionRepository.FirstOrDefault(u => u.Id == section.Id));
+                    int SectionDiff = 0;
+                    while (!view.CourseModel.Sections.Any(u => u.Day == StartDayOfWeek))
+                    {
+                        SectionDiff++;
+                        StartDayOfWeek = (DayOfWeek)(((int)StartDayOfWeek + 1) % 7);
+                    }
+                    SectionModel FirstSection = view.CourseModel.Sections.FirstOrDefault(u => u.Day == StartDayOfWeek)!;
+                    FirstSection.ClassDate = FirstDayDate.AddDays(SectionDiff);
+                    baseSections.Add(new SectionModel()
+                    {
+                        ClassDate = FirstSection.ClassDate,
+                        ClassDuration = FirstSection.ClassDuration,
+                        Day = FirstSection.Day,
+                        StartTime = FirstSection.StartTime
+                    });
+                    FirstDayDate = FirstDayDate.AddDays(SectionDiff);
+                    StartDayOfWeek = FirstSection.Day;
+                    view.CourseModel.Sections.Remove(FirstSection);
                 }
+
+                var sections = new List<SectionModel>();
+
+                int diffDay = 0;
+                for (int numberOfCreatedSections = 1; numberOfCreatedSections <= view.CourseModel.NumberOfSections; )
+                {
+                    foreach (SectionModel section in baseSections)
+                    {
+                        sections.Add(new()
+                        {
+                            ClassDate = section.ClassDate.AddDays(diffDay),
+                            ClassDuration = section.ClassDuration,
+                            Day = section.Day,
+                            StartTime = section.StartTime,
+                            SectionNumber = numberOfCreatedSections++
+                        });
+                        if (view.CourseModel.NumberOfSections < numberOfCreatedSections)
+                            break;
+                    }
+                    diffDay += 7;
+                }
+
                 view.CourseModel.Sections = sections;
 
                 //try to add course to db
@@ -64,28 +105,5 @@ public partial class ClassManegementPresenter
     private void View_LoadTeachers(object? sender, EventArgs e)
     {
         view.Teachers = unitOFWork.TeacherRepository.GetAll();
-    }
-
-    private void View_RemoveSection(object? sender, EventArgs e)
-    {
-        try
-        {
-            unitOFWork.SectionRepository.Delete(view.SectionModel);
-            unitOFWork.Save();
-            view.IsSucess = true;
-            view.Message = "Deleted Successfully";
-        }
-        catch (Exception ex)
-        {
-            view.IsSucess = false;
-            if (ex.InnerException is not null)
-                view.Message = ex.InnerException.Message;
-            else
-                view.Message = ex.Message;
-        }
-        finally
-        {
-            unitOFWork.ClearTracker();
-        }
     }
 }

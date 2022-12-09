@@ -13,7 +13,6 @@ namespace AttendanceSystem.Presenter.IPresenter
         public List<StudentModel> Students { get; set; }
         public SearchStudentModel SearchStudentModel { get; set; }
 
-        public event EventHandler AddSection;
         public event EventHandler LoadStudents;
         public event EventHandler Search;
     }

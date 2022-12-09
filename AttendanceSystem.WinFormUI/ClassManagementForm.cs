@@ -31,7 +31,6 @@ public partial class ClassManagementForm : Form, IClassManagementView
     public SectionModel SectionModel { get; set; } = new();
     public event EventHandler Search;
     public event EventHandler LoadStudents;
-    public event EventHandler AddSection;
 
     private void InitializeStudentSectionTabPage()
     {
@@ -152,13 +151,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
             StartTime = time,
             Day = (DayOfWeek)DayOfWeekComboBox.SelectedItem
         };
-
-        AddSection?.Invoke(this, EventArgs.Empty);
-
-        if (IsSucess)
-            SelectedSections.Add(SectionModel);
-        else
-            MessageBox.Show(Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        SelectedSections.Add(SectionModel);
     }
 
 
@@ -173,7 +166,6 @@ public partial class ClassManagementForm : Form, IClassManagementView
     public CourseModel CourseModel { get; set; } = new();
 
     public event EventHandler CourseSaveEdit;
-    public event EventHandler RemoveSection;
     public event EventHandler LoadTeachers;
 
     private void InitializeCourseTabPage()
@@ -237,7 +229,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
     {
         foreach (SectionUserControl usercontrol in SelectedSectionPanel.Controls)
         {
-            usercontrol.RemoveSection -= RemoveSectionDelegate!;
+            usercontrol.RemoveSection -= RemoveSection;
             usercontrol.Dispose();
         }
         SelectedSectionPanel.Controls.Clear();
@@ -246,23 +238,17 @@ public partial class ClassManagementForm : Form, IClassManagementView
         {
             SectionUserControl sectionUserControl = new();
             sectionUserControl.SectionModel = section;
-            sectionUserControl.RemoveSection += RemoveSectionDelegate!;
+            sectionUserControl.RemoveSection += RemoveSection;
             sectionUserControl.Dock = DockStyle.Top;
             SelectedSectionPanel.Controls.Add(sectionUserControl);
         }
     }
 
-    private void RemoveSectionDelegate(object sender, EventArgs e)
+    private void RemoveSection(object sender, EventArgs e)
     {
         SectionModel = (sender as SectionUserControl)?.SectionModel!;
-        RemoveSection?.Invoke(this, EventArgs.Empty);
-        if (IsSucess)
-        {
             SelectedSectionPanel.Controls.Remove(sender as SectionUserControl);
             SelectedSections.Remove(SectionModel);
-        }
-        else
-            MessageBox.Show(Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
     private void RemoveCheckedStudentsFromSelectedStudentsButton_Click(object sender, EventArgs e)
@@ -287,25 +273,29 @@ public partial class ClassManagementForm : Form, IClassManagementView
         ReloadTeachersInListView(Teachers.Where(u => u.TeacherId.Contains(SearchTeacherTextBox.Text) || u.FullName.Contains(SearchTeacherTextBox.Text)).ToList());
     }
 
-
-    #endregion
-
     private void CreateCourseButton_Click(object sender, EventArgs e)
     {
         if (SelectedTeacherTextBox.Tag is null)
         {
             MessageBox.Show("Please Select Teacher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
+        }
+        if (SelectedSections.Count < 1)
+        {
+            MessageBox.Show("Please Create at least 1 section", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }       
-
+        
         CourseModel = new()
         {
             Name = CourseNameTextBox.Text,
-            MidTermExam = MidTermDateTimePicker.Value,
-            FinalExam = MidTermDateTimePicker.Value,
+            MidTermExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
+            FinalExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
             Students = SelectedStudents,
             Sections = SelectedSections,
-            TeacherId = (SelectedTeacherTextBox.Tag as TeacherModel).Id
+            TeacherId = (SelectedTeacherTextBox.Tag as TeacherModel).Id,
+            CourseStartDate = CourseStartDate.Value,
+            NumberOfSections = (int)NumberOfSectionNumericUpDown.Value
             //Teacher = SelectedTeacherTextBox.Tag as TeacherModel
         };
 
@@ -318,6 +308,8 @@ public partial class ClassManagementForm : Form, IClassManagementView
         }
         else
             MessageBox.Show(Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
     }
+
+    #endregion
+
 }

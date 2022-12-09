@@ -33,6 +33,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CreateCourseTabPage = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.NumberOfSectionNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.CourseStartDate = new System.Windows.Forms.DateTimePicker();
             this.SelectedSectionPanel = new System.Windows.Forms.Panel();
             this.CreateCourseButton = new System.Windows.Forms.Button();
             this.FinaExamDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -40,6 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.CourseNameTextBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -84,6 +88,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfSectionNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -141,6 +146,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.NumberOfSectionNumericUpDown);
+            this.splitContainer1.Panel1.Controls.Add(this.CourseStartDate);
             this.splitContainer1.Panel1.Controls.Add(this.SelectedSectionPanel);
             this.splitContainer1.Panel1.Controls.Add(this.CreateCourseButton);
             this.splitContainer1.Panel1.Controls.Add(this.FinaExamDateTimePicker);
@@ -148,6 +155,8 @@
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.CourseNameTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.label13);
+            this.splitContainer1.Panel1.Controls.Add(this.label14);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
@@ -158,15 +167,51 @@
             this.splitContainer1.SplitterDistance = 221;
             this.splitContainer1.TabIndex = 0;
             // 
+            // NumberOfSectionNumericUpDown
+            // 
+            this.NumberOfSectionNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NumberOfSectionNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.NumberOfSectionNumericUpDown.Location = new System.Drawing.Point(133, 149);
+            this.NumberOfSectionNumericUpDown.Maximum = new decimal(new int[] {
+            32,
+            0,
+            0,
+            0});
+            this.NumberOfSectionNumericUpDown.Minimum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.NumberOfSectionNumericUpDown.Name = "NumberOfSectionNumericUpDown";
+            this.NumberOfSectionNumericUpDown.Size = new System.Drawing.Size(79, 23);
+            this.NumberOfSectionNumericUpDown.TabIndex = 8;
+            this.NumberOfSectionNumericUpDown.Value = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            // 
+            // CourseStartDate
+            // 
+            this.CourseStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CourseStartDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.CourseStartDate.Location = new System.Drawing.Point(10, 116);
+            this.CourseStartDate.Name = "CourseStartDate";
+            this.CourseStartDate.Size = new System.Drawing.Size(202, 23);
+            this.CourseStartDate.TabIndex = 7;
+            // 
             // SelectedSectionPanel
             // 
             this.SelectedSectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedSectionPanel.AutoScroll = true;
             this.SelectedSectionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.SelectedSectionPanel.Location = new System.Drawing.Point(12, 167);
+            this.SelectedSectionPanel.Location = new System.Drawing.Point(12, 191);
             this.SelectedSectionPanel.Name = "SelectedSectionPanel";
-            this.SelectedSectionPanel.Size = new System.Drawing.Size(200, 170);
+            this.SelectedSectionPanel.Size = new System.Drawing.Size(200, 146);
             this.SelectedSectionPanel.TabIndex = 6;
             // 
             // CreateCourseButton
@@ -186,24 +231,24 @@
             // 
             this.FinaExamDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.FinaExamDateTimePicker.Location = new System.Drawing.Point(12, 120);
+            this.FinaExamDateTimePicker.Location = new System.Drawing.Point(112, 72);
             this.FinaExamDateTimePicker.Name = "FinaExamDateTimePicker";
-            this.FinaExamDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.FinaExamDateTimePicker.ShowCheckBox = true;
+            this.FinaExamDateTimePicker.Size = new System.Drawing.Size(100, 23);
             this.FinaExamDateTimePicker.TabIndex = 2;
             // 
             // MidTermDateTimePicker
             // 
-            this.MidTermDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MidTermDateTimePicker.Location = new System.Drawing.Point(12, 72);
+            this.MidTermDateTimePicker.Location = new System.Drawing.Point(10, 72);
             this.MidTermDateTimePicker.Name = "MidTermDateTimePicker";
-            this.MidTermDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.MidTermDateTimePicker.ShowCheckBox = true;
+            this.MidTermDateTimePicker.Size = new System.Drawing.Size(100, 23);
             this.MidTermDateTimePicker.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 149);
+            this.label3.Location = new System.Drawing.Point(12, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 0;
@@ -212,7 +257,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 102);
+            this.label5.Location = new System.Drawing.Point(112, 54);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 15);
             this.label5.TabIndex = 0;
@@ -228,10 +273,28 @@
             this.CourseNameTextBox.Size = new System.Drawing.Size(200, 23);
             this.CourseNameTextBox.TabIndex = 1;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(9, 98);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(203, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Course Start Date: (First Section Date)";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 151);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(117, 15);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Number Of Sections:";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 54);
+            this.label4.Location = new System.Drawing.Point(10, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(89, 15);
             this.label4.TabIndex = 0;
@@ -657,6 +720,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NumberOfSectionNumericUpDown)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -728,5 +792,9 @@
         private Label label6;
         private Button RemoveCheckedStudentsFromSelectedStudentsButton;
         private ToolTip RemoveFromSelectedStudentsToolTip;
+        private NumericUpDown NumberOfSectionNumericUpDown;
+        private DateTimePicker CourseStartDate;
+        private Label label13;
+        private Label label14;
     }
 }
