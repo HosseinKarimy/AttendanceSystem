@@ -10,13 +10,14 @@ public class AppDbContext : DbContext
 
     public AppDbContext()
     {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "AttendanceSystem.db");
+        //var folder = Environment.SpecialFolder.LocalApplicationData;
+        //var path = Environment.GetFolderPath(folder);
+        //DbPath = System.IO.Path.Join(path, "AttendanceSystem.db");
+        DbPath = System.IO.Path.Join(AppContext.BaseDirectory, "AttendanceSystem.db");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
+        => options.UseSqlite($"Data Source= {DbPath}");
 
     public DbSet<CourseModel> Courses { get; set; }
     public DbSet<SectionModel> Sections { get; set; }
