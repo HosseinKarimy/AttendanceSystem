@@ -4,4 +4,5 @@ namespace AttendanceSystem.DataAccess.Repositories.IRepositories;
 
 public interface ITeacherRepository : IRepository<TeacherModel>
 {
+    List<TeacherModel> GetAllTeachersWithIncludes();
 }
