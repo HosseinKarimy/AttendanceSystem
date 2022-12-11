@@ -23,7 +23,7 @@ namespace AttendanceSystem.Presenter.Presenter.ClassManegementPresenter
         {
             var searchModel = view.SearchStudentModel;
             var students = unitOFWork.StudentRepository.GetAll();
-            students = students.Where(u => u.StudnetId.Contains(searchModel.SearchString) || u.FullName.Contains(searchModel.SearchString)).ToList();
+            students = students.Where(u => u.StudentId.Contains(searchModel.SearchString) || u.FullName.Contains(searchModel.SearchString)).ToList();
             if (searchModel.Grade != Grade.none)
                 students = students.Where(u => u.Grade == searchModel.Grade).ToList();
             if (searchModel.Major != Major.none)

@@ -1,4 +1,5 @@
 ﻿using AttendanceSystem.Models.Enums;
+using AttendanceSystem.Models.Models;
 using AttendanceSystem.Models.ModelValidator;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Models.Models;
@@ -63,13 +64,21 @@ public partial class ClassManegementPresenter
                 {
                     foreach (SectionModel section in baseSections)
                     {
+                        List<StudentStatusModel> studnetsStatus = view.CourseModel.Students.Select(
+                            u => new StudentStatusModel()
+                            {
+                                StudentId = u.Id,
+                                IsPresent = null                            
+                            }
+                        ).ToList();
                         sections.Add(new()
                         {
                             ClassDate = section.ClassDate.AddDays(diffDay),
                             ClassDuration = section.ClassDuration,
                             Day = section.Day,
                             StartTime = section.StartTime,
-                            SectionNumber = numberOfCreatedSections++
+                            SectionNumber = numberOfCreatedSections++,
+                            StudentsStatus = studnetsStatus                            
                         });
                         if (view.CourseModel.NumberOfSections < numberOfCreatedSections)
                             break;

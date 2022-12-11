@@ -98,7 +98,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
         {
             if (SelectedStudents.Any(u => u.Id == student.Id))
                 continue;
-            var item = new ListViewItem(new String[] { student.StudnetId, student.FullName, student.Major.ToString(), student.Grade.ToString(), student.EntryYear.ToString() });
+            var item = new ListViewItem(new String[] { student.StudentId, student.FullName, student.Major.ToString(), student.Grade.ToString(), student.EntryYear.ToString() });
             item.Tag = student;
             AllStudentsListView.Items.Add(item);
         }
@@ -217,7 +217,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
 
         foreach (var student in SelectedStudents)
         {
-            var item = new ListViewItem(new String[] { student.StudnetId, student.FullName, student.Major.ToString() });
+            var item = new ListViewItem(new String[] { student.StudentId, student.FullName, student.Major.ToString() });
             item.Tag = student;
             SelectedStudentsListView.Items.Add(item);
         }
