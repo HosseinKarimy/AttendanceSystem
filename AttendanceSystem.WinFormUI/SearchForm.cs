@@ -1,30 +1,156 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using AttendanceSystem.Models.Models;
+using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
+using Models.Enums;
+using Models.Models;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Linq.Expressions;
 
-namespace AttendanceSystem.WinFormUI
+namespace AttendanceSystem.WinFormUI;
+
+public partial class SearchForm : Form, ISearchView
 {
-    public partial class SearchForm : Form
+    public SearchForm()
     {
-        public SearchForm()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        private void DisplayDataForm_Load(object sender, EventArgs e)
+    public List<TeacherModel> AllTeachers { get; set; }
+    public List<StudentModel> AllStudents { get; set; }
+
+    public event EventHandler LoadStudentsAndTeachers;
+
+    private void SearchForm_Enter(object sender, EventArgs e)
+    {
+        LoadStudentsAndTeachers?.Invoke(this, EventArgs.Empty);
+        LoadTreeView();
+    }
+
+    private void LoadTreeView()
+    {
+        FilterTreeView.Nodes.Clear();
+        AddTeacherTree();
+        AddStudentTree();
+    }
+
+    private void AddTeacherTree()
+    {
+        var Root = new TreeNode("Teachers");
+        foreach (TeacherModel teacher in AllTeachers)
         {
-            for (int i = 0; i < 5; i++)
+            var TeacherRoot = new TreeNode(teacher.FullName);
+            foreach (CourseModel course in teacher.Courses)
             {
-                var newUC = new StudentStatusUserControl();
-                newUC.Dock = DockStyle.Top;
-                ResultPanel.Controls.Add(newUC);
+                var CourseRoot = new TreeNode(course.Name);
+                foreach (SectionModel section in course.Sections)
+                {
+                    var SectionNode = new TreeNode(section.SectionDetails);
+                    SectionNode.Tag = section;
+                    CourseRoot.Nodes.Add(SectionNode);
+                }
+                TeacherRoot.Nodes.Add(CourseRoot);
             }
+            Root.Nodes.Add(TeacherRoot);
+        }
+        FilterTreeView.Nodes.Add(Root);
+    }
+
+    private void AddStudentTree()
+    {
+        var Root = new TreeNode("Students");
+
+        var MajorsRoot = new TreeNode("Majors");
+        foreach (Major major in AllStudents.GroupBy(u => u.Major).Select(u => u.Key).ToList())
+        {
+            var MajorRoot = new TreeNode(major.ToString());
+            foreach (StudentModel student in AllStudents.Where(u => u.Major == major))
+            {
+                var studentRoot = new TreeNode(student.FullName);
+                foreach (CourseModel course in student.Courses)
+                {
+                    var CourseRoot = new TreeNode(course.Name);
+                    foreach (SectionModel section in course.Sections)
+                    {
+                        var SectionNode = new TreeNode(section.SectionDetails);
+                        SectionNode.Tag = section;
+                        CourseRoot.Nodes.Add(SectionNode);
+                    }
+                    studentRoot.Nodes.Add(CourseRoot);
+                }
+                MajorRoot.Nodes.Add(studentRoot);
+            }
+            MajorsRoot.Nodes.Add(MajorRoot);
+        }
+        Root.Nodes.Add(MajorsRoot);
+
+
+        var EntryYearRoot = new TreeNode("Entry Year");
+        foreach (int year in AllStudents.GroupBy(u => u.EntryYear).Select(u => u.Key).ToList())
+        {
+            var YearRoot = new TreeNode(year.ToString());
+            foreach (StudentModel student in AllStudents.Where(u => u.EntryYear == year))
+            {
+                var studentRoot = new TreeNode(student.FullName);
+                foreach (CourseModel course in student.Courses)
+                {
+                    var CourseRoot = new TreeNode(course.Name);
+                    foreach (SectionModel section in course.Sections)
+                    {
+                        var SectionNode = new TreeNode(section.SectionDetails);
+                        SectionNode.Tag = section;
+                        CourseRoot.Nodes.Add(SectionNode);
+                    }
+                    studentRoot.Nodes.Add(CourseRoot);
+                }
+                YearRoot.Nodes.Add(studentRoot);
+            }
+            EntryYearRoot.Nodes.Add(YearRoot);
+        }
+        Root.Nodes.Add(EntryYearRoot);
+
+
+        FilterTreeView.Nodes.Add(Root);
+    }
+
+    private void LoadSectionInListView(SectionModel? sectionModel)
+    {
+        ResultPanel.Controls.Clear();
+        if (AllRadioButton.Checked)
+        {
+            foreach (StudentStatusModel studentStatus in sectionModel?.StudentsStatus)
+            {
+                var newSSUC = new StudentStatusUserControl();
+                newSSUC.StudentStatusModel = studentStatus;
+                newSSUC.IsReadOnly = true;
+                newSSUC.Dock = DockStyle.Top;
+                ResultPanel.Controls.Add(newSSUC);
+            }
+        }
+        else
+        {
+            foreach (StudentStatusModel studentStatus in sectionModel?.StudentsStatus!.Where(u => u.IsPresent == AttendeesRadioButton.Checked))
+            {
+                var newSSUC = new StudentStatusUserControl();
+                newSSUC.StudentStatusModel = studentStatus;
+                newSSUC.IsReadOnly = true;
+                newSSUC.Dock = DockStyle.Top;
+                ResultPanel.Controls.Add(newSSUC);
+            }
+        }
+    }
+
+    private void FilterTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+    {
+        if (FilterTreeView.SelectedNode?.Tag is not null && FilterTreeView.SelectedNode.Tag is SectionModel)
+        {
+            LoadSectionInListView(FilterTreeView.SelectedNode.Tag as SectionModel);
+        }
+    }
+
+    private void AllRadioButton_CheckedChanged(object sender, EventArgs e)
+    {
+        if (FilterTreeView.SelectedNode?.Tag is not null && FilterTreeView.SelectedNode.Tag is SectionModel)
+        {
+            LoadSectionInListView(FilterTreeView.SelectedNode.Tag as SectionModel);
         }
     }
 }

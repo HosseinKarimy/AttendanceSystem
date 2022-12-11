@@ -6,9 +6,8 @@ namespace AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 
 public interface ISearchView
 {
-    public SearchStudentStatusesModel SearchSectionModel { get; set; }
-    public List<StudentStatusModel> StudentStatuses { get; set; }
-
-    public List<CourseModel> AllCourses { get; set; }
+    public List<StudentModel> AllStudents { get; set; }
     public List<TeacherModel> AllTeachers { get; set; }
+
+    public event EventHandler LoadStudentsAndTeachers;
 }

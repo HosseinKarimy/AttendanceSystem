@@ -31,10 +31,10 @@
             this.MainPanel = new System.Windows.Forms.Panel();
             this.ResultPanel = new System.Windows.Forms.Panel();
             this.FilterGroupBox = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.AllRadioButton = new System.Windows.Forms.RadioButton();
+            this.AttendeesRadioButton = new System.Windows.Forms.RadioButton();
+            this.FilterTreeView = new System.Windows.Forms.TreeView();
+            this.AbsenteesRadioButton = new System.Windows.Forms.RadioButton();
             this.MainPanel.SuspendLayout();
             this.FilterGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,7 @@
             this.ResultPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResultPanel.AutoScroll = true;
             this.ResultPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.ResultPanel.Location = new System.Drawing.Point(244, 12);
             this.ResultPanel.Name = "ResultPanel";
@@ -68,10 +69,10 @@
             this.FilterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.FilterGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.FilterGroupBox.Controls.Add(this.radioButton1);
-            this.FilterGroupBox.Controls.Add(this.radioButton3);
-            this.FilterGroupBox.Controls.Add(this.treeView1);
-            this.FilterGroupBox.Controls.Add(this.radioButton2);
+            this.FilterGroupBox.Controls.Add(this.AllRadioButton);
+            this.FilterGroupBox.Controls.Add(this.AttendeesRadioButton);
+            this.FilterGroupBox.Controls.Add(this.FilterTreeView);
+            this.FilterGroupBox.Controls.Add(this.AbsenteesRadioButton);
             this.FilterGroupBox.Location = new System.Drawing.Point(3, 3);
             this.FilterGroupBox.Name = "FilterGroupBox";
             this.FilterGroupBox.Size = new System.Drawing.Size(235, 420);
@@ -79,50 +80,55 @@
             this.FilterGroupBox.TabStop = false;
             this.FilterGroupBox.Text = "Filters";
             // 
-            // radioButton1
+            // AllRadioButton
             // 
-            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 395);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(39, 19);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "All";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.AllRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AllRadioButton.AutoSize = true;
+            this.AllRadioButton.Checked = true;
+            this.AllRadioButton.Location = new System.Drawing.Point(6, 395);
+            this.AllRadioButton.Name = "AllRadioButton";
+            this.AllRadioButton.Size = new System.Drawing.Size(39, 19);
+            this.AllRadioButton.TabIndex = 5;
+            this.AllRadioButton.TabStop = true;
+            this.AllRadioButton.Text = "All";
+            this.AllRadioButton.UseVisualStyleBackColor = true;
+            this.AllRadioButton.CheckedChanged += new System.EventHandler(this.AllRadioButton_CheckedChanged);
             // 
-            // radioButton3
+            // AttendeesRadioButton
             // 
-            this.radioButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(142, 395);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(78, 19);
-            this.radioButton3.TabIndex = 7;
-            this.radioButton3.Text = "Attendees";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.AttendeesRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AttendeesRadioButton.AutoSize = true;
+            this.AttendeesRadioButton.Location = new System.Drawing.Point(142, 395);
+            this.AttendeesRadioButton.Name = "AttendeesRadioButton";
+            this.AttendeesRadioButton.Size = new System.Drawing.Size(78, 19);
+            this.AttendeesRadioButton.TabIndex = 7;
+            this.AttendeesRadioButton.Text = "Attendees";
+            this.AttendeesRadioButton.UseVisualStyleBackColor = true;
+            this.AttendeesRadioButton.CheckedChanged += new System.EventHandler(this.AllRadioButton_CheckedChanged);
             // 
-            // treeView1
+            // FilterTreeView
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.FilterTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.treeView1.Location = new System.Drawing.Point(6, 18);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(223, 371);
-            this.treeView1.TabIndex = 8;
+            this.FilterTreeView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.FilterTreeView.FullRowSelect = true;
+            this.FilterTreeView.Location = new System.Drawing.Point(6, 18);
+            this.FilterTreeView.Name = "FilterTreeView";
+            this.FilterTreeView.Size = new System.Drawing.Size(223, 371);
+            this.FilterTreeView.TabIndex = 8;
+            this.FilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.FilterTreeView_AfterSelect);
             // 
-            // radioButton2
+            // AbsenteesRadioButton
             // 
-            this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(52, 395);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(79, 19);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.Text = "Absentees";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.AbsenteesRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AbsenteesRadioButton.AutoSize = true;
+            this.AbsenteesRadioButton.Location = new System.Drawing.Point(52, 395);
+            this.AbsenteesRadioButton.Name = "AbsenteesRadioButton";
+            this.AbsenteesRadioButton.Size = new System.Drawing.Size(79, 19);
+            this.AbsenteesRadioButton.TabIndex = 6;
+            this.AbsenteesRadioButton.Text = "Absentees";
+            this.AbsenteesRadioButton.UseVisualStyleBackColor = true;
+            this.AbsenteesRadioButton.CheckedChanged += new System.EventHandler(this.AllRadioButton_CheckedChanged);
             // 
             // SearchForm
             // 
@@ -134,7 +140,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SearchForm";
             this.Text = "DisplayDataForm";
-            this.Load += new System.EventHandler(this.DisplayDataForm_Load);
+            this.Load += new System.EventHandler(this.SearchForm_Enter);
+            this.Enter += new System.EventHandler(this.SearchForm_Enter);
             this.MainPanel.ResumeLayout(false);
             this.FilterGroupBox.ResumeLayout(false);
             this.FilterGroupBox.PerformLayout();
@@ -147,9 +154,9 @@
         private Panel MainPanel;
         private Panel ResultPanel;
         private GroupBox FilterGroupBox;
-        private RadioButton radioButton1;
-        private RadioButton radioButton3;
-        private TreeView treeView1;
-        private RadioButton radioButton2;
+        private RadioButton AllRadioButton;
+        private RadioButton AttendeesRadioButton;
+        private TreeView FilterTreeView;
+        private RadioButton AbsenteesRadioButton;
     }
 }
