@@ -1,18 +1,17 @@
 ﻿using AttendanceSystem.Models.Models;
 using AttendanceSystem.Models.Search_Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AttendanceSystem.Presenter.IPresenter.Common;
+using Models.Models;
 
-namespace AttendanceSystem.Presenter.IPresenter.Show_Data_Forms
+namespace AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
+
+public interface IAttendanceListView : IResultFeedback
 {
-    public interface IAttendanceListView
-    {
-        public SearchStudentStatusesModel SearchSectionModel { get; set; }
-        public List<StudentStatusModel> StudentStatuses { get; set; }
+    public List<TeacherModel> Teachers { get; set; }
+    public SearchStudentStatusesModel SearchSectionModel { get; set; }
+    public List<StudentStatusModel> StudentStatuses { get; set; }
+    public SectionModel Section { get; set; }
 
-        public event EventHandler CreateNewSection;
-    }
+    public event EventHandler LoadTeachers;
+    public event EventHandler UpdateSection;
 }

@@ -29,16 +29,24 @@
         private void InitializeComponent()
         {
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.StatusPanel = new System.Windows.Forms.Panel();
+            this.SaveListButton = new System.Windows.Forms.Button();
+            this.AttendeesStudentsCountLabel = new System.Windows.Forms.Label();
+            this.AbsenteesStudentsCountLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.AllStudentsCountLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ResultPanel = new System.Windows.Forms.Panel();
             this.FilterGroupBox = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.TeacherComboBox = new System.Windows.Forms.ComboBox();
+            this.CourseComboBox = new System.Windows.Forms.ComboBox();
+            this.SectionComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.ResultPanel = new System.Windows.Forms.Panel();
             this.MainPanel.SuspendLayout();
+            this.StatusPanel.SuspendLayout();
             this.FilterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +56,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
+            this.MainPanel.Controls.Add(this.StatusPanel);
             this.MainPanel.Controls.Add(this.ResultPanel);
             this.MainPanel.Controls.Add(this.FilterGroupBox);
             this.MainPanel.Location = new System.Drawing.Point(12, 12);
@@ -55,15 +64,105 @@
             this.MainPanel.Size = new System.Drawing.Size(776, 426);
             this.MainPanel.TabIndex = 0;
             // 
+            // StatusPanel
+            // 
+            this.StatusPanel.Controls.Add(this.SaveListButton);
+            this.StatusPanel.Controls.Add(this.AttendeesStudentsCountLabel);
+            this.StatusPanel.Controls.Add(this.AbsenteesStudentsCountLabel);
+            this.StatusPanel.Controls.Add(this.label8);
+            this.StatusPanel.Controls.Add(this.label6);
+            this.StatusPanel.Controls.Add(this.AllStudentsCountLabel);
+            this.StatusPanel.Controls.Add(this.label3);
+            this.StatusPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.StatusPanel.Location = new System.Drawing.Point(0, 401);
+            this.StatusPanel.Name = "StatusPanel";
+            this.StatusPanel.Size = new System.Drawing.Size(776, 25);
+            this.StatusPanel.TabIndex = 8;
+            // 
+            // SaveListButton
+            // 
+            this.SaveListButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveListButton.Location = new System.Drawing.Point(692, -1);
+            this.SaveListButton.Name = "SaveListButton";
+            this.SaveListButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveListButton.TabIndex = 1;
+            this.SaveListButton.Text = "Save";
+            this.SaveListButton.UseVisualStyleBackColor = true;
+            this.SaveListButton.Click += new System.EventHandler(this.SaveListButton_Click);
+            // 
+            // AttendeesStudentsCountLabel
+            // 
+            this.AttendeesStudentsCountLabel.AutoSize = true;
+            this.AttendeesStudentsCountLabel.Location = new System.Drawing.Point(388, 1);
+            this.AttendeesStudentsCountLabel.Name = "AttendeesStudentsCountLabel";
+            this.AttendeesStudentsCountLabel.Size = new System.Drawing.Size(38, 15);
+            this.AttendeesStudentsCountLabel.TabIndex = 0;
+            this.AttendeesStudentsCountLabel.Text = "label3";
+            // 
+            // AbsenteesStudentsCountLabel
+            // 
+            this.AbsenteesStudentsCountLabel.AutoSize = true;
+            this.AbsenteesStudentsCountLabel.Location = new System.Drawing.Point(233, 1);
+            this.AbsenteesStudentsCountLabel.Name = "AbsenteesStudentsCountLabel";
+            this.AbsenteesStudentsCountLabel.Size = new System.Drawing.Size(38, 15);
+            this.AbsenteesStudentsCountLabel.TabIndex = 0;
+            this.AbsenteesStudentsCountLabel.Text = "label3";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(309, 1);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 15);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Attendees:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(154, 1);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Absentees:";
+            // 
+            // AllStudentsCountLabel
+            // 
+            this.AllStudentsCountLabel.AutoSize = true;
+            this.AllStudentsCountLabel.Location = new System.Drawing.Point(82, 1);
+            this.AllStudentsCountLabel.Name = "AllStudentsCountLabel";
+            this.AllStudentsCountLabel.Size = new System.Drawing.Size(38, 15);
+            this.AllStudentsCountLabel.TabIndex = 0;
+            this.AllStudentsCountLabel.Text = "label3";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "All Students:";
+            // 
+            // ResultPanel
+            // 
+            this.ResultPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResultPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.ResultPanel.Location = new System.Drawing.Point(3, 61);
+            this.ResultPanel.Name = "ResultPanel";
+            this.ResultPanel.Size = new System.Drawing.Size(770, 334);
+            this.ResultPanel.TabIndex = 7;
+            // 
             // FilterGroupBox
             // 
             this.FilterGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FilterGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.FilterGroupBox.Controls.Add(this.button1);
-            this.FilterGroupBox.Controls.Add(this.comboBox1);
-            this.FilterGroupBox.Controls.Add(this.comboBox2);
-            this.FilterGroupBox.Controls.Add(this.comboBox3);
+            this.FilterGroupBox.Controls.Add(this.TeacherComboBox);
+            this.FilterGroupBox.Controls.Add(this.CourseComboBox);
+            this.FilterGroupBox.Controls.Add(this.SectionComboBox);
             this.FilterGroupBox.Controls.Add(this.label1);
             this.FilterGroupBox.Controls.Add(this.label2);
             this.FilterGroupBox.Controls.Add(this.label4);
@@ -74,46 +173,40 @@
             this.FilterGroupBox.TabStop = false;
             this.FilterGroupBox.Text = "Filters";
             // 
-            // button1
+            // TeacherComboBox
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(640, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "New Section";
-            this.button1.UseVisualStyleBackColor = true;
+            this.TeacherComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.TeacherComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TeacherComboBox.FormattingEnabled = true;
+            this.TeacherComboBox.Location = new System.Drawing.Point(59, 18);
+            this.TeacherComboBox.Name = "TeacherComboBox";
+            this.TeacherComboBox.Size = new System.Drawing.Size(156, 23);
+            this.TeacherComboBox.TabIndex = 3;
+            this.TeacherComboBox.SelectedIndexChanged += new System.EventHandler(this.TeacherComboBox_SelectedIndexChanged);
             // 
-            // comboBox1
+            // CourseComboBox
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(59, 18);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 23);
-            this.comboBox1.TabIndex = 3;
+            this.CourseComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.CourseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CourseComboBox.FormattingEnabled = true;
+            this.CourseComboBox.Location = new System.Drawing.Point(274, 18);
+            this.CourseComboBox.Name = "CourseComboBox";
+            this.CourseComboBox.Size = new System.Drawing.Size(145, 23);
+            this.CourseComboBox.TabIndex = 3;
+            this.CourseComboBox.SelectedIndexChanged += new System.EventHandler(this.CourseComboBox_SelectedIndexChanged);
             // 
-            // comboBox2
+            // SectionComboBox
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SectionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(274, 18);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(145, 23);
-            this.comboBox2.TabIndex = 3;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(477, 18);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(137, 23);
-            this.comboBox3.TabIndex = 3;
+            this.SectionComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.SectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SectionComboBox.FormattingEnabled = true;
+            this.SectionComboBox.Location = new System.Drawing.Point(477, 18);
+            this.SectionComboBox.Name = "SectionComboBox";
+            this.SectionComboBox.Size = new System.Drawing.Size(287, 23);
+            this.SectionComboBox.TabIndex = 3;
+            this.SectionComboBox.SelectedIndexChanged += new System.EventHandler(this.SectionComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -143,17 +236,6 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Section:";
             // 
-            // ResultPanel
-            // 
-            this.ResultPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ResultPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.ResultPanel.Location = new System.Drawing.Point(3, 61);
-            this.ResultPanel.Name = "ResultPanel";
-            this.ResultPanel.Size = new System.Drawing.Size(770, 362);
-            this.ResultPanel.TabIndex = 7;
-            // 
             // AttendanceListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -165,7 +247,10 @@
             this.Name = "AttendanceListForm";
             this.Text = "AttendanceListForm";
             this.Load += new System.EventHandler(this.AttendanceListForm_Load);
+            this.Enter += new System.EventHandler(this.AttendanceListForm_Load);
             this.MainPanel.ResumeLayout(false);
+            this.StatusPanel.ResumeLayout(false);
+            this.StatusPanel.PerformLayout();
             this.FilterGroupBox.ResumeLayout(false);
             this.FilterGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -176,13 +261,20 @@
 
         private Panel MainPanel;
         private GroupBox FilterGroupBox;
-        private Button button1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
+        private ComboBox CourseComboBox;
+        private ComboBox SectionComboBox;
         private Label label2;
         private Label label4;
-        private ComboBox comboBox1;
+        private ComboBox TeacherComboBox;
         private Label label1;
         private Panel ResultPanel;
+        private Panel StatusPanel;
+        private Label AttendeesStudentsCountLabel;
+        private Label AbsenteesStudentsCountLabel;
+        private Label label8;
+        private Label label6;
+        private Label AllStudentsCountLabel;
+        private Label label3;
+        private Button SaveListButton;
     }
 }
