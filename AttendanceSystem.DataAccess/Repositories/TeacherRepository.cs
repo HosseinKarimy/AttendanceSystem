@@ -18,6 +18,6 @@ public class TeacherRepository : Repository<TeacherModel>, ITeacherRepository
 
     public List<TeacherModel> GetAllTeachersWithIncludes()
     {
-        return dbContext.Teachers.Include(u => u.Courses).ThenInclude(c => c.Sections).ThenInclude(s=>s.StudentsStatus).ToList();
+        return dbContext.Teachers.Include(u => u.Courses).ThenInclude(c => c.Sections).ThenInclude(s=>s.StudentsStatus).ThenInclude(u=>u.Student).ThenInclude(u=>u.Courses).ToList();
     }
 }

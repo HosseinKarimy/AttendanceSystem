@@ -43,15 +43,31 @@ namespace AttendanceSystem.WinFormUI
 
         private void StudentCreateSaveButton_Click(object sender, EventArgs e)
         {
-            StudentModel.FirstName = StudentFirstNameTextBox.Text;
-            StudentModel.LastName = StudentLastNameTextBox.Text;
-            StudentModel.FatherName = StudentFatherNameTextBox.Text;
-            StudentModel.StudnetId = StudentIdTextBox.Text;
-            StudentModel.BirthDate = StudentBODDateTimePicker.Value;
-            StudentModel.Grade = (Grade)StudentGradeComboBox.SelectedItem;
-            StudentModel.Major = (Major)StudentMajorComboBox.SelectedItem;
-            StudentModel.EntryYear = (int)StudentEntryYearNumericUpDown.Value;
-
+            if (ActionType == ActionType.Create)
+            {
+                StudentModel = new()
+                {
+                    FirstName = StudentFirstNameTextBox.Text,
+                    LastName = StudentLastNameTextBox.Text,
+                    FatherName = StudentFatherNameTextBox.Text,
+                    StudentId = StudentIdTextBox.Text,
+                    BirthDate = StudentBODDateTimePicker.Value,
+                    Grade = (Grade)StudentGradeComboBox.SelectedItem,
+                    Major = (Major)StudentMajorComboBox.SelectedItem,
+                    EntryYear = (int)StudentEntryYearNumericUpDown.Value
+                };
+            }
+            else if (ActionType == ActionType.Update)
+            {
+                StudentModel.FirstName = StudentFirstNameTextBox.Text;
+                StudentModel.LastName = StudentLastNameTextBox.Text;
+                StudentModel.FatherName = StudentFatherNameTextBox.Text;
+                StudentModel.StudentId = StudentIdTextBox.Text;
+                StudentModel.BirthDate = StudentBODDateTimePicker.Value;
+                StudentModel.Grade = (Grade)StudentGradeComboBox.SelectedItem;
+                StudentModel.Major = (Major)StudentMajorComboBox.SelectedItem;
+                StudentModel.EntryYear = (int)StudentEntryYearNumericUpDown.Value;
+            }
             StudentSaveEdit?.Invoke(sender, e);
             MessageBox.Show(Message);
             if (IsSucess)
@@ -89,7 +105,7 @@ namespace AttendanceSystem.WinFormUI
         private void StudentSearchTextBox_TextChanged(object sender, EventArgs e)
         {
             var SearchString = StudentSearchTextBox.Text;
-            SearchedStudents = Students.Where(u => u.FullName.Contains(SearchString) || u.StudnetId.Contains(SearchString)).ToList();
+            SearchedStudents = Students.Where(u => u.FullName.Contains(SearchString) || u.StudentId.Contains(SearchString)).ToList();
             ReloadStudentsInListView(SearchedStudents);
         }
 
@@ -117,7 +133,7 @@ namespace AttendanceSystem.WinFormUI
 
             foreach (var student in students)
             {
-                var item = new ListViewItem(new String[] { student.StudnetId, student.FullName });
+                var item = new ListViewItem(new String[] { student.StudentId, student.FullName });
                 item.Tag = student;
                 StudentsListView.Items.Add(item);
             }
@@ -146,7 +162,7 @@ namespace AttendanceSystem.WinFormUI
             StudentFirstNameTextBox.Text = selectedStudent.FirstName;
             StudentLastNameTextBox.Text = selectedStudent.LastName;
             StudentFatherNameTextBox.Text = selectedStudent.FatherName;
-            StudentIdTextBox.Text = selectedStudent.StudnetId;
+            StudentIdTextBox.Text = selectedStudent.StudentId;
             StudentBODDateTimePicker.Value = selectedStudent.BirthDate ?? DateTime.Now;
             StudentGradeComboBox.SelectedItem = selectedStudent.Grade;
             StudentMajorComboBox.SelectedItem = selectedStudent.Major;
@@ -165,22 +181,36 @@ namespace AttendanceSystem.WinFormUI
 
 
         //events
-        private void TeacherSaveEditButton_Click(object sender, EventArgs e)
-        {
-            TeacherModel.FirstName = TeacherFirstNameTextBox.Text;
-            TeacherModel.LastName = TeacherLastNameTextBox.Text;
-            TeacherModel.FatherName = TeacherFatherNameTextBox.Text;
-            TeacherModel.TeacherId = TeacherIdTextBox.Text;
-            TeacherModel.BirthDate = TeacherBODDateTimePicker.Value;
+        //private void TeacherSaveEditButton_Click(object sender, EventArgs e)
+        //{
+        //    if (ActionType == ActionType.Create)
+        //    {
+        //        TeacherModel = new()
+        //        {
+        //            FirstName = TeacherFirstNameTextBox.Text,
+        //            LastName = TeacherLastNameTextBox.Text,
+        //            FatherName = TeacherFatherNameTextBox.Text,
+        //            TeacherId = TeacherIdTextBox.Text,
+        //            BirthDate = TeacherBODDateTimePicker.Value
+        //        };
+        //    }
+        //    else
+        //    {
+        //        TeacherModel.FirstName = TeacherFirstNameTextBox.Text;
+        //        TeacherModel.LastName = TeacherLastNameTextBox.Text;
+        //        TeacherModel.FatherName = TeacherFatherNameTextBox.Text;
+        //        TeacherModel.TeacherId = TeacherIdTextBox.Text;
+        //        TeacherModel.BirthDate = TeacherBODDateTimePicker.Value;
+        //    }
 
-            TeacherSaveEdit?.Invoke(sender, e);
-            MessageBox.Show(Message);
-            if (IsSucess)
-            {
-                LoadTeachersInListView();
-                ClearTeacherForm();
-            }
-        }
+        //    TeacherSaveEdit?.Invoke(sender, e);
+        //    MessageBox.Show(Message);
+        //    if (IsSucess)
+        //    {
+        //        LoadTeachersInListView();
+        //        ClearTeacherForm();
+        //    }
+        //}
 
         private void TeachersListView_ItemActivate(object sender, EventArgs e)
         {
@@ -188,15 +218,29 @@ namespace AttendanceSystem.WinFormUI
             LoadSelectedTeacher(TeacherModel);
             ActionType = ActionType.Update;
             TeacherCreateSaveButton.Text = "Edit";
-        }       
+        }
 
         private void TeacherCreateSaveButton_Click(object sender, EventArgs e)
         {
-            TeacherModel.FirstName = TeacherFirstNameTextBox.Text;
-            TeacherModel.LastName = TeacherLastNameTextBox.Text;
-            TeacherModel.FatherName = TeacherFatherNameTextBox.Text;
-            TeacherModel.TeacherId = TeacherIdTextBox.Text;
-            TeacherModel.BirthDate = TeacherBODDateTimePicker.Value;
+            if (ActionType == ActionType.Create)
+            {
+                TeacherModel = new()
+                {
+                    FirstName = TeacherFirstNameTextBox.Text,
+                    LastName = TeacherLastNameTextBox.Text,
+                    FatherName = TeacherFatherNameTextBox.Text,
+                    TeacherId = TeacherIdTextBox.Text,
+                    BirthDate = TeacherBODDateTimePicker.Value
+                };
+            }
+            else if (ActionType == ActionType.Update)
+            {
+                TeacherModel.FirstName = TeacherFirstNameTextBox.Text;
+                TeacherModel.LastName = TeacherLastNameTextBox.Text;
+                TeacherModel.FatherName = TeacherFatherNameTextBox.Text;
+                TeacherModel.TeacherId = TeacherIdTextBox.Text;
+                TeacherModel.BirthDate = TeacherBODDateTimePicker.Value;
+            }
 
             TeacherSaveEdit?.Invoke(sender, e);
             MessageBox.Show(Message);
@@ -286,7 +330,7 @@ namespace AttendanceSystem.WinFormUI
 
         #endregion
 
-        
+
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
+﻿using AttendanceSystem.DataAccess.UnitOfWork;
+using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace AttendanceSystem.Presenter.IPresenter.MainMenuView
         IAttendanceListView AttendanceListView { get; }
         ISearchView SearchView { get; }
         IUserManagementView UserManagementView { get; }
+
+        IUnitOFWork UnitOFWork { get; }
     }
 }

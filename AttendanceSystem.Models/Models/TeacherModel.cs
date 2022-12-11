@@ -18,7 +18,7 @@ public class TeacherModel
     [StringLength(50, MinimumLength = 2)]
     public string LastName { get; set; }
 
-    public string FatherName { get; set; }
+    public string? FatherName { get; set; }
     [NotMapped]
     public string FullName { get => $"{FirstName} {LastName}"; }
 

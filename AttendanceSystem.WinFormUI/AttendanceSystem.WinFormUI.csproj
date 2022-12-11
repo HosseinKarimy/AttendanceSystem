@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AttendanceSystem.DataAccess\AttendanceSystem.DataAccess.csproj" />
     <ProjectReference Include="..\AttendanceSystem.Models\AttendanceSystem.Models.csproj" />
+    <ProjectReference Include="..\AttendanceSystem.Presenter\AttendanceSystem.Presenter.csproj" />
   </ItemGroup>
 
 </Project>

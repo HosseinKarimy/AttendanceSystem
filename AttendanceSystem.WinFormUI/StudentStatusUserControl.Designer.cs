@@ -30,12 +30,12 @@
         {
             this.MainPanel = new System.Windows.Forms.Panel();
             this.DescriptionCheckBox = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ShowStudentDetailsButton = new System.Windows.Forms.Button();
             this.PresentCheckBox = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.StudentIdTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
@@ -45,12 +45,12 @@
             // 
             this.MainPanel.BackColor = System.Drawing.Color.Gainsboro;
             this.MainPanel.Controls.Add(this.DescriptionCheckBox);
-            this.MainPanel.Controls.Add(this.button1);
+            this.MainPanel.Controls.Add(this.ShowStudentDetailsButton);
             this.MainPanel.Controls.Add(this.PresentCheckBox);
-            this.MainPanel.Controls.Add(this.textBox2);
+            this.MainPanel.Controls.Add(this.StudentIdTextBox);
             this.MainPanel.Controls.Add(this.label2);
-            this.MainPanel.Controls.Add(this.textBox3);
-            this.MainPanel.Controls.Add(this.textBox1);
+            this.MainPanel.Controls.Add(this.DescriptionTextBox);
+            this.MainPanel.Controls.Add(this.NameTextBox);
             this.MainPanel.Controls.Add(this.label3);
             this.MainPanel.Controls.Add(this.label1);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,15 +72,16 @@
             this.DescriptionCheckBox.UseVisualStyleBackColor = true;
             this.DescriptionCheckBox.CheckedChanged += new System.EventHandler(this.DescriptionCheckBox_CheckedChanged);
             // 
-            // button1
+            // ShowStudentDetailsButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(555, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Show Student Status";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ShowStudentDetailsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowStudentDetailsButton.Location = new System.Drawing.Point(555, 4);
+            this.ShowStudentDetailsButton.Name = "ShowStudentDetailsButton";
+            this.ShowStudentDetailsButton.Size = new System.Drawing.Size(128, 23);
+            this.ShowStudentDetailsButton.TabIndex = 3;
+            this.ShowStudentDetailsButton.Text = "Show Student Status";
+            this.ShowStudentDetailsButton.UseVisualStyleBackColor = true;
+            this.ShowStudentDetailsButton.Click += new System.EventHandler(this.ShowStudentDetailsButton_Click);
             // 
             // PresentCheckBox
             // 
@@ -97,14 +98,14 @@
             this.PresentCheckBox.UseVisualStyleBackColor = true;
             this.PresentCheckBox.CheckedChanged += new System.EventHandler(this.PresentCheckBox_CheckedChanged);
             // 
-            // textBox2
+            // StudentIdTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(262, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(124, 23);
-            this.textBox2.TabIndex = 1;
+            this.StudentIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentIdTextBox.Location = new System.Drawing.Point(262, 4);
+            this.StudentIdTextBox.Name = "StudentIdTextBox";
+            this.StudentIdTextBox.ReadOnly = true;
+            this.StudentIdTextBox.Size = new System.Drawing.Size(124, 23);
+            this.StudentIdTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -116,24 +117,24 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "StudentID:";
             // 
-            // textBox3
+            // DescriptionTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(76, 31);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(609, 23);
-            this.textBox3.TabIndex = 1;
+            this.DescriptionTextBox.Location = new System.Drawing.Point(76, 31);
+            this.DescriptionTextBox.Name = "DescriptionTextBox";
+            this.DescriptionTextBox.Size = new System.Drawing.Size(609, 23);
+            this.DescriptionTextBox.TabIndex = 1;
             // 
-            // textBox1
+            // NameTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(51, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(137, 23);
-            this.textBox1.TabIndex = 1;
+            this.NameTextBox.Location = new System.Drawing.Point(51, 4);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.ReadOnly = true;
+            this.NameTextBox.Size = new System.Drawing.Size(137, 23);
+            this.NameTextBox.TabIndex = 1;
             // 
             // label3
             // 
@@ -161,6 +162,7 @@
             this.Name = "StudentStatusUserControl";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Size = new System.Drawing.Size(693, 32);
+            this.Load += new System.EventHandler(this.StudentStatusUserControl_Load);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -170,12 +172,12 @@
         #endregion
 
         private Panel MainPanel;
-        private Button button1;
+        private Button ShowStudentDetailsButton;
         private CheckBox PresentCheckBox;
-        private TextBox textBox2;
+        private TextBox StudentIdTextBox;
         private Label label2;
-        private TextBox textBox3;
-        private TextBox textBox1;
+        private TextBox DescriptionTextBox;
+        private TextBox NameTextBox;
         private Label label3;
         private Label label1;
         private CheckBox DescriptionCheckBox;

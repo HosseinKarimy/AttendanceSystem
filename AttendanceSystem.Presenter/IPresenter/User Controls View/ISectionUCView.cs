@@ -10,5 +10,7 @@ namespace AttendanceSystem.Presenter.IPresenter
     public interface ISectionUCView
     {
         public SectionModel SectionModel { get; set; }
+
+        public event EventHandler RemoveSection;
     }
 }

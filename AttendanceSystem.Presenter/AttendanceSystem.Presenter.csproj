@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AttendanceSystem.DataAccess\AttendanceSystem.DataAccess.csproj" />
     <ProjectReference Include="..\AttendanceSystem.Models\AttendanceSystem.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IIntraction\" />
   </ItemGroup>
 
 </Project>

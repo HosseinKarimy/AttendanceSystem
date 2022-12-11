@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.Models;
 
-[Index(propertyNames: nameof(StudnetId), IsUnique = true)]
+[Index(propertyNames: nameof(StudentId), IsUnique = true)]
 public class StudentModel
 {
     [Key]
@@ -19,14 +19,14 @@ public class StudentModel
     [StringLength(50, MinimumLength = 2)]
     public string LastName { get; set; }
 
-    public string FatherName { get; set; }
+    public string? FatherName { get; set; }
 
     [NotMapped]
     public string FullName { get => $"{FirstName} {LastName}"; }
 
     [StringLength(50,MinimumLength =8)]
     [Required]
-    public string StudnetId { get; set; }
+    public string StudentId { get; set; }
 
     [Required]
     public string Password { get; set; } = "1";

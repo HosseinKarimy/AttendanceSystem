@@ -172,7 +172,7 @@
             this.StudentBODDateTimePicker.Location = new System.Drawing.Point(328, 103);
             this.StudentBODDateTimePicker.Name = "StudentBODDateTimePicker";
             this.StudentBODDateTimePicker.Size = new System.Drawing.Size(168, 23);
-            this.StudentBODDateTimePicker.TabIndex = 3;
+            this.StudentBODDateTimePicker.TabIndex = 6;
             // 
             // StudentGradeComboBox
             // 
@@ -184,7 +184,7 @@
             this.StudentGradeComboBox.Location = new System.Drawing.Point(328, 133);
             this.StudentGradeComboBox.Name = "StudentGradeComboBox";
             this.StudentGradeComboBox.Size = new System.Drawing.Size(168, 23);
-            this.StudentGradeComboBox.TabIndex = 2;
+            this.StudentGradeComboBox.TabIndex = 7;
             // 
             // StudentMajorComboBox
             // 
@@ -194,7 +194,7 @@
             this.StudentMajorComboBox.Location = new System.Drawing.Point(94, 133);
             this.StudentMajorComboBox.Name = "StudentMajorComboBox";
             this.StudentMajorComboBox.Size = new System.Drawing.Size(162, 23);
-            this.StudentMajorComboBox.TabIndex = 2;
+            this.StudentMajorComboBox.TabIndex = 4;
             // 
             // StudentIdTextBox
             // 
@@ -202,7 +202,7 @@
             this.StudentIdTextBox.Location = new System.Drawing.Point(94, 102);
             this.StudentIdTextBox.Name = "StudentIdTextBox";
             this.StudentIdTextBox.Size = new System.Drawing.Size(162, 23);
-            this.StudentIdTextBox.TabIndex = 1;
+            this.StudentIdTextBox.TabIndex = 3;
             // 
             // StudentFatherNameTextBox
             // 
@@ -212,7 +212,7 @@
             this.StudentFatherNameTextBox.Location = new System.Drawing.Point(94, 73);
             this.StudentFatherNameTextBox.Name = "StudentFatherNameTextBox";
             this.StudentFatherNameTextBox.Size = new System.Drawing.Size(402, 23);
-            this.StudentFatherNameTextBox.TabIndex = 1;
+            this.StudentFatherNameTextBox.TabIndex = 2;
             // 
             // StudentLastNameTextBox
             // 
@@ -232,7 +232,7 @@
             this.StudentFirstNameTextBox.Location = new System.Drawing.Point(94, 13);
             this.StudentFirstNameTextBox.Name = "StudentFirstNameTextBox";
             this.StudentFirstNameTextBox.Size = new System.Drawing.Size(402, 23);
-            this.StudentFirstNameTextBox.TabIndex = 1;
+            this.StudentFirstNameTextBox.TabIndex = 0;
             // 
             // label8
             // 
@@ -466,7 +466,7 @@
             this.TeacherCreateSaveButton.Location = new System.Drawing.Point(3, 365);
             this.TeacherCreateSaveButton.Name = "TeacherCreateSaveButton";
             this.TeacherCreateSaveButton.Size = new System.Drawing.Size(506, 53);
-            this.TeacherCreateSaveButton.TabIndex = 4;
+            this.TeacherCreateSaveButton.TabIndex = 5;
             this.TeacherCreateSaveButton.Text = "Save/Create";
             this.TeacherCreateSaveButton.UseVisualStyleBackColor = false;
             this.TeacherCreateSaveButton.Click += new System.EventHandler(this.TeacherCreateSaveButton_Click);
@@ -478,7 +478,7 @@
             this.TeacherBODDateTimePicker.Location = new System.Drawing.Point(328, 103);
             this.TeacherBODDateTimePicker.Name = "TeacherBODDateTimePicker";
             this.TeacherBODDateTimePicker.Size = new System.Drawing.Size(167, 23);
-            this.TeacherBODDateTimePicker.TabIndex = 3;
+            this.TeacherBODDateTimePicker.TabIndex = 4;
             // 
             // TeacherIdTextBox
             // 
@@ -486,7 +486,7 @@
             this.TeacherIdTextBox.Location = new System.Drawing.Point(94, 102);
             this.TeacherIdTextBox.Name = "TeacherIdTextBox";
             this.TeacherIdTextBox.Size = new System.Drawing.Size(162, 23);
-            this.TeacherIdTextBox.TabIndex = 1;
+            this.TeacherIdTextBox.TabIndex = 3;
             // 
             // TeacherFatherNameTextBox
             // 
@@ -496,7 +496,7 @@
             this.TeacherFatherNameTextBox.Location = new System.Drawing.Point(94, 73);
             this.TeacherFatherNameTextBox.Name = "TeacherFatherNameTextBox";
             this.TeacherFatherNameTextBox.Size = new System.Drawing.Size(401, 23);
-            this.TeacherFatherNameTextBox.TabIndex = 1;
+            this.TeacherFatherNameTextBox.TabIndex = 2;
             // 
             // TeacherLastNameTextBox
             // 
@@ -516,7 +516,7 @@
             this.TeacherFirstNameTextBox.Location = new System.Drawing.Point(94, 13);
             this.TeacherFirstNameTextBox.Name = "TeacherFirstNameTextBox";
             this.TeacherFirstNameTextBox.Size = new System.Drawing.Size(401, 23);
-            this.TeacherFirstNameTextBox.TabIndex = 1;
+            this.TeacherFirstNameTextBox.TabIndex = 0;
             // 
             // label10
             // 
