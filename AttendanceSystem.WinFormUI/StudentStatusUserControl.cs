@@ -54,7 +54,8 @@ public partial class StudentStatusUserControl : UserControl, IStudentStatusUCVie
         }
         if (IsReadOnly is true)
             PresentCheckBox.Enabled = false;
-        
+        if (!string.IsNullOrWhiteSpace(DescriptionTextBox.Text))
+            DescriptionCheckBox.CheckState = CheckState.Indeterminate;
     }
 
     private void ShowStudentDetailsButton_Click(object sender, EventArgs e)
@@ -62,5 +63,10 @@ public partial class StudentStatusUserControl : UserControl, IStudentStatusUCVie
         var newDetailForm = new StudentDetailsForm();
         newDetailForm.StudentModel = StudentStatusModel.Student;
         newDetailForm.ShowDialog();
+    }
+
+    private void DescriptionTextBox_Leave(object sender, EventArgs e)
+    {
+        StudentStatusModel.Description = DescriptionTextBox.Text;
     }
 }

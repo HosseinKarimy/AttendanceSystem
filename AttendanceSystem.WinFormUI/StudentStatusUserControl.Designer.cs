@@ -125,6 +125,7 @@
             this.DescriptionTextBox.Name = "DescriptionTextBox";
             this.DescriptionTextBox.Size = new System.Drawing.Size(609, 23);
             this.DescriptionTextBox.TabIndex = 1;
+            this.DescriptionTextBox.Leave += new System.EventHandler(this.DescriptionTextBox_Leave);
             // 
             // NameTextBox
             // 

@@ -66,7 +66,7 @@
             this.SelectedTeacherTextBox = new System.Windows.Forms.TextBox();
             this.StudentTabPage = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.SelectStudentGPBox = new System.Windows.Forms.GroupBox();
             this.AddStudnetsButton = new System.Windows.Forms.Button();
             this.AllStudentsListView = new System.Windows.Forms.ListView();
             this.NameHeader = new System.Windows.Forms.ColumnHeader();
@@ -82,7 +82,7 @@
             this.SearchStudentTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.SelectedStudentGPBox = new System.Windows.Forms.GroupBox();
             this.RemoveCheckedStudentsFromSelectedStudentsButton = new System.Windows.Forms.Button();
             this.SelectedStudentsListView = new System.Windows.Forms.ListView();
             this.RemoveFromSelectedStudentsToolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -110,10 +110,10 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.SelectStudentGPBox.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EntryYearNumric)).BeginInit();
-            this.groupBox5.SuspendLayout();
+            this.SelectedStudentGPBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -133,7 +133,9 @@
             this.tabControl1.Controls.Add(this.StudentTabPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(0, 0);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(776, 426);
             this.tabControl1.TabIndex = 0;
@@ -550,7 +552,6 @@
             this.StudentTabPage.Controls.Add(this.splitContainer2);
             this.StudentTabPage.Location = new System.Drawing.Point(4, 24);
             this.StudentTabPage.Name = "StudentTabPage";
-            this.StudentTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.StudentTabPage.Size = new System.Drawing.Size(768, 398);
             this.StudentTabPage.TabIndex = 1;
             this.StudentTabPage.Text = "Select Student";
@@ -561,40 +562,41 @@
             // 
             this.splitContainer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(201)))), ((int)(((byte)(202)))));
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.groupBox2);
+            this.splitContainer2.Panel1.Controls.Add(this.SelectStudentGPBox);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
-            this.splitContainer2.Size = new System.Drawing.Size(762, 392);
-            this.splitContainer2.SplitterDistance = 504;
-            this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.Panel2.Controls.Add(this.SelectedStudentGPBox);
+            this.splitContainer2.Size = new System.Drawing.Size(768, 398);
+            this.splitContainer2.SplitterDistance = 523;
+            this.splitContainer2.TabIndex = 1;
             // 
-            // groupBox2
+            // SelectStudentGPBox
             // 
-            this.groupBox2.Controls.Add(this.AddStudnetsButton);
-            this.groupBox2.Controls.Add(this.AllStudentsListView);
-            this.groupBox2.Controls.Add(this.panel2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(504, 392);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Step4: Select students";
+            this.SelectStudentGPBox.Controls.Add(this.AddStudnetsButton);
+            this.SelectStudentGPBox.Controls.Add(this.AllStudentsListView);
+            this.SelectStudentGPBox.Controls.Add(this.panel2);
+            this.SelectStudentGPBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SelectStudentGPBox.Location = new System.Drawing.Point(0, 0);
+            this.SelectStudentGPBox.Name = "SelectStudentGPBox";
+            this.SelectStudentGPBox.Size = new System.Drawing.Size(523, 398);
+            this.SelectStudentGPBox.TabIndex = 0;
+            this.SelectStudentGPBox.TabStop = false;
+            this.SelectStudentGPBox.Text = "Step4: Select students";
             // 
             // AddStudnetsButton
             // 
-            this.AddStudnetsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddStudnetsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AddStudnetsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.AddStudnetsButton.Location = new System.Drawing.Point(197, 363);
+            this.AddStudnetsButton.Location = new System.Drawing.Point(200, 369);
             this.AddStudnetsButton.Name = "AddStudnetsButton";
-            this.AddStudnetsButton.Size = new System.Drawing.Size(301, 23);
+            this.AddStudnetsButton.Size = new System.Drawing.Size(314, 23);
             this.AddStudnetsButton.TabIndex = 3;
             this.AddStudnetsButton.Text = "Add Students To Course";
             this.AddStudnetsButton.UseVisualStyleBackColor = false;
@@ -605,6 +607,7 @@
             this.AllStudentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AllStudentsListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.AllStudentsListView.CheckBoxes = true;
             this.AllStudentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NameHeader,
@@ -613,9 +616,9 @@
             this.EntryYearHeader});
             this.AllStudentsListView.FullRowSelect = true;
             this.AllStudentsListView.HoverSelection = true;
-            this.AllStudentsListView.Location = new System.Drawing.Point(197, 22);
+            this.AllStudentsListView.Location = new System.Drawing.Point(200, 22);
             this.AllStudentsListView.Name = "AllStudentsListView";
-            this.AllStudentsListView.Size = new System.Drawing.Size(301, 337);
+            this.AllStudentsListView.Size = new System.Drawing.Size(314, 340);
             this.AllStudentsListView.TabIndex = 1;
             this.AllStudentsListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -739,28 +742,29 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Search Student:";
             // 
-            // groupBox5
+            // SelectedStudentGPBox
             // 
-            this.groupBox5.Controls.Add(this.RemoveCheckedStudentsFromSelectedStudentsButton);
-            this.groupBox5.Controls.Add(this.SelectedStudentsListView);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox5.Location = new System.Drawing.Point(0, 0);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(254, 392);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Selected Students";
+            this.SelectedStudentGPBox.Controls.Add(this.RemoveCheckedStudentsFromSelectedStudentsButton);
+            this.SelectedStudentGPBox.Controls.Add(this.SelectedStudentsListView);
+            this.SelectedStudentGPBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SelectedStudentGPBox.Location = new System.Drawing.Point(0, 0);
+            this.SelectedStudentGPBox.Name = "SelectedStudentGPBox";
+            this.SelectedStudentGPBox.Size = new System.Drawing.Size(241, 398);
+            this.SelectedStudentGPBox.TabIndex = 0;
+            this.SelectedStudentGPBox.TabStop = false;
+            this.SelectedStudentGPBox.Text = "Selected Students";
             // 
             // RemoveCheckedStudentsFromSelectedStudentsButton
             // 
             this.RemoveCheckedStudentsFromSelectedStudentsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Location = new System.Drawing.Point(6, 363);
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Location = new System.Drawing.Point(6, 369);
             this.RemoveCheckedStudentsFromSelectedStudentsButton.Name = "RemoveCheckedStudentsFromSelectedStudentsButton";
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Size = new System.Drawing.Size(242, 23);
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Size = new System.Drawing.Size(229, 23);
             this.RemoveCheckedStudentsFromSelectedStudentsButton.TabIndex = 1;
             this.RemoveCheckedStudentsFromSelectedStudentsButton.Text = "Remove From Course";
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.UseVisualStyleBackColor = true;
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.UseVisualStyleBackColor = false;
             this.RemoveCheckedStudentsFromSelectedStudentsButton.Click += new System.EventHandler(this.RemoveCheckedStudentsFromSelectedStudentsButton_Click);
             // 
             // SelectedStudentsListView
@@ -768,10 +772,12 @@
             this.SelectedStudentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedStudentsListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.SelectedStudentsListView.CheckBoxes = true;
+            this.SelectedStudentsListView.FullRowSelect = true;
             this.SelectedStudentsListView.Location = new System.Drawing.Point(6, 22);
             this.SelectedStudentsListView.Name = "SelectedStudentsListView";
-            this.SelectedStudentsListView.Size = new System.Drawing.Size(242, 335);
+            this.SelectedStudentsListView.Size = new System.Drawing.Size(229, 341);
             this.SelectedStudentsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.SelectedStudentsListView.TabIndex = 0;
             this.SelectedStudentsListView.UseCompatibleStateImageBehavior = false;
@@ -818,11 +824,11 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.SelectStudentGPBox.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EntryYearNumric)).EndInit();
-            this.groupBox5.ResumeLayout(false);
+            this.SelectedStudentGPBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -841,23 +847,6 @@
         private DateTimePicker MidTermDateTimePicker;
         private Label label5;
         private Label label4;
-        private SplitContainer splitContainer2;
-        private GroupBox groupBox2;
-        private Panel panel2;
-        private TextBox SearchStudentTextBox;
-        private Label label9;
-        private NumericUpDown EntryYearNumric;
-        private ComboBox GradeComboBox;
-        private ComboBox MajorComboBox;
-        private Label label11;
-        private Label label10;
-        private ListView AllStudentsListView;
-        private ColumnHeader NameHeader;
-        private ColumnHeader StudentIdHeader;
-        private ColumnHeader MajorHeader;
-        private ColumnHeader EntryYearHeader;
-        private CheckBox EntryYearCheckBox;
-        private Button AddStudnetsButton;
         private Panel SelectedSectionPanel;
         private Label label3;
         private SplitContainer splitContainer3;
@@ -880,11 +869,28 @@
         private Label label7;
         private GroupBox groupBox4;
         private GroupBox groupBox3;
-        private GroupBox groupBox5;
-        private ListView SelectedStudentsListView;
-        private Button RemoveCheckedStudentsFromSelectedStudentsButton;
         private SplitContainer SectionDaySpliterContainer;
         private Label label2;
         private LinkLabel SelectStudentsLinkLabel;
+        private SplitContainer splitContainer2;
+        private GroupBox SelectStudentGPBox;
+        private Button AddStudnetsButton;
+        private ListView AllStudentsListView;
+        private ColumnHeader NameHeader;
+        private ColumnHeader StudentIdHeader;
+        private ColumnHeader MajorHeader;
+        private ColumnHeader EntryYearHeader;
+        private Panel panel2;
+        private CheckBox EntryYearCheckBox;
+        private NumericUpDown EntryYearNumric;
+        private ComboBox GradeComboBox;
+        private ComboBox MajorComboBox;
+        private Label label11;
+        private TextBox SearchStudentTextBox;
+        private Label label10;
+        private Label label9;
+        private GroupBox SelectedStudentGPBox;
+        private Button RemoveCheckedStudentsFromSelectedStudentsButton;
+        private ListView SelectedStudentsListView;
     }
 }
