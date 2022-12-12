@@ -16,7 +16,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
 
     private void ClassManagementForm_Load(object sender, EventArgs e)
     {
-        InitializeStudentSectionTabPage();
+        InitializeStudentsTabPage();
         InitializeCourseTabPage();
     }
 
@@ -24,7 +24,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
     public string Message { get; set; }
     public ActionType ActionType { get; set; } = ActionType.Create;
 
-    #region StudentSectionTabPage
+    #region StudentsTabPage
 
     public List<StudentModel> Students { get; set; } = new();
     public SearchStudentModel SearchStudentModel { get; set; } = new();
@@ -32,7 +32,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
     public event EventHandler Search;
     public event EventHandler LoadStudents;
 
-    private void InitializeStudentSectionTabPage()
+    private void InitializeStudentsTabPage()
     {
         DayOfWeekComboBox.DataSource = Enum.GetValues(typeof(DayOfWeek));
         GradeComboBox.DataSource = Enum.GetValues(typeof(Grade));
@@ -41,7 +41,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
         const int shamsi_miladi_diff = 621;
         EntryYearNumric.Minimum = DateTime.Now.AddYears(-8).Year - shamsi_miladi_diff;
         EntryYearNumric.Maximum = DateTime.Now.Year - shamsi_miladi_diff;
-        ClassDurationTimePicker.CustomFormat = "mm:hh";
+        ClassDurationTimePicker.CustomFormat = "hh:mm";
 
         SearchStudentTextBox.TextChanged += delegate
         {
@@ -75,12 +75,49 @@ public partial class ClassManagementForm : Form, IClassManagementView
         };
     }
 
-    //enter TabPage
+    //Events
+
     private void StudentSectionTabPage_Enter(object sender, EventArgs e)
     {
         LoadStudents?.Invoke(this, EventArgs.Empty);
         ReloadStudentsInListView(Students);
+        ReloadSelectedStudents();
     }
+
+    private void EntryYearCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        if (EntryYearCheckBox.Checked)
+        {
+            EntryYearNumric.Enabled = true;
+        }
+        else
+        {
+            EntryYearNumric.Enabled = false;
+        }
+    }
+
+    private void AddStudnetsButton_Click(object sender, EventArgs e)
+    {
+        foreach (ListViewItem item in AllStudentsListView.CheckedItems)
+        {
+            SelectedStudents.Add((item.Tag as StudentModel)!);
+        }
+        ReloadStudentsInListView(Students);
+        ReloadSelectedStudents();
+    }
+
+    private void RemoveCheckedStudentsFromSelectedStudentsButton_Click(object sender, EventArgs e)
+    {
+        foreach (ListViewItem item in SelectedStudentsListView.CheckedItems)
+        {
+            var student = item.Tag as StudentModel;
+            SelectedStudents.Remove(student!);
+        }
+        ReloadStudentsInListView(Students);
+        ReloadSelectedStudents();
+    }
+
+    //Methods
 
     private void ReloadStudentsInListView(List<StudentModel> students)
     {
@@ -106,6 +143,26 @@ public partial class ClassManagementForm : Form, IClassManagementView
         AllStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
     }
 
+    private void ReloadSelectedStudents()
+    {
+        SelectedStudentsListView.Columns.Clear();
+        SelectedStudentsListView.Items.Clear();
+
+        SelectedStudentsListView.View = View.Details;
+        SelectedStudentsListView.Columns.Add("StudentId");
+        SelectedStudentsListView.Columns.Add("Name");
+        SelectedStudentsListView.Columns.Add("Major");
+
+        foreach (var student in SelectedStudents)
+        {
+            var item = new ListViewItem(new String[] { student.StudentId, student.FullName, student.Major.ToString() });
+            item.Tag = student;
+            SelectedStudentsListView.Items.Add(item);
+        }
+        SelectedStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+        SelectedStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+    }
+
     private void PrepairingSearch()
     {
         SearchStudentModel = new()
@@ -116,44 +173,6 @@ public partial class ClassManagementForm : Form, IClassManagementView
             EntryYear = EntryYearCheckBox.Checked ? (int)EntryYearNumric.Value : 0
         };
     }
-
-    private void EntryYearCheckBox_CheckedChanged(object sender, EventArgs e)
-    {
-        if (EntryYearCheckBox.Checked)
-        {
-            EntryYearNumric.Enabled = true;
-        }
-        else
-        {
-            EntryYearNumric.Enabled = false;
-        }
-    }
-
-    //add students to course
-    private void AddStudnetsButton_Click(object sender, EventArgs e)
-    {
-        foreach (ListViewItem item in AllStudentsListView.SelectedItems)
-        {
-            SelectedStudents.Add((item.Tag as StudentModel)!);
-        }
-        ReloadStudentsInListView(Students);
-    }
-
-    //add section to course
-    private void AddSectionButton_Click(object sender, EventArgs e)
-    {
-        var duration = new TimeSpan(ClassDurationTimePicker.Value.Hour % 12, ClassDurationTimePicker.Value.Minute, ClassDurationTimePicker.Value.Second);
-        var time = new TimeOnly(SectionTimePicker.Value.Hour, SectionTimePicker.Value.Minute, SectionTimePicker.Value.Second);
-
-        SectionModel = new()
-        {
-            ClassDuration = duration,
-            StartTime = time,
-            Day = (DayOfWeek)DayOfWeekComboBox.SelectedItem
-        };
-        SelectedSections.Add(SectionModel);
-    }
-
 
     #endregion
 
@@ -171,14 +190,90 @@ public partial class ClassManagementForm : Form, IClassManagementView
     private void InitializeCourseTabPage()
     {
         RemoveFromSelectedStudentsToolTip.SetToolTip(this.RemoveCheckedStudentsFromSelectedStudentsButton, "Remove Checked Students From Course");
+        LoadCourseTabPageComponentsContext();
     }
 
+    //events
     private void CreateCourseTabPage_Enter(object sender, EventArgs e)
     {
-        LoadSelectedStudents();
+        LoadCourseTabPageComponentsContext();
+    }
+
+    private void LoadCourseTabPageComponentsContext()
+    {
         LoadSelectedSections();
         LoadTeachersInListView();
     }
+
+    private void TeachersListView_ItemActivate(object sender, EventArgs e)
+    {
+        var teacher = TeachersListView.SelectedItems[0].Tag as TeacherModel;
+        SelectedTeacherTextBox.Text = teacher?.FullName;
+        SelectedTeacherTextBox.Tag = teacher;
+    }
+
+    private void SearchTeacherTextBox_TextChanged(object sender, EventArgs e)
+    {
+        ReloadTeachersInListView(Teachers.Where(u => u.TeacherId.Contains(SearchTeacherTextBox.Text) || u.FullName.Contains(SearchTeacherTextBox.Text)).ToList());
+    }
+
+    private void CreateCourseButton_Click(object sender, EventArgs e)
+    {
+        if (SelectedTeacherTextBox.Tag is null)
+        {
+            MessageBox.Show("Please Select Teacher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+        if (SelectedSections.Count < 1)
+        {
+            MessageBox.Show("Please Create at least 1 section", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        CourseModel = new()
+        {
+            Name = CourseNameTextBox.Text,
+            MidTermExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
+            FinalExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
+            Students = SelectedStudents,
+            Sections = SelectedSections,
+            TeacherId = (SelectedTeacherTextBox.Tag as TeacherModel).Id,
+            CourseStartDate = CourseStartDate.Value,
+            NumberOfSections = (int)NumberOfSectionNumericUpDown.Value
+        };
+
+        CourseSaveEdit?.Invoke(this, EventArgs.Empty);
+
+        if (IsSucess)
+        {
+            MessageBox.Show(Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Dispose();
+        }
+        else
+            MessageBox.Show(Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+
+    private void AddSectionButton_Click(object sender, EventArgs e)
+    {
+        var duration = new TimeSpan(ClassDurationTimePicker.Value.Hour % 12, ClassDurationTimePicker.Value.Minute, ClassDurationTimePicker.Value.Second);
+        var time = new TimeOnly(SectionTimePicker.Value.Hour, SectionTimePicker.Value.Minute, SectionTimePicker.Value.Second);
+
+        SectionModel = new()
+        {
+            ClassDuration = duration,
+            StartTime = time,
+            Day = (DayOfWeek)DayOfWeekComboBox.SelectedItem
+        };
+        SelectedSections.Add(SectionModel);
+        LoadSelectedSections();
+    }
+
+    private void SelectStudentsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        tabControl1.SelectedTab = tabControl1.TabPages["StudentTabPage"];
+    }
+
+    //methods
 
     private void LoadTeachersInListView()
     {
@@ -205,111 +300,26 @@ public partial class ClassManagementForm : Form, IClassManagementView
         TeachersListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
     }
 
-    private void LoadSelectedStudents()
-    {
-        SelectedStudentsListView.Columns.Clear();
-        SelectedStudentsListView.Items.Clear();
-
-        SelectedStudentsListView.View = View.Details;
-        SelectedStudentsListView.Columns.Add("StudentId");
-        SelectedStudentsListView.Columns.Add("Name");
-        SelectedStudentsListView.Columns.Add("Major");
-
-        foreach (var student in SelectedStudents)
-        {
-            var item = new ListViewItem(new String[] { student.StudentId, student.FullName, student.Major.ToString() });
-            item.Tag = student;
-            SelectedStudentsListView.Items.Add(item);
-        }
-        SelectedStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        SelectedStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-    }
-
     private void LoadSelectedSections()
     {
-        foreach (SectionUserControl usercontrol in SelectedSectionPanel.Controls)
-        {
-            usercontrol.RemoveSection -= RemoveSection;
-            usercontrol.Dispose();
-        }
         SelectedSectionPanel.Controls.Clear();
 
         foreach (SectionModel section in SelectedSections)
         {
             SectionUserControl sectionUserControl = new();
             sectionUserControl.SectionModel = section;
-            sectionUserControl.RemoveSection += RemoveSection;
+            sectionUserControl.RemoveSection += (sender, e) =>
+            {
+                SectionModel = (sender as SectionUserControl)?.SectionModel!;
+                SelectedSectionPanel.Controls.Remove(sender as SectionUserControl);
+                SelectedSections.Remove(SectionModel);
+            };
             sectionUserControl.Dock = DockStyle.Top;
             SelectedSectionPanel.Controls.Add(sectionUserControl);
         }
     }
 
-    private void RemoveSection(object sender, EventArgs e)
-    {
-        SectionModel = (sender as SectionUserControl)?.SectionModel!;
-            SelectedSectionPanel.Controls.Remove(sender as SectionUserControl);
-            SelectedSections.Remove(SectionModel);
-    }
-
-    private void RemoveCheckedStudentsFromSelectedStudentsButton_Click(object sender, EventArgs e)
-    {
-        foreach (ListViewItem item in SelectedStudentsListView.CheckedItems)
-        {
-            var student = item.Tag as StudentModel;
-            SelectedStudents.Remove(student!);
-        }
-        LoadSelectedStudents();
-    }
-
-    private void TeachersListView_ItemActivate(object sender, EventArgs e)
-    {
-        var teacher = TeachersListView.SelectedItems[0].Tag as TeacherModel;
-        SelectedTeacherTextBox.Text = teacher?.FullName;
-        SelectedTeacherTextBox.Tag = teacher;
-    }
-
-    private void SearchTeacherTextBox_TextChanged(object sender, EventArgs e)
-    {
-        ReloadTeachersInListView(Teachers.Where(u => u.TeacherId.Contains(SearchTeacherTextBox.Text) || u.FullName.Contains(SearchTeacherTextBox.Text)).ToList());
-    }
-
-    private void CreateCourseButton_Click(object sender, EventArgs e)
-    {
-        if (SelectedTeacherTextBox.Tag is null)
-        {
-            MessageBox.Show("Please Select Teacher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-        if (SelectedSections.Count < 1)
-        {
-            MessageBox.Show("Please Create at least 1 section", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }       
-        
-        CourseModel = new()
-        {
-            Name = CourseNameTextBox.Text,
-            MidTermExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
-            FinalExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
-            Students = SelectedStudents,
-            Sections = SelectedSections,
-            TeacherId = (SelectedTeacherTextBox.Tag as TeacherModel).Id,
-            CourseStartDate = CourseStartDate.Value,
-            NumberOfSections = (int)NumberOfSectionNumericUpDown.Value
-            //Teacher = SelectedTeacherTextBox.Tag as TeacherModel
-        };
-
-        CourseSaveEdit?.Invoke(this, EventArgs.Empty);
-
-        if (IsSucess)
-        {
-            MessageBox.Show(Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Dispose();
-        }
-        else
-            MessageBox.Show(Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-
     #endregion
 
+    
 }

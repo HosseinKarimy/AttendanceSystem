@@ -33,29 +33,38 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CreateCourseTabPage = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.NumberOfSectionNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.CourseStartDate = new System.Windows.Forms.DateTimePicker();
-            this.SelectedSectionPanel = new System.Windows.Forms.Panel();
             this.CreateCourseButton = new System.Windows.Forms.Button();
-            this.FinaExamDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.MidTermDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.CourseNameTextBox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.RemoveCheckedStudentsFromSelectedStudentsButton = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.SelectedStudentsListView = new System.Windows.Forms.ListView();
+            this.NumberOfSectionNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SelectStudentsLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CourseStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label13 = new System.Windows.Forms.Label();
+            this.CourseNameTextBox = new System.Windows.Forms.TextBox();
+            this.FinaExamDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.MidTermDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SectionDaySpliterContainer = new System.Windows.Forms.SplitContainer();
+            this.DayOfWeekComboBox = new System.Windows.Forms.ComboBox();
+            this.SectionTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.AddSectionButton = new System.Windows.Forms.Button();
+            this.SelectedSectionPanel = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ClassDurationTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SearchTeacherTextBox = new System.Windows.Forms.TextBox();
-            this.SelectedTeacherTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.TeachersListView = new System.Windows.Forms.ListView();
-            this.StudentSectionTabPage = new System.Windows.Forms.TabPage();
+            this.SelectedTeacherTextBox = new System.Windows.Forms.TextBox();
+            this.StudentTabPage = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.AddStudnetsButton = new System.Windows.Forms.Button();
@@ -73,13 +82,9 @@
             this.SearchStudentTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.AddSectionButton = new System.Windows.Forms.Button();
-            this.DayOfWeekComboBox = new System.Windows.Forms.ComboBox();
-            this.SectionTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.ClassDurationTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.RemoveCheckedStudentsFromSelectedStudentsButton = new System.Windows.Forms.Button();
+            this.SelectedStudentsListView = new System.Windows.Forms.ListView();
             this.RemoveFromSelectedStudentsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.MainPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -88,12 +93,19 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfSectionNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.StudentSectionTabPage.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SectionDaySpliterContainer)).BeginInit();
+            this.SectionDaySpliterContainer.Panel1.SuspendLayout();
+            this.SectionDaySpliterContainer.Panel2.SuspendLayout();
+            this.SectionDaySpliterContainer.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.StudentTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -101,7 +113,7 @@
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EntryYearNumric)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainPanel
@@ -118,7 +130,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.CreateCourseTabPage);
-            this.tabControl1.Controls.Add(this.StudentSectionTabPage);
+            this.tabControl1.Controls.Add(this.StudentTabPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -141,38 +153,75 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.NumberOfSectionNumericUpDown);
-            this.splitContainer1.Panel1.Controls.Add(this.CourseStartDate);
-            this.splitContainer1.Panel1.Controls.Add(this.SelectedSectionPanel);
             this.splitContainer1.Panel1.Controls.Add(this.CreateCourseButton);
-            this.splitContainer1.Panel1.Controls.Add(this.FinaExamDateTimePicker);
-            this.splitContainer1.Panel1.Controls.Add(this.MidTermDateTimePicker);
-            this.splitContainer1.Panel1.Controls.Add(this.label3);
-            this.splitContainer1.Panel1.Controls.Add(this.label5);
-            this.splitContainer1.Panel1.Controls.Add(this.CourseNameTextBox);
-            this.splitContainer1.Panel1.Controls.Add(this.label13);
-            this.splitContainer1.Panel1.Controls.Add(this.label14);
-            this.splitContainer1.Panel1.Controls.Add(this.label4);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer1.Size = new System.Drawing.Size(762, 392);
-            this.splitContainer1.SplitterDistance = 221;
+            this.splitContainer1.SplitterDistance = 263;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // CreateCourseButton
+            // 
+            this.CreateCourseButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateCourseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.CreateCourseButton.Location = new System.Drawing.Point(4, 343);
+            this.CreateCourseButton.Name = "CreateCourseButton";
+            this.CreateCourseButton.Size = new System.Drawing.Size(256, 46);
+            this.CreateCourseButton.TabIndex = 5;
+            this.CreateCourseButton.Text = "Create Course";
+            this.CreateCourseButton.UseVisualStyleBackColor = false;
+            this.CreateCourseButton.Click += new System.EventHandler(this.CreateCourseButton_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.NumberOfSectionNumericUpDown);
+            this.groupBox4.Controls.Add(this.SelectStudentsLinkLabel);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.CourseStartDate);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.CourseNameTextBox);
+            this.groupBox4.Controls.Add(this.FinaExamDateTimePicker);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.MidTermDateTimePicker);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(263, 392);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Step1 : Details Form";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.Crimson;
+            this.label2.Location = new System.Drawing.Point(12, 297);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(241, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "*For add or remove students go to ";
             // 
             // NumberOfSectionNumericUpDown
             // 
             this.NumberOfSectionNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NumberOfSectionNumericUpDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.NumberOfSectionNumericUpDown.Location = new System.Drawing.Point(133, 149);
+            this.NumberOfSectionNumericUpDown.Location = new System.Drawing.Point(9, 234);
             this.NumberOfSectionNumericUpDown.Maximum = new decimal(new int[] {
             32,
             0,
@@ -184,7 +233,7 @@
             0,
             0});
             this.NumberOfSectionNumericUpDown.Name = "NumberOfSectionNumericUpDown";
-            this.NumberOfSectionNumericUpDown.Size = new System.Drawing.Size(79, 23);
+            this.NumberOfSectionNumericUpDown.Size = new System.Drawing.Size(243, 23);
             this.NumberOfSectionNumericUpDown.TabIndex = 8;
             this.NumberOfSectionNumericUpDown.Value = new decimal(new int[] {
             16,
@@ -192,122 +241,102 @@
             0,
             0});
             // 
+            // SelectStudentsLinkLabel
+            // 
+            this.SelectStudentsLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SelectStudentsLinkLabel.AutoSize = true;
+            this.SelectStudentsLinkLabel.Location = new System.Drawing.Point(62, 317);
+            this.SelectStudentsLinkLabel.Name = "SelectStudentsLinkLabel";
+            this.SelectStudentsLinkLabel.Size = new System.Drawing.Size(137, 15);
+            this.SelectStudentsLinkLabel.TabIndex = 10;
+            this.SelectStudentsLinkLabel.TabStop = true;
+            this.SelectStudentsLinkLabel.Text = "Select Students Tab Page";
+            this.SelectStudentsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.SelectStudentsLinkLabel_LinkClicked);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 216);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(117, 15);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Number Of Sections:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Course Name:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 15);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "MidTerm Exam:";
+            // 
             // CourseStartDate
             // 
             this.CourseStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CourseStartDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.CourseStartDate.Location = new System.Drawing.Point(10, 116);
+            this.CourseStartDate.Location = new System.Drawing.Point(8, 181);
             this.CourseStartDate.Name = "CourseStartDate";
-            this.CourseStartDate.Size = new System.Drawing.Size(202, 23);
+            this.CourseStartDate.Size = new System.Drawing.Size(244, 23);
             this.CourseStartDate.TabIndex = 7;
             // 
-            // SelectedSectionPanel
+            // label13
             // 
-            this.SelectedSectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedSectionPanel.AutoScroll = true;
-            this.SelectedSectionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.SelectedSectionPanel.Location = new System.Drawing.Point(12, 191);
-            this.SelectedSectionPanel.Name = "SelectedSectionPanel";
-            this.SelectedSectionPanel.Size = new System.Drawing.Size(200, 146);
-            this.SelectedSectionPanel.TabIndex = 6;
-            // 
-            // CreateCourseButton
-            // 
-            this.CreateCourseButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CreateCourseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.CreateCourseButton.Location = new System.Drawing.Point(4, 343);
-            this.CreateCourseButton.Name = "CreateCourseButton";
-            this.CreateCourseButton.Size = new System.Drawing.Size(214, 46);
-            this.CreateCourseButton.TabIndex = 5;
-            this.CreateCourseButton.Text = "Create Course";
-            this.CreateCourseButton.UseVisualStyleBackColor = false;
-            this.CreateCourseButton.Click += new System.EventHandler(this.CreateCourseButton_Click);
-            // 
-            // FinaExamDateTimePicker
-            // 
-            this.FinaExamDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FinaExamDateTimePicker.Location = new System.Drawing.Point(112, 72);
-            this.FinaExamDateTimePicker.Name = "FinaExamDateTimePicker";
-            this.FinaExamDateTimePicker.ShowCheckBox = true;
-            this.FinaExamDateTimePicker.Size = new System.Drawing.Size(100, 23);
-            this.FinaExamDateTimePicker.TabIndex = 2;
-            // 
-            // MidTermDateTimePicker
-            // 
-            this.MidTermDateTimePicker.Location = new System.Drawing.Point(10, 72);
-            this.MidTermDateTimePicker.Name = "MidTermDateTimePicker";
-            this.MidTermDateTimePicker.ShowCheckBox = true;
-            this.MidTermDateTimePicker.Size = new System.Drawing.Size(100, 23);
-            this.MidTermDateTimePicker.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 173);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Sections:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(112, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 15);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Final Exam:";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 163);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(203, 15);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Course Start Date: (First Section Date)";
             // 
             // CourseNameTextBox
             // 
             this.CourseNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CourseNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.CourseNameTextBox.Location = new System.Drawing.Point(12, 26);
+            this.CourseNameTextBox.Location = new System.Drawing.Point(8, 39);
             this.CourseNameTextBox.Name = "CourseNameTextBox";
-            this.CourseNameTextBox.Size = new System.Drawing.Size(200, 23);
+            this.CourseNameTextBox.Size = new System.Drawing.Size(242, 23);
             this.CourseNameTextBox.TabIndex = 1;
             // 
-            // label13
+            // FinaExamDateTimePicker
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(9, 98);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(203, 15);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Course Start Date: (First Section Date)";
+            this.FinaExamDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FinaExamDateTimePicker.Location = new System.Drawing.Point(9, 131);
+            this.FinaExamDateTimePicker.Name = "FinaExamDateTimePicker";
+            this.FinaExamDateTimePicker.ShowCheckBox = true;
+            this.FinaExamDateTimePicker.Size = new System.Drawing.Size(243, 23);
+            this.FinaExamDateTimePicker.TabIndex = 2;
             // 
-            // label14
+            // label5
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 151);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(117, 15);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "Number Of Sections:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Final Exam:";
             // 
-            // label4
+            // MidTermDateTimePicker
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 54);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 15);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "MidTerm Exam:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Course Name:";
+            this.MidTermDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MidTermDateTimePicker.Location = new System.Drawing.Point(8, 87);
+            this.MidTermDateTimePicker.Name = "MidTermDateTimePicker";
+            this.MidTermDateTimePicker.ShowCheckBox = true;
+            this.MidTermDateTimePicker.Size = new System.Drawing.Size(244, 23);
+            this.MidTermDateTimePicker.TabIndex = 2;
             // 
             // splitContainer3
             // 
@@ -317,83 +346,165 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.RemoveCheckedStudentsFromSelectedStudentsButton);
-            this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Controls.Add(this.SelectedStudentsListView);
+            this.splitContainer3.Panel1.Controls.Add(this.groupBox1);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.SearchTeacherTextBox);
-            this.splitContainer3.Panel2.Controls.Add(this.SelectedTeacherTextBox);
-            this.splitContainer3.Panel2.Controls.Add(this.label12);
-            this.splitContainer3.Panel2.Controls.Add(this.label6);
-            this.splitContainer3.Panel2.Controls.Add(this.TeachersListView);
-            this.splitContainer3.Size = new System.Drawing.Size(537, 392);
-            this.splitContainer3.SplitterDistance = 262;
+            this.splitContainer3.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer3.Size = new System.Drawing.Size(495, 392);
+            this.splitContainer3.SplitterDistance = 241;
             this.splitContainer3.TabIndex = 0;
             // 
-            // RemoveCheckedStudentsFromSelectedStudentsButton
+            // groupBox1
             // 
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Location = new System.Drawing.Point(184, 3);
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Name = "RemoveCheckedStudentsFromSelectedStudentsButton";
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Size = new System.Drawing.Size(75, 23);
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.TabIndex = 2;
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Text = "Remove";
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.UseVisualStyleBackColor = true;
-            this.RemoveCheckedStudentsFromSelectedStudentsButton.Click += new System.EventHandler(this.RemoveCheckedStudentsFromSelectedStudentsButton_Click);
+            this.groupBox1.Controls.Add(this.SectionDaySpliterContainer);
+            this.groupBox1.Controls.Add(this.AddSectionButton);
+            this.groupBox1.Controls.Add(this.SelectedSectionPanel);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.ClassDurationTimePicker);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(241, 392);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Step2: Section Per Week";
             // 
-            // label2
+            // SectionDaySpliterContainer
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Selected Students:";
+            this.SectionDaySpliterContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SectionDaySpliterContainer.Location = new System.Drawing.Point(7, 81);
+            this.SectionDaySpliterContainer.Name = "SectionDaySpliterContainer";
             // 
-            // SelectedStudentsListView
+            // SectionDaySpliterContainer.Panel1
             // 
-            this.SelectedStudentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SectionDaySpliterContainer.Panel1.Controls.Add(this.DayOfWeekComboBox);
+            // 
+            // SectionDaySpliterContainer.Panel2
+            // 
+            this.SectionDaySpliterContainer.Panel2.Controls.Add(this.SectionTimePicker);
+            this.SectionDaySpliterContainer.Size = new System.Drawing.Size(231, 23);
+            this.SectionDaySpliterContainer.SplitterDistance = 113;
+            this.SectionDaySpliterContainer.TabIndex = 7;
+            // 
+            // DayOfWeekComboBox
+            // 
+            this.DayOfWeekComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.DayOfWeekComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DayOfWeekComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DayOfWeekComboBox.FormattingEnabled = true;
+            this.DayOfWeekComboBox.Location = new System.Drawing.Point(0, 0);
+            this.DayOfWeekComboBox.Name = "DayOfWeekComboBox";
+            this.DayOfWeekComboBox.Size = new System.Drawing.Size(113, 23);
+            this.DayOfWeekComboBox.TabIndex = 2;
+            // 
+            // SectionTimePicker
+            // 
+            this.SectionTimePicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SectionTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.SectionTimePicker.Location = new System.Drawing.Point(0, 0);
+            this.SectionTimePicker.Name = "SectionTimePicker";
+            this.SectionTimePicker.ShowUpDown = true;
+            this.SectionTimePicker.Size = new System.Drawing.Size(114, 23);
+            this.SectionTimePicker.TabIndex = 1;
+            // 
+            // AddSectionButton
+            // 
+            this.AddSectionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddSectionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.AddSectionButton.Location = new System.Drawing.Point(7, 110);
+            this.AddSectionButton.Name = "AddSectionButton";
+            this.AddSectionButton.Size = new System.Drawing.Size(232, 24);
+            this.AddSectionButton.TabIndex = 3;
+            this.AddSectionButton.Text = "Add Section To Course";
+            this.AddSectionButton.UseVisualStyleBackColor = false;
+            this.AddSectionButton.Click += new System.EventHandler(this.AddSectionButton_Click);
+            // 
+            // SelectedSectionPanel
+            // 
+            this.SelectedSectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedStudentsListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.SelectedStudentsListView.CheckBoxes = true;
-            this.SelectedStudentsListView.FullRowSelect = true;
-            this.SelectedStudentsListView.Location = new System.Drawing.Point(3, 26);
-            this.SelectedStudentsListView.Name = "SelectedStudentsListView";
-            this.SelectedStudentsListView.Size = new System.Drawing.Size(256, 363);
-            this.SelectedStudentsListView.TabIndex = 0;
-            this.SelectedStudentsListView.UseCompatibleStateImageBehavior = false;
+            this.SelectedSectionPanel.AutoScroll = true;
+            this.SelectedSectionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.SelectedSectionPanel.Location = new System.Drawing.Point(6, 155);
+            this.SelectedSectionPanel.Name = "SelectedSectionPanel";
+            this.SelectedSectionPanel.Size = new System.Drawing.Size(232, 231);
+            this.SelectedSectionPanel.TabIndex = 6;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 63);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 15);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Section Day and Time:";
+            // 
+            // ClassDurationTimePicker
+            // 
+            this.ClassDurationTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClassDurationTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.ClassDurationTimePicker.Location = new System.Drawing.Point(6, 37);
+            this.ClassDurationTimePicker.Name = "ClassDurationTimePicker";
+            this.ClassDurationTimePicker.ShowUpDown = true;
+            this.ClassDurationTimePicker.Size = new System.Drawing.Size(232, 23);
+            this.ClassDurationTimePicker.TabIndex = 1;
+            this.ClassDurationTimePicker.Value = new System.DateTime(2022, 11, 19, 14, 0, 0, 0);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 137);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Sections:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Section Duration:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.SearchTeacherTextBox);
+            this.groupBox3.Controls.Add(this.label12);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.TeachersListView);
+            this.groupBox3.Controls.Add(this.SelectedTeacherTextBox);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(250, 392);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Step 3: Select Teacher";
             // 
             // SearchTeacherTextBox
             // 
             this.SearchTeacherTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchTeacherTextBox.Location = new System.Drawing.Point(54, 370);
+            this.SearchTeacherTextBox.Location = new System.Drawing.Point(55, 363);
             this.SearchTeacherTextBox.Name = "SearchTeacherTextBox";
-            this.SearchTeacherTextBox.Size = new System.Drawing.Size(210, 23);
+            this.SearchTeacherTextBox.Size = new System.Drawing.Size(189, 23);
             this.SearchTeacherTextBox.TabIndex = 3;
             this.SearchTeacherTextBox.TextChanged += new System.EventHandler(this.SearchTeacherTextBox_TextChanged);
-            // 
-            // SelectedTeacherTextBox
-            // 
-            this.SelectedTeacherTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectedTeacherTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SelectedTeacherTextBox.Location = new System.Drawing.Point(102, 7);
-            this.SelectedTeacherTextBox.Name = "SelectedTeacherTextBox";
-            this.SelectedTeacherTextBox.ReadOnly = true;
-            this.SelectedTeacherTextBox.Size = new System.Drawing.Size(162, 16);
-            this.SelectedTeacherTextBox.TabIndex = 2;
-            this.SelectedTeacherTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 374);
+            this.label12.Location = new System.Drawing.Point(6, 366);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 15);
             this.label12.TabIndex = 1;
@@ -402,7 +513,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 8);
+            this.label6.Location = new System.Drawing.Point(6, 19);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 15);
             this.label6.TabIndex = 1;
@@ -415,24 +526,36 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TeachersListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.TeachersListView.FullRowSelect = true;
-            this.TeachersListView.Location = new System.Drawing.Point(3, 26);
+            this.TeachersListView.Location = new System.Drawing.Point(3, 37);
             this.TeachersListView.Name = "TeachersListView";
-            this.TeachersListView.Size = new System.Drawing.Size(265, 341);
+            this.TeachersListView.Size = new System.Drawing.Size(244, 320);
             this.TeachersListView.TabIndex = 0;
             this.TeachersListView.UseCompatibleStateImageBehavior = false;
             this.TeachersListView.ItemActivate += new System.EventHandler(this.TeachersListView_ItemActivate);
             // 
-            // StudentSectionTabPage
+            // SelectedTeacherTextBox
             // 
-            this.StudentSectionTabPage.Controls.Add(this.splitContainer2);
-            this.StudentSectionTabPage.Location = new System.Drawing.Point(4, 24);
-            this.StudentSectionTabPage.Name = "StudentSectionTabPage";
-            this.StudentSectionTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.StudentSectionTabPage.Size = new System.Drawing.Size(768, 398);
-            this.StudentSectionTabPage.TabIndex = 1;
-            this.StudentSectionTabPage.Text = "Select Student / Create Section";
-            this.StudentSectionTabPage.UseVisualStyleBackColor = true;
-            this.StudentSectionTabPage.Enter += new System.EventHandler(this.StudentSectionTabPage_Enter);
+            this.SelectedTeacherTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectedTeacherTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SelectedTeacherTextBox.Location = new System.Drawing.Point(112, 19);
+            this.SelectedTeacherTextBox.Name = "SelectedTeacherTextBox";
+            this.SelectedTeacherTextBox.ReadOnly = true;
+            this.SelectedTeacherTextBox.Size = new System.Drawing.Size(132, 16);
+            this.SelectedTeacherTextBox.TabIndex = 2;
+            this.SelectedTeacherTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // StudentTabPage
+            // 
+            this.StudentTabPage.Controls.Add(this.splitContainer2);
+            this.StudentTabPage.Location = new System.Drawing.Point(4, 24);
+            this.StudentTabPage.Name = "StudentTabPage";
+            this.StudentTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.StudentTabPage.Size = new System.Drawing.Size(768, 398);
+            this.StudentTabPage.TabIndex = 1;
+            this.StudentTabPage.Text = "Select Student";
+            this.StudentTabPage.UseVisualStyleBackColor = true;
+            this.StudentTabPage.Enter += new System.EventHandler(this.StudentSectionTabPage_Enter);
             // 
             // splitContainer2
             // 
@@ -447,9 +570,9 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.groupBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox5);
             this.splitContainer2.Size = new System.Drawing.Size(762, 392);
-            this.splitContainer2.SplitterDistance = 534;
+            this.splitContainer2.SplitterDistance = 504;
             this.splitContainer2.TabIndex = 0;
             // 
             // groupBox2
@@ -460,18 +583,18 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(534, 392);
+            this.groupBox2.Size = new System.Drawing.Size(504, 392);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Select students";
+            this.groupBox2.Text = "Step4: Select students";
             // 
             // AddStudnetsButton
             // 
             this.AddStudnetsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddStudnetsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.AddStudnetsButton.Location = new System.Drawing.Point(6, 332);
+            this.AddStudnetsButton.Location = new System.Drawing.Point(197, 363);
             this.AddStudnetsButton.Name = "AddStudnetsButton";
-            this.AddStudnetsButton.Size = new System.Drawing.Size(185, 54);
+            this.AddStudnetsButton.Size = new System.Drawing.Size(301, 23);
             this.AddStudnetsButton.TabIndex = 3;
             this.AddStudnetsButton.Text = "Add Students To Course";
             this.AddStudnetsButton.UseVisualStyleBackColor = false;
@@ -482,6 +605,7 @@
             this.AllStudentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.AllStudentsListView.CheckBoxes = true;
             this.AllStudentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NameHeader,
             this.StudentIdHeader,
@@ -491,7 +615,7 @@
             this.AllStudentsListView.HoverSelection = true;
             this.AllStudentsListView.Location = new System.Drawing.Point(197, 22);
             this.AllStudentsListView.Name = "AllStudentsListView";
-            this.AllStudentsListView.Size = new System.Drawing.Size(331, 367);
+            this.AllStudentsListView.Size = new System.Drawing.Size(301, 337);
             this.AllStudentsListView.TabIndex = 1;
             this.AllStudentsListView.UseCompatibleStateImageBehavior = false;
             // 
@@ -615,87 +739,42 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Search Student:";
             // 
-            // groupBox1
+            // groupBox5
             // 
-            this.groupBox1.Controls.Add(this.AddSectionButton);
-            this.groupBox1.Controls.Add(this.DayOfWeekComboBox);
-            this.groupBox1.Controls.Add(this.SectionTimePicker);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.ClassDurationTimePicker);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(224, 392);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Create Section";
+            this.groupBox5.Controls.Add(this.RemoveCheckedStudentsFromSelectedStudentsButton);
+            this.groupBox5.Controls.Add(this.SelectedStudentsListView);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox5.Location = new System.Drawing.Point(0, 0);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(254, 392);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Selected Students";
             // 
-            // AddSectionButton
+            // RemoveCheckedStudentsFromSelectedStudentsButton
             // 
-            this.AddSectionButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddSectionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.AddSectionButton.Location = new System.Drawing.Point(3, 332);
-            this.AddSectionButton.Name = "AddSectionButton";
-            this.AddSectionButton.Size = new System.Drawing.Size(218, 54);
-            this.AddSectionButton.TabIndex = 3;
-            this.AddSectionButton.Text = "Add Section To Course";
-            this.AddSectionButton.UseVisualStyleBackColor = false;
-            this.AddSectionButton.Click += new System.EventHandler(this.AddSectionButton_Click);
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Location = new System.Drawing.Point(6, 363);
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Name = "RemoveCheckedStudentsFromSelectedStudentsButton";
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Size = new System.Drawing.Size(242, 23);
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.TabIndex = 1;
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Text = "Remove From Course";
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.UseVisualStyleBackColor = true;
+            this.RemoveCheckedStudentsFromSelectedStudentsButton.Click += new System.EventHandler(this.RemoveCheckedStudentsFromSelectedStudentsButton_Click);
             // 
-            // DayOfWeekComboBox
+            // SelectedStudentsListView
             // 
-            this.DayOfWeekComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SelectedStudentsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DayOfWeekComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.DayOfWeekComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.DayOfWeekComboBox.FormattingEnabled = true;
-            this.DayOfWeekComboBox.Location = new System.Drawing.Point(6, 101);
-            this.DayOfWeekComboBox.Name = "DayOfWeekComboBox";
-            this.DayOfWeekComboBox.Size = new System.Drawing.Size(200, 23);
-            this.DayOfWeekComboBox.TabIndex = 2;
-            // 
-            // SectionTimePicker
-            // 
-            this.SectionTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SectionTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.SectionTimePicker.Location = new System.Drawing.Point(6, 130);
-            this.SectionTimePicker.Name = "SectionTimePicker";
-            this.SectionTimePicker.ShowUpDown = true;
-            this.SectionTimePicker.Size = new System.Drawing.Size(200, 23);
-            this.SectionTimePicker.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 83);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(124, 15);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Section Day and Time:";
-            // 
-            // ClassDurationTimePicker
-            // 
-            this.ClassDurationTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClassDurationTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ClassDurationTimePicker.Location = new System.Drawing.Point(6, 47);
-            this.ClassDurationTimePicker.Name = "ClassDurationTimePicker";
-            this.ClassDurationTimePicker.ShowUpDown = true;
-            this.ClassDurationTimePicker.Size = new System.Drawing.Size(200, 23);
-            this.ClassDurationTimePicker.TabIndex = 1;
-            this.ClassDurationTimePicker.Value = new System.DateTime(2022, 11, 19, 14, 0, 0, 0);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 29);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Section Duration:";
+            this.SelectedStudentsListView.CheckBoxes = true;
+            this.SelectedStudentsListView.Location = new System.Drawing.Point(6, 22);
+            this.SelectedStudentsListView.Name = "SelectedStudentsListView";
+            this.SelectedStudentsListView.Size = new System.Drawing.Size(242, 335);
+            this.SelectedStudentsListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.SelectedStudentsListView.TabIndex = 0;
+            this.SelectedStudentsListView.UseCompatibleStateImageBehavior = false;
             // 
             // RemoveFromSelectedStudentsToolTip
             // 
@@ -716,18 +795,25 @@
             this.tabControl1.ResumeLayout(false);
             this.CreateCourseTabPage.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfSectionNumericUpDown)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
-            this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.StudentSectionTabPage.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.SectionDaySpliterContainer.Panel1.ResumeLayout(false);
+            this.SectionDaySpliterContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SectionDaySpliterContainer)).EndInit();
+            this.SectionDaySpliterContainer.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.StudentTabPage.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -736,8 +822,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EntryYearNumric)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -750,20 +835,13 @@
         private SplitContainer splitContainer1;
         private TextBox CourseNameTextBox;
         private Label label1;
-        private TabPage StudentSectionTabPage;
+        private TabPage StudentTabPage;
         private Button CreateCourseButton;
         private DateTimePicker FinaExamDateTimePicker;
         private DateTimePicker MidTermDateTimePicker;
         private Label label5;
         private Label label4;
         private SplitContainer splitContainer2;
-        private GroupBox groupBox1;
-        private ComboBox DayOfWeekComboBox;
-        private DateTimePicker SectionTimePicker;
-        private Label label8;
-        private DateTimePicker ClassDurationTimePicker;
-        private Label label7;
-        private Button AddSectionButton;
         private GroupBox groupBox2;
         private Panel panel2;
         private TextBox SearchStudentTextBox;
@@ -783,18 +861,30 @@
         private Panel SelectedSectionPanel;
         private Label label3;
         private SplitContainer splitContainer3;
-        private Label label2;
-        private ListView SelectedStudentsListView;
         private ListView TeachersListView;
         private TextBox SearchTeacherTextBox;
         private TextBox SelectedTeacherTextBox;
         private Label label12;
         private Label label6;
-        private Button RemoveCheckedStudentsFromSelectedStudentsButton;
         private ToolTip RemoveFromSelectedStudentsToolTip;
         private NumericUpDown NumberOfSectionNumericUpDown;
         private DateTimePicker CourseStartDate;
         private Label label13;
         private Label label14;
+        private GroupBox groupBox1;
+        private Button AddSectionButton;
+        private ComboBox DayOfWeekComboBox;
+        private DateTimePicker SectionTimePicker;
+        private Label label8;
+        private DateTimePicker ClassDurationTimePicker;
+        private Label label7;
+        private GroupBox groupBox4;
+        private GroupBox groupBox3;
+        private GroupBox groupBox5;
+        private ListView SelectedStudentsListView;
+        private Button RemoveCheckedStudentsFromSelectedStudentsButton;
+        private SplitContainer SectionDaySpliterContainer;
+        private Label label2;
+        private LinkLabel SelectStudentsLinkLabel;
     }
 }
