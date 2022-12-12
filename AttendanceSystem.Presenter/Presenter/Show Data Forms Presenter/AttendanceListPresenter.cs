@@ -1,4 +1,5 @@
 ﻿using AttendanceSystem.DataAccess.UnitOfWork;
+using AttendanceSystem.Models.Models;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 
 namespace AttendanceSystem.Presenter.Presenter.Show_Data_Forms_Presenter;
@@ -21,8 +22,15 @@ public class AttendanceListPresenter
     private void View_UpdateSection(object? sender, EventArgs e)
     {
         try
-        {         
-            unitOFWork.SectionRepository.Update(view.Section);
+        {
+            var MainSection = unitOFWork.SectionRepository.FirstOrDefault(u => u.Id == view.Section.Id, "StudentsStatus");
+            foreach (StudentStatusModel LastStudentStatus in MainSection.StudentsStatus)
+            {
+                var newStudentStatus = view.Section.StudentsStatus.FirstOrDefault(u=>u.Id == LastStudentStatus.Id);
+                LastStudentStatus!.IsPresent = newStudentStatus?.IsPresent;
+                LastStudentStatus!.Description = newStudentStatus?.Description!;                
+            }
+            unitOFWork.SectionRepository.Update(MainSection);
             unitOFWork.Save();
             view.IsSucess = true;
             view.Message = "Successful";

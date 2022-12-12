@@ -82,6 +82,8 @@ public partial class AttendanceListForm : Form, IAttendanceListView
     private void LoadStudentsStatusOfSelectedSection(SectionModel selectedSection)
     {
         AllStudentsCountLabel.Text = selectedSection.StudentsStatus.Count.ToString();
+        AbsenteesStudentsCountLabel.Text = "0";
+        AttendeesStudentsCountLabel.Text = "0";
         ResultPanel.Controls.Clear();
         foreach (StudentStatusModel studentStatus in selectedSection.StudentsStatus)
         {
