@@ -3,13 +3,13 @@ using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 
-namespace AttendanceSystem.DataAccess.Repositories;
+namespace AttendanceSystem.DataAccess.Repositories.EfCoreSqlite;
 
-public class StudentRepository : Repository<StudentModel>, IStudentRepository
+public class StudentRepository_EfCoreSqlite : Repository_EfCoreSqlite<StudentModel>, IStudentRepository
 {
     private readonly AppDbContext dbContext;
 
-    public StudentRepository(AppDbContext dbContext) : base(dbContext)
+    public StudentRepository_EfCoreSqlite(AppDbContext dbContext) : base(dbContext)
     {
         this.dbContext = dbContext;
     }
