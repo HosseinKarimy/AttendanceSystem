@@ -12,8 +12,5 @@ namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer
 {
     public class UserRepository_AdoSqlServer : Repository_AdoSqlServer<UserModel>, IUserRepository
     {
-        public UserRepository_AdoSqlServer(AppDbContext dbContext) : base(dbContext)
-        {
-        }
     }
 }

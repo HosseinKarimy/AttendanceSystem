@@ -1,59 +1,42 @@
-﻿using AttendanceSystem.DataAccess.Data;
-using AttendanceSystem.DataAccess.Repositories.IRepositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
-using Models.Models;
+﻿using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using System.Linq.Expressions;
 
 namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 
 public class Repository_AdoSqlServer<T> : IRepository<T> where T : class
 {
-    private readonly DbSet<T> DbSet;
-    public Repository_AdoSqlServer(AppDbContext dbContext)
-    {
-        DbSet = dbContext.Set<T>();
-    }
-
     public void Add(T entity)
     {
-        DbSet.Add(entity);
+        throw new NotImplementedException();
     }
 
     public void Delete(T entity)
     {
-        DbSet.Remove(entity);
+        throw new NotImplementedException();
     }
 
     public T FirstOrDefault(Expression<Func<T, bool>> expression, string includes)
     {
-        var Includes = includes.Split('\u002C');
-        foreach (string include in Includes)
-        {
-            DbSet.Include(include.Trim()).Load();
-        }
-        return DbSet.FirstOrDefault(expression);
-
+        throw new NotImplementedException();
     }
 
     public T FirstOrDefault(Expression<Func<T, bool>> expression)
     {
-        return DbSet.FirstOrDefault(expression);
+        throw new NotImplementedException();
     }
 
     public List<T> GetAll()
     {
-        return DbSet.ToList();
+        throw new NotImplementedException();
     }
 
     public List<T> GetAll(string include)
     {
-        return DbSet.Include(include).ToList();
+        throw new NotImplementedException();
     }
 
     public void Update(T entity)
     {
-        DbSet.Update(entity);
+        throw new NotImplementedException();
     }
-
 }

@@ -12,7 +12,4 @@ namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 
 public class StudentStatusRepository_AdoSqlServer : Repository_AdoSqlServer<StudentStatusModel>, IStudentStatusRepository
 {
-    public StudentStatusRepository_AdoSqlServer(AppDbContext dbContext) : base(dbContext)
-    {
-    }
 }

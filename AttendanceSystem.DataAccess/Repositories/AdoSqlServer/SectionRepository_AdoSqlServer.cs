@@ -7,7 +7,4 @@ namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 
 public class SectionRepository_AdoSqlServer : Repository_AdoSqlServer<SectionModel>, ISectionRepository
 {
-    public SectionRepository_AdoSqlServer(AppDbContext dbContext) : base(dbContext)
-    {
-    }
 }
