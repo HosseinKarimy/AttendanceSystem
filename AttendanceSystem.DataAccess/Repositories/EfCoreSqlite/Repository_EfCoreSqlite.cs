@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Query;
 using Models.Models;
 using System.Linq.Expressions;
 
-namespace AttendanceSystem.DataAccess.Repositories;
+namespace AttendanceSystem.DataAccess.Repositories.EfCoreSqlite;
 
-public class Repository<T> : IRepository<T> where T : class
+public class Repository_EfCoreSqlite<T> : IRepository<T> where T : class
 {
     private readonly DbSet<T> DbSet;
-    public Repository(AppDbContext dbContext)
+    public Repository_EfCoreSqlite(AppDbContext dbContext)
     {
         DbSet = dbContext.Set<T>();
     }

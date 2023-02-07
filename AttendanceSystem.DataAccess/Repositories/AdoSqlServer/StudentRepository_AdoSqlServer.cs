@@ -1,15 +1,16 @@
 ﻿using AttendanceSystem.DataAccess.Data;
+using AttendanceSystem.DataAccess.Repositories.EfCoreSqlite;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
 
-namespace AttendanceSystem.DataAccess.Repositories;
+namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 
-public class StudentRepository : Repository<StudentModel>, IStudentRepository
+public class StudentRepository_AdoSqlServer : Repository_AdoSqlServer<StudentModel>, IStudentRepository
 {
     private readonly AppDbContext dbContext;
 
-    public StudentRepository(AppDbContext dbContext) : base(dbContext)
+    public StudentRepository_AdoSqlServer(AppDbContext dbContext) : base(dbContext)
     {
         this.dbContext = dbContext;
     }

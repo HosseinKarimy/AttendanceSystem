@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AttendanceSystem.DataAccess.Repositories
+namespace AttendanceSystem.DataAccess.Repositories.EfCoreSqlite
 {
-    public class UserRepository : Repository<UserModel>, IUserRepository
+    public class UserRepository_EfCoreSqlite : Repository_EfCoreSqlite<UserModel>, IUserRepository
     {
-        public UserRepository(AppDbContext dbContext) : base(dbContext)
+        public UserRepository_EfCoreSqlite(AppDbContext dbContext) : base(dbContext)
         {
         }
     }
