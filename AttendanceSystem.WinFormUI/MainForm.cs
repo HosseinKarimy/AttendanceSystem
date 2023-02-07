@@ -1,20 +1,35 @@
 using AttendanceSystem.DataAccess.UnitOfWork;
+using AttendanceSystem.Models.Enums;
+using AttendanceSystem.Models.Models;
+using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 using AttendanceSystem.Presenter.Presenter.ClassManegementPresenter;
+using AttendanceSystem.Presenter.Presenter.MainMenuPresenter;
 using AttendanceSystem.Presenter.Presenter.Show_Data_Forms_Presenter;
 using AttendanceSystem.Presenter.Presenter.UserManagementPresenter;
+using Models.Models;
 
 namespace AttendanceSystem.WinFormUI
 {
-    public partial class MainForm : Form , IMainMenuView
-    {
-              
+    public partial class MainForm : Form , IMainMenuView , LoginFormMainMenuIntraction
+    {              
 
         public MainForm()
         {
             InitializeComponent();
+            LoadLoginForm();
+        }
+
+        public UserModel UserModel { get; set; }
+
+        private void LoadLoginForm()
+        {
+            var newForm = LoginView as Form;
+            initForm(newForm!);
+            SetContainerControl(newForm!);
+            newForm!.Show();
         }
 
         private void DisplayDataButton_Click(object sender, EventArgs e)
@@ -62,6 +77,51 @@ namespace AttendanceSystem.WinFormUI
             form.Dock = DockStyle.Fill;
         }
 
+        public void CompleteLoginProgress(UserModel usermodel,ILoginView loginView)
+        {
+            switch (usermodel.Role)
+            {
+                case Models.Enums.Role.Admin:
+                    MessageBox.Show($"Welcome Admin {usermodel.AdminModel?.FirstName} {usermodel.AdminModel?.LastName}");
+                    InitAdminUser(usermodel.AdminModel!);
+                    break;
+                case Models.Enums.Role.Teacher:
+                    MessageBox.Show($"Welcome Teacher {usermodel.TeacherModel?.FirstName} {usermodel.TeacherModel?.LastName}");
+                    InitTeacherUser(usermodel.TeacherModel!);
+                    break;
+                case Models.Enums.Role.Student:
+                    MessageBox.Show($"Welcome Student {usermodel.StudentModel?.FirstName} {usermodel.StudentModel?.LastName}");
+                    InitStudentModel(usermodel.StudentModel!);
+                    break;
+            }
+            UserModel=usermodel;
+            (loginView as Form)!.Dispose();
+        }
+
+        private void InitStudentModel(StudentModel studentModel)
+        {
+            NameMenuItem.Text = "Student";
+            RoleTextBox.Text = studentModel.FullName;
+        }
+
+        private void InitTeacherUser(TeacherModel teacherModel)
+        {
+            NameMenuItem.Text = "Teacher";
+            RoleTextBox.Text = teacherModel.FullName;
+            AttendanceListButton.Visible = true;
+        }
+
+        private void InitAdminUser(AdminModel adminModel)
+        {
+            NameMenuItem.Text = "Admin";
+            RoleTextBox.Text = adminModel.FullName;
+            UserManagmentButton.Visible = true;
+            ClassManagementButton.Visible = true;
+            AttendanceListButton.Visible = true;
+            DisplayDataButton.Visible = true;
+        }
+
+
 
         //Dependency injection - singleton pattern
 
@@ -86,7 +146,11 @@ namespace AttendanceSystem.WinFormUI
             {
                 if (attendanceListView is null || (attendanceListView as Form)!.IsDisposed)
                 {
-                    attendanceListView = new AttendanceListForm();
+                    attendanceListView = new AttendanceListForm()
+                    {
+                        CurrentUser = UserModel,
+                        Role = UserModel.Role
+                    };
                     new AttendanceListPresenter(AttendanceListView, UnitOFWork);
                 }
                 return attendanceListView;
@@ -121,6 +185,20 @@ namespace AttendanceSystem.WinFormUI
             }
         }
 
+        private ILoginView loginView;
+        public ILoginView LoginView
+        {
+            get
+            {
+                if (loginView is null || (loginView as Form)!.IsDisposed)
+                {
+                    loginView = new LoginForm(this);
+                    new LoginPresenter(loginView, UnitOFWork);
+                }
+                return loginView;
+            }
+        }
+
         private IUnitOFWork unitOFWork;
         public IUnitOFWork UnitOFWork
         {
@@ -134,5 +212,22 @@ namespace AttendanceSystem.WinFormUI
             }
         }
 
+        private void toolStripTextBox2_Click(object sender, EventArgs e)
+        {
+            (classManagementView as Form)?.Dispose();
+            (attendanceListView as Form)?.Dispose();
+            (searchView as Form)?.Dispose();
+            (userManagementView as Form)?.Dispose();
+
+            NameMenuItem.Text = "LOGIN";
+            RoleTextBox.Text = String.Empty;
+            UserManagmentButton.Visible = false;
+            ClassManagementButton.Visible = false;
+            AttendanceListButton.Visible = false;
+            DisplayDataButton.Visible = false;
+
+
+            LoadLoginForm();
+        }
     }
 }

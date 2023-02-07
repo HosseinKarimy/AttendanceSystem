@@ -1,36 +1,30 @@
 ﻿using AttendanceSystem.DataAccess.UnitOfWork;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AttendanceSystem.Presenter.Presenter.Show_Data_Forms_Presenter
+namespace AttendanceSystem.Presenter.Presenter.Show_Data_Forms_Presenter;
+
+public class SearchPresenter
 {
-    public class SearchPresenter
+    private readonly ISearchView view;
+    private readonly IUnitOFWork unitOFWork;
+
+    public SearchPresenter(ISearchView view,IUnitOFWork unitOFWork)
     {
-        private readonly ISearchView view;
-        private readonly IUnitOFWork unitOFWork;
+        this.view = view;
+        this.unitOFWork = unitOFWork;
+        view.LoadStudentsAndTeachers += View_LoadStudentsAndTeachers;
+    }
 
-        public SearchPresenter(ISearchView view,IUnitOFWork unitOFWork)
+    private void View_LoadStudentsAndTeachers(object? sender, EventArgs e)
+    {
+        try
         {
-            this.view = view;
-            this.unitOFWork = unitOFWork;
-            view.LoadStudentsAndTeachers += View_LoadStudentsAndTeachers;
+            view.AllStudents = unitOFWork.StudentRepository.GetAllStudentsWithIncludes();
+            view.AllTeachers = unitOFWork.TeacherRepository.GetAllTeachersWithIncludes();
         }
-
-        private void View_LoadStudentsAndTeachers(object? sender, EventArgs e)
+        catch (Exception)
         {
-            try
-            {
-                view.AllStudents = unitOFWork.StudentRepository.GetAllStudentsWithIncludes();
-                view.AllTeachers = unitOFWork.TeacherRepository.GetAllTeachersWithIncludes();
-            }
-            catch (Exception)
-            {
 
-            }
         }
     }
 }

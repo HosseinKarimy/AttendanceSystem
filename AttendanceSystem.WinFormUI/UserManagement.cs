@@ -97,8 +97,8 @@ namespace AttendanceSystem.WinFormUI
                 if (IsSucess)
                 {
                     LoadStudentsInListView();
-                    ClearStudentForm();
                 }
+                    ClearStudentForm();
             }
         }
 
@@ -263,8 +263,8 @@ namespace AttendanceSystem.WinFormUI
                 if (IsSucess)
                 {
                     LoadTeachersInListView();
-                    ClearTeacherForm();
                 }
+                    ClearTeacherForm();
             }
         }
 

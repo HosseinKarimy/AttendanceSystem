@@ -1,6 +1,8 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using Models.Models;
 using System.Linq.Expressions;
 
 namespace AttendanceSystem.DataAccess.Repositories;
@@ -25,7 +27,13 @@ public class Repository<T> : IRepository<T> where T : class
 
     public T FirstOrDefault(Expression<Func<T, bool>> expression, string includes)
     {
-        return DbSet.Include(includes).FirstOrDefault(expression);
+        var Includes = includes.Split('\u002C');
+        foreach (string include in Includes)
+        {
+            DbSet.Include(include.Trim()).Load();
+        }
+        return DbSet.FirstOrDefault(expression);
+
     }
 
     public T FirstOrDefault(Expression<Func<T, bool>> expression)

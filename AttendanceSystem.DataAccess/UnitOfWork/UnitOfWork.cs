@@ -11,6 +11,7 @@ namespace AttendanceSystem.DataAccess.UnitOfWork
         private readonly IStudentRepository _StudentRepository;
         private readonly IStudentStatusRepository _StudentStatusRepository;
         private readonly ITeacherRepository _TeacherRepository;
+        private readonly IUserRepository _UserRepository;
 
         AppDbContext _appDbContext = new();
 
@@ -21,6 +22,7 @@ namespace AttendanceSystem.DataAccess.UnitOfWork
             _StudentRepository = new StudentRepository(_appDbContext);
             _StudentStatusRepository = new StudentStatusRepository(_appDbContext);
             _TeacherRepository = new TeacherRepository(_appDbContext);
+            _UserRepository = new UserRepository(_appDbContext);
         }
 
         public ICourseRepository CourseRepository => _CourseRepository;
@@ -28,6 +30,7 @@ namespace AttendanceSystem.DataAccess.UnitOfWork
         public IStudentRepository StudentRepository => _StudentRepository;
         public IStudentStatusRepository StudentStatusRepository => _StudentStatusRepository;
         public ITeacherRepository TeacherRepository => _TeacherRepository;
+        public IUserRepository UserRepository => _UserRepository;
 
         public void ClearTracker()
         {

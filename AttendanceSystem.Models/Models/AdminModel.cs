@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models.Models;
 
@@ -16,7 +17,10 @@ public class AdminModel
     [Required]
     [StringLength(50, MinimumLength = 8)]
     public string UserName { get; set; } = string.Empty;
-    [Required]
-    public string Password { get; set; } = string.Empty;
+    //[Required]
+    //public string Password { get; set; } = string.Empty;
+    [NotMapped]
+    public string FullName { get => $"{FirstName} {LastName}"; }
+
     public DateTime? BirthDate { get; set; }
 }

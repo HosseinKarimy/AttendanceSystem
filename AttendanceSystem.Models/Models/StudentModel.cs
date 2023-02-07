@@ -28,8 +28,8 @@ public class StudentModel
     [Required]
     public string StudentId { get; set; }
 
-    [Required]
-    public string Password { get; set; } = "1";
+    //[Required]
+    //public string Password { get; set; } = "1";
 
     [Required]
     public int EntryYear { get; set; }

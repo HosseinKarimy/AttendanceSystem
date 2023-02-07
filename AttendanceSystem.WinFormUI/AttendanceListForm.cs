@@ -1,11 +1,13 @@
-﻿using AttendanceSystem.Models.Models;
+﻿using AttendanceSystem.Models.Enums;
+using AttendanceSystem.Models.Models;
 using AttendanceSystem.Models.Search_Models;
+using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 using Models.Models;
 
 namespace AttendanceSystem.WinFormUI;
 
-public partial class AttendanceListForm : Form, IAttendanceListView
+public partial class AttendanceListForm : Form, IAttendanceListView , IRole
 {
     public AttendanceListForm()
     {
@@ -18,6 +20,8 @@ public partial class AttendanceListForm : Form, IAttendanceListView
     public SectionModel Section { get; set; } = new();
     public bool IsSucess { get; set; }
     public string Message { get; set; }
+    public Role Role { get; init; }
+    public UserModel CurrentUser { get; init; }
 
     public event EventHandler LoadTeachers;
     public event EventHandler UpdateSection;
@@ -33,9 +37,17 @@ public partial class AttendanceListForm : Form, IAttendanceListView
         TeacherComboBox.Items.Clear();
         CourseComboBox.Items.Clear();
         SectionComboBox.Items.Clear();
-        foreach (TeacherModel teacher in Teachers)
+        if (Role == Role.Admin)
         {
-            TeacherComboBox.Items.Add(teacher);
+            foreach (TeacherModel teacher in Teachers)
+            {
+                TeacherComboBox.Items.Add(teacher);
+                TeacherComboBox.DisplayMember = "FullName";
+            } 
+        }
+        else if (Role == Role.Teacher)
+        {
+            TeacherComboBox.Items.Add(CurrentUser.TeacherModel);
             TeacherComboBox.DisplayMember = "FullName";
         }
     }

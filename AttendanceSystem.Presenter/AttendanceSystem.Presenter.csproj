@@ -11,8 +11,4 @@
     <ProjectReference Include="..\AttendanceSystem.Models\AttendanceSystem.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IIntraction\" />
-  </ItemGroup>
-
 </Project>

@@ -25,8 +25,8 @@ public class TeacherModel
     [StringLength(50, MinimumLength = 8)]
     [Required]
     public string TeacherId { get; set; }
-    [Required]
-    public string Password { get; set; } = "1";
+    //[Required]
+    //public string Password { get; set; } = "1";
 
     public DateTime? BirthDate { get ; set; }
 

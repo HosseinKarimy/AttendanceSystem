@@ -1,5 +1,5 @@
-﻿using AttendanceSystem.Models.ModelValidator;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using AttendanceSystem.Models.Models;
+using AttendanceSystem.Models.ModelValidator;
 using Models.Models;
 
 namespace AttendanceSystem.Presenter.Presenter.UserManagementPresenter;
@@ -26,6 +26,7 @@ public partial class UserManagementPresenter
             {
                 ModelValidation.IsValid<StudentModel>(userManagementView.StudentModel);
                 unitOFWork.StudentRepository.Add(userManagementView.StudentModel);
+                unitOFWork.UserRepository.Add(new UserModel() { StudentModel = userManagementView.StudentModel , Username = userManagementView.StudentModel .StudentId , Password = "1" , Role = Models.Enums.Role.Student});
                 unitOFWork.Save();
                 userManagementView.IsSucess = true;
                 userManagementView.Message = "Added Successfully";
@@ -77,7 +78,9 @@ public partial class UserManagementPresenter
         {
             try
             {
-                unitOFWork.StudentRepository.Delete(userManagementView.StudentModel);
+                var target = unitOFWork.StudentRepository.FirstOrDefault(u => u.Id == userManagementView.StudentModel.Id);                
+                unitOFWork.UserRepository.Delete(unitOFWork.UserRepository.FirstOrDefault(u => u.StudentId == target.Id));
+                unitOFWork.StudentRepository.Delete(target);
                 unitOFWork.Save();
                 userManagementView.IsSucess = true;
                 userManagementView.Message = "Deleted Successfully";

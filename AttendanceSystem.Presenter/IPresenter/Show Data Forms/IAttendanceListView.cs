@@ -1,11 +1,12 @@
 ﻿using AttendanceSystem.Models.Models;
 using AttendanceSystem.Models.Search_Models;
+using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter.Common;
 using Models.Models;
 
 namespace AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 
-public interface IAttendanceListView : IResultFeedback
+public interface IAttendanceListView : IResultFeedback , IRole
 {
     public List<TeacherModel> Teachers { get; set; }
     public SearchStudentStatusesModel SearchSectionModel { get; set; }
