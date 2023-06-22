@@ -1,6 +1,6 @@
 using AttendanceSystem.DataAccess.UnitOfWork;
-using AttendanceSystem.Models.Enums;
-using AttendanceSystem.Models.Models;
+using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
@@ -9,7 +9,6 @@ using AttendanceSystem.Presenter.Presenter.ClassManegementPresenter;
 using AttendanceSystem.Presenter.Presenter.MainMenuPresenter;
 using AttendanceSystem.Presenter.Presenter.Show_Data_Forms_Presenter;
 using AttendanceSystem.Presenter.Presenter.UserManagementPresenter;
-using Models.Models;
 
 namespace AttendanceSystem.WinFormUI
 {
@@ -81,15 +80,15 @@ namespace AttendanceSystem.WinFormUI
         {
             switch (usermodel.Role)
             {
-                case Models.Enums.Role.Admin:
+                case Role.Admin:
                     MessageBox.Show($"Welcome Admin {usermodel.AdminModel?.FirstName} {usermodel.AdminModel?.LastName}");
                     InitAdminUser(usermodel.AdminModel!);
                     break;
-                case Models.Enums.Role.Teacher:
+                case Role.Teacher:
                     MessageBox.Show($"Welcome Teacher {usermodel.TeacherModel?.FirstName} {usermodel.TeacherModel?.LastName}");
                     InitTeacherUser(usermodel.TeacherModel!);
                     break;
-                case Models.Enums.Role.Student:
+                case Role.Student:
                     MessageBox.Show($"Welcome Student {usermodel.StudentModel?.FirstName} {usermodel.StudentModel?.LastName}");
                     InitStudentModel(usermodel.StudentModel!);
                     break;

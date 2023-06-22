@@ -1,4 +1,4 @@
-﻿using AttendanceSystem.Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
 

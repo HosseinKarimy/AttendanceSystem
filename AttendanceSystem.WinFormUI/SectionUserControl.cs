@@ -1,5 +1,5 @@
-﻿using AttendanceSystem.Presenter.IPresenter;
-using Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Presenter.IPresenter;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

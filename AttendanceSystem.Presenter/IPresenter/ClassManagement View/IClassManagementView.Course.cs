@@ -1,4 +1,4 @@
-﻿using Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

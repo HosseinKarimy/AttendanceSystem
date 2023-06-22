@@ -1,5 +1,5 @@
 ﻿using AttendanceSystem.DataAccess.UnitOfWork;
-using AttendanceSystem.Models.Models;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
 
 namespace AttendanceSystem.Presenter.Presenter.MainMenuPresenter;

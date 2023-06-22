@@ -1,7 +1,6 @@
-﻿using Models.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace AttendanceSystem.Models.Models;
+namespace AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 public class StudentStatusModel
 {
@@ -10,7 +9,7 @@ public class StudentStatusModel
 
     [Required]
     public int StudentId { get; set; }
-    public StudentModel Student{ get; set; }
+    public StudentModel Student { get; set; }
 
     public bool? IsPresent { get; set; }
     public string Description { get; set; } = string.Empty;

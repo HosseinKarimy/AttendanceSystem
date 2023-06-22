@@ -1,8 +1,6 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
-using Models.Models;
 using System.Linq.Expressions;
 
 namespace AttendanceSystem.DataAccess.Repositories.EfCoreSqlite;

@@ -1,10 +1,9 @@
-﻿using AttendanceSystem.Models.Models;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
-namespace Models.Models;
+namespace AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 public class SectionModel
 {

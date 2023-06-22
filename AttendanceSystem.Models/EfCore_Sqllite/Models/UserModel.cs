@@ -1,10 +1,9 @@
-﻿using AttendanceSystem.Models.Enums;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
 using Microsoft.EntityFrameworkCore;
-using Models.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AttendanceSystem.Models.Models;
+namespace AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 [Index(propertyNames: nameof(Username), IsUnique = true)]
 public class UserModel
@@ -19,7 +18,7 @@ public class UserModel
     [Required]
     public Role Role { get; set; }
 
-   [ForeignKey("AdminModel")]
+    [ForeignKey("AdminModel")]
     public int? AdminId { get; set; }
     public AdminModel? AdminModel { get; set; } = null;
 

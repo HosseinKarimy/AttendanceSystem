@@ -1,9 +1,6 @@
-﻿using AttendanceSystem.Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
-using Models.Models;
 using System.Data;
-using static System.Collections.Specialized.BitVector32;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AttendanceSystem.WinFormUI;
 

@@ -1,4 +1,4 @@
-﻿using AttendanceSystem.Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 namespace AttendanceSystem.Presenter.IPresenter
 {

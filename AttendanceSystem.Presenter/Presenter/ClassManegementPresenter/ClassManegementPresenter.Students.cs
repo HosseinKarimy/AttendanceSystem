@@ -1,4 +1,4 @@
-﻿using Models.Enums;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
 
 namespace AttendanceSystem.Presenter.Presenter.ClassManegementPresenter;
 

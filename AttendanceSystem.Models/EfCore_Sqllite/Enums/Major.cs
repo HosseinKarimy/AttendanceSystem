@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.Enums
+namespace AttendanceSystem.Models.EfCore_Sqllite.Enums
 {
     public enum Major
     {

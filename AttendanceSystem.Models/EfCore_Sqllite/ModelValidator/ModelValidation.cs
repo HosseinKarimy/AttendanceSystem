@@ -1,9 +1,9 @@
-﻿using Models.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
-using Models.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.EfCore_Sqllite.Enums;
 
-namespace AttendanceSystem.Models.ModelValidator;
+namespace AttendanceSystem.Models.EfCore_Sqllite.ModelValidator;
 
 public class ModelValidation
 {

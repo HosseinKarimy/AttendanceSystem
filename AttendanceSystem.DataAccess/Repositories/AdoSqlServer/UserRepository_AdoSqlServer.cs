@@ -1,7 +1,7 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.EfCoreSqlite;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
-using AttendanceSystem.Models.Models;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

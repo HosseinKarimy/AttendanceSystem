@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.Models;
+namespace AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 [Index(propertyNames: nameof(TeacherId), IsUnique = true)]
 public class TeacherModel
@@ -28,7 +28,7 @@ public class TeacherModel
     //[Required]
     //public string Password { get; set; } = "1";
 
-    public DateTime? BirthDate { get ; set; }
+    public DateTime? BirthDate { get; set; }
 
     public List<CourseModel> Courses { get; set; }
 }

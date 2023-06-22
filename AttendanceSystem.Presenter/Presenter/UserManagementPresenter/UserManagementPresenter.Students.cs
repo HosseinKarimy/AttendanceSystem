@@ -1,6 +1,6 @@
-﻿using AttendanceSystem.Models.Models;
-using AttendanceSystem.Models.ModelValidator;
-using Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.EfCore_Sqllite.ModelValidator;
 
 namespace AttendanceSystem.Presenter.Presenter.UserManagementPresenter;
 
@@ -20,13 +20,13 @@ public partial class UserManagementPresenter
     }
     private void UserManagementView_StudentSaveEdit(object? sender, EventArgs e)
     {
-        if (userManagementView.ActionType == Models.Enums.ActionType.Create)
+        if (userManagementView.ActionType == ActionType.Create)
         {
             try
             {
                 ModelValidation.IsValid<StudentModel>(userManagementView.StudentModel);
                 unitOFWork.StudentRepository.Add(userManagementView.StudentModel);
-                unitOFWork.UserRepository.Add(new UserModel() { StudentModel = userManagementView.StudentModel , Username = userManagementView.StudentModel .StudentId , Password = "1" , Role = Models.Enums.Role.Student});
+                unitOFWork.UserRepository.Add(new UserModel() { StudentModel = userManagementView.StudentModel , Username = userManagementView.StudentModel .StudentId , Password = "1" , Role = Role.Student});
                 unitOFWork.Save();
                 userManagementView.IsSucess = true;
                 userManagementView.Message = "Added Successfully";
@@ -46,7 +46,7 @@ public partial class UserManagementPresenter
             }
 
         }
-        else if (userManagementView.ActionType == Models.Enums.ActionType.Update)
+        else if (userManagementView.ActionType == ActionType.Update)
         {
             try
             {
@@ -74,7 +74,7 @@ public partial class UserManagementPresenter
     }
     private void UserManagementView_StudentDelete(object? sender, EventArgs e)
     {
-        if (userManagementView.ActionType == Models.Enums.ActionType.Delete)
+        if (userManagementView.ActionType == ActionType.Delete)
         {
             try
             {

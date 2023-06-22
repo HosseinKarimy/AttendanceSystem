@@ -1,7 +1,7 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using Microsoft.EntityFrameworkCore;
-using Models.Models;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 

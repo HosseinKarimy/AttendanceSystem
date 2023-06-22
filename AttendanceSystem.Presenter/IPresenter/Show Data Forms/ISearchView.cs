@@ -1,6 +1,4 @@
-﻿using AttendanceSystem.Models.Models;
-using AttendanceSystem.Models.Search_Models;
-using Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 namespace AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
 

@@ -1,7 +1,6 @@
-﻿using AttendanceSystem.Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using Microsoft.EntityFrameworkCore;
-using Models.Enums;
-using Models.Models;
 
 namespace AttendanceSystem.DataAccess.Data;
 
@@ -54,9 +53,9 @@ public class AppDbContext : DbContext
             new TeacherModel() { Id = 4, FirstName = "mousa", LastName = "mousa zade", TeacherId = "344351234" }
             );
         modelBuilder.Entity<UserModel>().HasData(
-            new UserModel() { Id = 1, Password = "Admin", Role = Models.Enums.Role.Admin, Username = "Admin", AdminId = 1, StudentId = null, TeacherId = null },
-            new UserModel() { Id = 2, Password = "1234", Role = Models.Enums.Role.Student, Username = "Student", StudentId = 1 , TeacherId = null , AdminId = null },
-            new UserModel() { Id = 3, Password = "1234", Role = Models.Enums.Role.Teacher, Username = "Teacher", TeacherId = 3 ,AdminId = null, StudentId = null}
+            new UserModel() { Id = 1, Password = "Admin", Role = Role.Admin, Username = "Admin", AdminId = 1, StudentId = null, TeacherId = null },
+            new UserModel() { Id = 2, Password = "1234", Role = Role.Student, Username = "Student", StudentId = 1 , TeacherId = null , AdminId = null },
+            new UserModel() { Id = 3, Password = "1234", Role = Role.Teacher, Username = "Teacher", TeacherId = 3 ,AdminId = null, StudentId = null}
         );
         base.OnModelCreating(modelBuilder);
     }

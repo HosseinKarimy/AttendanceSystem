@@ -1,5 +1,5 @@
-﻿using AttendanceSystem.Models.Search_Models;
-using Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.Search_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

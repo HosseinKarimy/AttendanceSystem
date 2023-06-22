@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models.Models;
+namespace AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 public class CourseModel
 {

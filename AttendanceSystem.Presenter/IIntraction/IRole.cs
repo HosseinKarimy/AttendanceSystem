@@ -1,5 +1,5 @@
-﻿using AttendanceSystem.Models.Enums;
-using AttendanceSystem.Models.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 namespace AttendanceSystem.Presenter.IIntraction;
 

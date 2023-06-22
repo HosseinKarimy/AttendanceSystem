@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Models.Enums;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models.Models;
+namespace AttendanceSystem.Models.EfCore_Sqllite.Models;
 
 [Index(propertyNames: nameof(StudentId), IsUnique = true)]
 public class StudentModel
@@ -24,7 +24,7 @@ public class StudentModel
     [NotMapped]
     public string FullName { get => $"{FirstName} {LastName}"; }
 
-    [StringLength(50,MinimumLength =8)]
+    [StringLength(50, MinimumLength = 8)]
     [Required]
     public string StudentId { get; set; }
 

@@ -1,8 +1,7 @@
-﻿using AttendanceSystem.Models.Enums;
-using AttendanceSystem.Models.Models;
-using AttendanceSystem.Models.ModelValidator;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.EfCore_Sqllite.ModelValidator;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Models.Models;
 
 namespace AttendanceSystem.Presenter.Presenter.ClassManegementPresenter;
 

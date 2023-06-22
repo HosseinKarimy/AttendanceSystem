@@ -1,8 +1,7 @@
-﻿using AttendanceSystem.Models.Enums;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+using AttendanceSystem.Models.EfCore_Sqllite.Models;
 using AttendanceSystem.Models.Search_Models;
 using AttendanceSystem.Presenter.IPresenter;
-using Models.Enums;
-using Models.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AttendanceSystem.WinFormUI;
