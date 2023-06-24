@@ -2,6 +2,6 @@
 
 namespace AttendanceSystem.DataAccess.Repositories.IRepositories;
 
-public interface ITermRepository :IRepository<TermCourseModel>
+public interface ITermRepository :IRepository<TermModel>
 {
 }
