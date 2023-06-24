@@ -1,6 +1,4 @@
-﻿using AttendanceSystem.DataAccess.Data;
-using AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
-using AttendanceSystem.DataAccess.Repositories.EfCoreSqlite;
+﻿using AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 
 namespace AttendanceSystem.DataAccess.UnitOfWork;
@@ -13,31 +11,22 @@ public class UnitOfWork : IUnitOFWork
     private readonly IStudentStatusRepository _StudentStatusRepository;
     private readonly ITeacherRepository _TeacherRepository;
     private readonly IUserRepository _UserRepository;
-
-    AppDbContext _appDbContext = new();
+    private readonly IDegreeRepository _DegreeRepository;
+    private readonly IMajorRepository _MejorRepository;
 
     public UnitOfWork()
     {
-        var dbType = DataBaseType.EfCore_Sqlite;
-        switch (dbType)
-        {
-            case DataBaseType.EfCore_Sqlite:
-                _CourseRepository = new CourseRepository_EfCoreSqlite(_appDbContext);
-                _SectionRepository = new SectionRepository_EfCoreSqlite(_appDbContext);
-                _StudentRepository = new StudentRepository_EfCoreSqlite(_appDbContext);
-                _StudentStatusRepository = new StudentStatusRepository_EfCoreSqlite(_appDbContext);
-                _TeacherRepository = new TeacherRepository_EfCoreSqlite(_appDbContext);
-                _UserRepository = new UserRepository_EfCoreSqlite(_appDbContext);
-                break;
-            case DataBaseType.Ado_SqlServer:
-                _CourseRepository = new CourseRepository_AdoSqlServer();
-                _SectionRepository = new SectionRepository_AdoSqlServer();
-                _StudentRepository = new StudentRepository_AdoSqlServer();
-                _StudentStatusRepository = new StudentStatusRepository_AdoSqlServer();
-                _TeacherRepository = new TeacherRepository_AdoSqlServer();
-                _UserRepository = new UserRepository_AdoSqlServer();
-                break;
-        }
+
+        _CourseRepository = new CourseRepository_AdoSqlServer();
+        _SectionRepository = new SectionRepository_AdoSqlServer();
+        _StudentRepository = new StudentRepository_AdoSqlServer();
+        _StudentStatusRepository = new StudentStatusRepository_AdoSqlServer();
+        _TeacherRepository = new TeacherRepository_AdoSqlServer();
+        _UserRepository = new UserRepository_AdoSqlServer();
+        _DegreeRepository = new DegreeRepository_AdoSqlServer();
+        _MejorRepository = new MajorRepository_AdoSqlServer();
+        
+
     }
 
     public ICourseRepository CourseRepository => _CourseRepository;
@@ -45,15 +34,13 @@ public class UnitOfWork : IUnitOFWork
     public IStudentRepository StudentRepository => _StudentRepository;
     public IStudentStatusRepository StudentStatusRepository => _StudentStatusRepository;
     public ITeacherRepository TeacherRepository => _TeacherRepository;
-    public IUserRepository UserRepository => _UserRepository;
+    public IUserRepository UserRepository => _UserRepository;  
+    public IDegreeRepository DegreeRepository => _DegreeRepository;
+    public IMajorRepository MajorRepository => _MejorRepository;
 
-    public void ClearTracker()
-    {
-        _appDbContext.ChangeTracker.Clear();
-    }
+    public IProtestRepository ProtestRepository => throw new NotImplementedException();
 
-    public void Save()
-    {
-        _appDbContext.SaveChanges();
-    }
+    public ITermCourseRepository TermCourseRepository => throw new NotImplementedException();
+
+    public ITermRepository TermRepository => throw new NotImplementedException();
 }

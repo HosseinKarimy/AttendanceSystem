@@ -1,28 +1,26 @@
-﻿
-
-using AttendanceSystem.DataAccess.Repositories.IRepositories;
+﻿using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using AttendanceSystem.Models.Ado_SqlServer;
 
 namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 
-public class CourseRepository_AdoSqlServer : ICourseRepository
+public class MajorRepository_AdoSqlServer : IMajorRepository
 {
-    public void Add(CourseModel entity)
+    public void Add(MajorModel entity)
     {
         throw new NotImplementedException();
     }
 
-    public void Delete(CourseModel entity)
+    public void Delete(MajorModel entity)
     {
         throw new NotImplementedException();
     }
 
-    public List<CourseModel> GetAll()
+    public List<MajorModel> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public void Update(CourseModel entity)
+    public void Update(MajorModel entity)
     {
         throw new NotImplementedException();
     }

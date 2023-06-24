@@ -1,5 +1,5 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
-using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Enums;
 using AttendanceSystem.Presenter.IPresenter;
 using System.Collections.Generic;
 
@@ -16,11 +16,7 @@ namespace AttendanceSystem.WinFormUI
         {
             LoadTeachersInListView();
             LoadStudentsInListView();
-            StudentGradeComboBox.DataSource = Enum.GetValues(typeof(Grade));
-            StudentMajorComboBox.DataSource = Enum.GetValues(typeof(Major));
-            const int shamsi_miladi_diff = 621;
-            StudentEntryYearNumericUpDown.Minimum = DateTime.Now.AddYears(-8).Year - shamsi_miladi_diff;
-            StudentEntryYearNumericUpDown.Maximum = DateTime.Now.Year - shamsi_miladi_diff;
+            LoadMajorsAndMajorsInComboBox();
         }
 
         public ActionType ActionType { get; set; }
@@ -28,15 +24,27 @@ namespace AttendanceSystem.WinFormUI
         public string Message { get; set; }
 
 
+        private void LoadDegreesInComboBox()
+        {
+            LoadMajorAndDegree?.Invoke(this, EventArgs.Empty);
+            StudentMajorComboBox.DataSource = Majors;
+            StudentGradeComboBox.DataSource = Degrees;
+        }
+
+
+
         #region StudentsTabPage
 
-        public StudentModel StudentModel { get; set; } = new();
+        public StudentModel StudentModel { get; set; } 
         public List<StudentModel> Students { get; set; } = new();
         public List<StudentModel> SearchedStudents { get; set; } = new();
+        public List<MajorModel> Majors { get; set; }
+        public List<DegreeModel> Degrees { get; set; }
 
         public event EventHandler StudentDelete;
         public event EventHandler StudentSaveEdit;
         public event EventHandler LoadStudents;
+        public event EventHandler LoadMajorAndDegree;
 
         //Events        
 
@@ -55,8 +63,7 @@ namespace AttendanceSystem.WinFormUI
                     Major = (Major)StudentMajorComboBox.SelectedItem,
                     EntryYear = (int)StudentEntryYearNumericUpDown.Value
                 };
-            }
-            else if (ActionType == ActionType.Update)
+            } else if (ActionType == ActionType.Update)
             {
                 StudentModel.FirstName = StudentFirstNameTextBox.Text;
                 StudentModel.LastName = StudentLastNameTextBox.Text;
@@ -97,7 +104,7 @@ namespace AttendanceSystem.WinFormUI
                 {
                     LoadStudentsInListView();
                 }
-                    ClearStudentForm();
+                ClearStudentForm();
             }
         }
 
@@ -165,51 +172,23 @@ namespace AttendanceSystem.WinFormUI
             StudentBODDateTimePicker.Value = selectedStudent.BirthDate ?? DateTime.Now;
             StudentGradeComboBox.SelectedItem = selectedStudent.Grade;
             StudentMajorComboBox.SelectedItem = selectedStudent.Major;
-            StudentEntryYearNumericUpDown.Value = selectedStudent.EntryYear;
         }
         #endregion
 
         #region TeachersTabPage
-        public TeacherModel TeacherModel { get; set; } = new();
+        public TeacherModel TeacherModel { get; set; }
         public List<TeacherModel> Teachers { get; set; } = new();
         public List<TeacherModel> SearchedTeachers { get; set; } = new();
+
 
         public event EventHandler TeacherSaveEdit;
         public event EventHandler TeacherDelete;
         public event EventHandler LoadTeachers;
 
 
-        //events
-        //private void TeacherSaveEditButton_Click(object sender, EventArgs e)
-        //{
-        //    if (ActionType == ActionType.Create)
-        //    {
-        //        TeacherModel = new()
-        //        {
-        //            FirstName = TeacherFirstNameTextBox.Text,
-        //            LastName = TeacherLastNameTextBox.Text,
-        //            FatherName = TeacherFatherNameTextBox.Text,
-        //            TeacherId = TeacherIdTextBox.Text,
-        //            BirthDate = TeacherBODDateTimePicker.Value
-        //        };
-        //    }
-        //    else
-        //    {
-        //        TeacherModel.FirstName = TeacherFirstNameTextBox.Text;
-        //        TeacherModel.LastName = TeacherLastNameTextBox.Text;
-        //        TeacherModel.FatherName = TeacherFatherNameTextBox.Text;
-        //        TeacherModel.TeacherId = TeacherIdTextBox.Text;
-        //        TeacherModel.BirthDate = TeacherBODDateTimePicker.Value;
-        //    }
 
-        //    TeacherSaveEdit?.Invoke(sender, e);
-        //    MessageBox.Show(Message);
-        //    if (IsSucess)
-        //    {
-        //        LoadTeachersInListView();
-        //        ClearTeacherForm();
-        //    }
-        //}
+        //events
+
 
         private void TeachersListView_ItemActivate(object sender, EventArgs e)
         {
@@ -231,8 +210,7 @@ namespace AttendanceSystem.WinFormUI
                     TeacherId = TeacherIdTextBox.Text,
                     BirthDate = TeacherBODDateTimePicker.Value
                 };
-            }
-            else if (ActionType == ActionType.Update)
+            } else if (ActionType == ActionType.Update)
             {
                 TeacherModel.FirstName = TeacherFirstNameTextBox.Text;
                 TeacherModel.LastName = TeacherLastNameTextBox.Text;
@@ -263,7 +241,7 @@ namespace AttendanceSystem.WinFormUI
                 {
                     LoadTeachersInListView();
                 }
-                    ClearTeacherForm();
+                ClearTeacherForm();
             }
         }
 

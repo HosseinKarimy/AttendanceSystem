@@ -1,4 +1,4 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
+﻿using AttendanceSystem.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

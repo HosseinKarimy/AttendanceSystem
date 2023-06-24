@@ -1,6 +1,6 @@
 using AttendanceSystem.DataAccess.UnitOfWork;
-using AttendanceSystem.Models.EfCore_Sqllite.Enums;
 using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.Enums;
 using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;

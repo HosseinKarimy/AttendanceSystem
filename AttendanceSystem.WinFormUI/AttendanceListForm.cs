@@ -1,5 +1,5 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Enums;
-using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.Enums;
 using AttendanceSystem.Models.Search_Models;
 using AttendanceSystem.Presenter.IIntraction;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;

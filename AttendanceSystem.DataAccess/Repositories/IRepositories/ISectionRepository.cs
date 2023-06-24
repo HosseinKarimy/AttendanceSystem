@@ -1,4 +1,4 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 
 namespace AttendanceSystem.DataAccess.Repositories.IRepositories;
 
