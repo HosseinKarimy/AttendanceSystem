@@ -22,7 +22,7 @@ namespace AttendanceSystem.Presenter.AdoPresenter.OtherManagementPresenter
             try
             {
                 unitOFWork.DegreeRepository.Delete(otherManagementView.DegreeModel);
-                otherManagementView.Message = "User Deleted From DataBase...";
+                otherManagementView.Message = "Degree Deleted From DataBase...";
                 otherManagementView.IsSucess = true;
             }
             catch (Exception ex)
@@ -62,8 +62,7 @@ namespace AttendanceSystem.Presenter.AdoPresenter.OtherManagementPresenter
                         otherManagementView.IsSucess = false;
                     }
                     break;
-            }
-            
+            }            
         }
 
         private void LoadDegrees(object? sender, EventArgs e)
