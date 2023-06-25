@@ -35,7 +35,7 @@
             splitContainer1 = new SplitContainer();
             MajorFormResetLinkLabel = new LinkLabel();
             MajorCreateSaveButton = new Button();
-            StudentFirstNameTextBox = new TextBox();
+            MajorNameTextBox = new TextBox();
             label2 = new Label();
             label4 = new Label();
             MajorSearchTextBox = new TextBox();
@@ -49,7 +49,7 @@
             DegreeSaveCreateButton = new Button();
             DegreeNameTextBox = new TextBox();
             label3 = new Label();
-            DegreeGridView = new DataGridView();
+            DegreeListView = new ListView();
             label5 = new Label();
             DegreeSearchTextBox = new TextBox();
             DegreeDeleteButton = new Button();
@@ -63,11 +63,11 @@
             TermResetFormLinkLabel = new LinkLabel();
             TermSaveCreateButton = new Button();
             label7 = new Label();
-            TermGridView = new DataGridView();
             label8 = new Label();
             TermSearchTextBox = new TextBox();
             TermDeleteButton = new Button();
             label9 = new Label();
+            TermsListView = new ListView();
             OtherManagementTabControl.SuspendLayout();
             MajorTabPage.SuspendLayout();
             MainPanel.SuspendLayout();
@@ -81,7 +81,6 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DegreeGridView).BeginInit();
             TermTabPage.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
@@ -89,7 +88,6 @@
             splitContainer3.Panel2.SuspendLayout();
             splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)TermIDNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)TermGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -125,6 +123,7 @@
             MajorTabPage.Size = new Size(808, 428);
             MajorTabPage.TabIndex = 0;
             MajorTabPage.Text = "Majors";
+            MajorTabPage.Enter += MajorTabPage_Enter;
             // 
             // MainPanel
             // 
@@ -148,7 +147,7 @@
             splitContainer1.Panel1.BackColor = Color.FromArgb(165, 201, 202);
             splitContainer1.Panel1.Controls.Add(MajorFormResetLinkLabel);
             splitContainer1.Panel1.Controls.Add(MajorCreateSaveButton);
-            splitContainer1.Panel1.Controls.Add(StudentFirstNameTextBox);
+            splitContainer1.Panel1.Controls.Add(MajorNameTextBox);
             splitContainer1.Panel1.Controls.Add(label2);
             // 
             // splitContainer1.Panel2
@@ -187,14 +186,14 @@
             MajorCreateSaveButton.UseVisualStyleBackColor = false;
             MajorCreateSaveButton.Click += MajorCreateSaveButton_Click;
             // 
-            // StudentFirstNameTextBox
+            // MajorNameTextBox
             // 
-            StudentFirstNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            StudentFirstNameTextBox.BackColor = Color.FromArgb(231, 246, 242);
-            StudentFirstNameTextBox.Location = new Point(85, 13);
-            StudentFirstNameTextBox.Name = "StudentFirstNameTextBox";
-            StudentFirstNameTextBox.Size = new Size(405, 23);
-            StudentFirstNameTextBox.TabIndex = 0;
+            MajorNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            MajorNameTextBox.BackColor = Color.FromArgb(231, 246, 242);
+            MajorNameTextBox.Location = new Point(85, 13);
+            MajorNameTextBox.Name = "MajorNameTextBox";
+            MajorNameTextBox.Size = new Size(405, 23);
+            MajorNameTextBox.TabIndex = 0;
             // 
             // label2
             // 
@@ -237,6 +236,7 @@
             MajorListView.TabIndex = 4;
             MajorListView.UseCompatibleStateImageBehavior = false;
             MajorListView.View = View.Details;
+            MajorListView.SelectedIndexChanged += MajorListView_SelectedIndexChanged;
             // 
             // MajorDeleteButton
             // 
@@ -247,6 +247,7 @@
             MajorDeleteButton.TabIndex = 3;
             MajorDeleteButton.Text = "Delete";
             MajorDeleteButton.UseVisualStyleBackColor = true;
+            MajorDeleteButton.Click += MajorDeleteButton_Click;
             // 
             // label1
             // 
@@ -268,6 +269,7 @@
             DegreeTabPage.Size = new Size(808, 428);
             DegreeTabPage.TabIndex = 1;
             DegreeTabPage.Text = "Degree";
+            DegreeTabPage.Enter += DegreeTabPage_Enter;
             // 
             // panel2
             // 
@@ -297,7 +299,7 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.BackColor = Color.FromArgb(165, 201, 202);
-            splitContainer2.Panel2.Controls.Add(DegreeGridView);
+            splitContainer2.Panel2.Controls.Add(DegreeListView);
             splitContainer2.Panel2.Controls.Add(label5);
             splitContainer2.Panel2.Controls.Add(DegreeSearchTextBox);
             splitContainer2.Panel2.Controls.Add(DegreeDeleteButton);
@@ -348,14 +350,20 @@
             label3.TabIndex = 0;
             label3.Text = "Degree Name:";
             // 
-            // DegreeGridView
+            // DegreeListView
             // 
-            DegreeGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DegreeGridView.Location = new Point(3, 3);
-            DegreeGridView.Name = "DegreeGridView";
-            DegreeGridView.RowTemplate.Height = 25;
-            DegreeGridView.Size = new Size(287, 387);
-            DegreeGridView.TabIndex = 7;
+            DegreeListView.AllowColumnReorder = true;
+            DegreeListView.BackColor = Color.FromArgb(231, 246, 242);
+            DegreeListView.FullRowSelect = true;
+            DegreeListView.Location = new Point(3, 3);
+            DegreeListView.MultiSelect = false;
+            DegreeListView.Name = "DegreeListView";
+            DegreeListView.ShowItemToolTips = true;
+            DegreeListView.Size = new Size(287, 378);
+            DegreeListView.TabIndex = 7;
+            DegreeListView.UseCompatibleStateImageBehavior = false;
+            DegreeListView.View = View.Details;
+            DegreeListView.ItemSelectionChanged += DegreeListView_ItemSelectionChanged;
             // 
             // label5
             // 
@@ -385,6 +393,7 @@
             DegreeDeleteButton.TabIndex = 3;
             DegreeDeleteButton.Text = "Delete";
             DegreeDeleteButton.UseVisualStyleBackColor = true;
+            DegreeDeleteButton.Click += DegreeDeleteButton_Click;
             // 
             // label6
             // 
@@ -406,6 +415,7 @@
             TermTabPage.TabIndex = 2;
             TermTabPage.Text = "Terms";
             TermTabPage.UseVisualStyleBackColor = true;
+            TermTabPage.Enter += TermTabPage_Enter;
             // 
             // panel3
             // 
@@ -437,7 +447,7 @@
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.BackColor = Color.FromArgb(165, 201, 202);
-            splitContainer3.Panel2.Controls.Add(TermGridView);
+            splitContainer3.Panel2.Controls.Add(TermsListView);
             splitContainer3.Panel2.Controls.Add(label8);
             splitContainer3.Panel2.Controls.Add(TermSearchTextBox);
             splitContainer3.Panel2.Controls.Add(TermDeleteButton);
@@ -491,6 +501,7 @@
             TermSaveCreateButton.TabIndex = 4;
             TermSaveCreateButton.Text = "Save/Create";
             TermSaveCreateButton.UseVisualStyleBackColor = false;
+            TermSaveCreateButton.Click += TermSaveCreateButton_Click;
             // 
             // label7
             // 
@@ -500,15 +511,6 @@
             label7.Size = new Size(61, 15);
             label7.TabIndex = 0;
             label7.Text = "Start Date:";
-            // 
-            // TermGridView
-            // 
-            TermGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            TermGridView.Location = new Point(3, 3);
-            TermGridView.Name = "TermGridView";
-            TermGridView.RowTemplate.Height = 25;
-            TermGridView.Size = new Size(287, 387);
-            TermGridView.TabIndex = 8;
             // 
             // label8
             // 
@@ -532,12 +534,13 @@
             // TermDeleteButton
             // 
             TermDeleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            TermDeleteButton.Location = new Point(224, 396);
+            TermDeleteButton.Location = new Point(224, 395);
             TermDeleteButton.Name = "TermDeleteButton";
             TermDeleteButton.Size = new Size(64, 24);
             TermDeleteButton.TabIndex = 3;
             TermDeleteButton.Text = "Delete";
             TermDeleteButton.UseVisualStyleBackColor = true;
+            TermDeleteButton.Click += TermDeleteButton_Click;
             // 
             // label9
             // 
@@ -548,6 +551,22 @@
             label9.Size = new Size(45, 15);
             label9.TabIndex = 2;
             label9.Text = "Search:";
+            // 
+            // TermsListView
+            // 
+            TermsListView.AllowColumnReorder = true;
+            TermsListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TermsListView.BackColor = Color.FromArgb(231, 246, 242);
+            TermsListView.FullRowSelect = true;
+            TermsListView.Location = new Point(3, 3);
+            TermsListView.MultiSelect = false;
+            TermsListView.Name = "TermsListView";
+            TermsListView.ShowItemToolTips = true;
+            TermsListView.Size = new Size(287, 387);
+            TermsListView.TabIndex = 8;
+            TermsListView.UseCompatibleStateImageBehavior = false;
+            TermsListView.View = View.Details;
+            TermsListView.ItemSelectionChanged += TermsListView_ItemSelectionChanged;
             // 
             // OtherManagementForm
             // 
@@ -577,7 +596,6 @@
             splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)DegreeGridView).EndInit();
             TermTabPage.ResumeLayout(false);
             panel3.ResumeLayout(false);
             splitContainer3.Panel1.ResumeLayout(false);
@@ -587,7 +605,6 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
             splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)TermIDNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)TermGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -600,7 +617,7 @@
         private SplitContainer splitContainer1;
         private LinkLabel MajorFormResetLinkLabel;
         private Button MajorCreateSaveButton;
-        private TextBox StudentFirstNameTextBox;
+        private TextBox MajorNameTextBox;
         private Label label2;
         private ListView MajorListView;
         private Button MajorDeleteButton;
@@ -628,10 +645,10 @@
         private TextBox TermSearchTextBox;
         private Button TermDeleteButton;
         private Label label9;
-        private DataGridView DegreeGridView;
-        private DataGridView TermGridView;
         private DateTimePicker TermStartDateTimePicker;
         private NumericUpDown TermIDNumericUpDown;
         private Label label10;
+        private ListView DegreeListView;
+        private ListView TermsListView;
     }
 }

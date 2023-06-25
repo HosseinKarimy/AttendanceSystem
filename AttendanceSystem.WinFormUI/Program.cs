@@ -1,3 +1,6 @@
+using AttendanceSystem.DataAccess.UnitOfWork;
+using AttendanceSystem.Presenter.AdoPresenter.OtherManagementPresenter;
+
 namespace AttendanceSystem.WinFormUI
 {
     internal static class Program
@@ -13,8 +16,8 @@ namespace AttendanceSystem.WinFormUI
             ApplicationConfiguration.Initialize();
 
             var frm = new OtherManagementForm();
-            
-            Application.Run(new MainForm());
+            _ = new OtherManagementPresenter(frm, new UnitOfWork());
+            Application.Run(frm);
         }
     }
 }
