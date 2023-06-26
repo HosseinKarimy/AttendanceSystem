@@ -70,6 +70,7 @@ namespace AttendanceSystem.Presenter.AdoPresenter.OtherManagementPresenter
             try
             {
                 otherManagementView.Degrees = unitOFWork.DegreeRepository.GetAll();
+                otherManagementView.IsSucess = true;
             }
             catch (Exception ex)
             {

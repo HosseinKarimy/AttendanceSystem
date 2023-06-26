@@ -20,7 +20,7 @@ namespace AttendanceSystem.Presenter.AdoPresenter.OtherManagementPresenter
             RaiseMajorEvents();
             RaiseDegreeEvents();
             RaiseTermEvents();
-        }
-
+            RaiseCourseEvents();
+        }        
     }
 }

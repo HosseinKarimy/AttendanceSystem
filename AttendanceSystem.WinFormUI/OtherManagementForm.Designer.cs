@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
             OtherManagementTabControl = new TabControl();
             MajorTabPage = new TabPage();
             MainPanel = new Panel();
@@ -63,11 +62,23 @@
             TermResetFormLinkLabel = new LinkLabel();
             TermSaveCreateButton = new Button();
             label7 = new Label();
+            TermsListView = new ListView();
             label8 = new Label();
             TermSearchTextBox = new TextBox();
             TermDeleteButton = new Button();
             label9 = new Label();
-            TermsListView = new ListView();
+            CoursesTabPage = new TabPage();
+            panel1 = new Panel();
+            splitContainer4 = new SplitContainer();
+            CourseResetLinkLabel = new LinkLabel();
+            CourseSaveCreateButton = new Button();
+            CourseNameTextBox = new TextBox();
+            label11 = new Label();
+            label12 = new Label();
+            CourseSearchTextBox = new TextBox();
+            CourseListView = new ListView();
+            CourseDeleteButton = new Button();
+            label13 = new Label();
             OtherManagementTabControl.SuspendLayout();
             MajorTabPage.SuspendLayout();
             MainPanel.SuspendLayout();
@@ -88,15 +99,13 @@
             splitContainer3.Panel2.SuspendLayout();
             splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)TermIDNumericUpDown).BeginInit();
+            CoursesTabPage.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer4).BeginInit();
+            splitContainer4.Panel1.SuspendLayout();
+            splitContainer4.Panel2.SuspendLayout();
+            splitContainer4.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Location = new Point(165, 128);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(491, 235);
-            panel1.TabIndex = 3;
             // 
             // OtherManagementTabControl
             // 
@@ -104,6 +113,7 @@
             OtherManagementTabControl.Controls.Add(MajorTabPage);
             OtherManagementTabControl.Controls.Add(DegreeTabPage);
             OtherManagementTabControl.Controls.Add(TermTabPage);
+            OtherManagementTabControl.Controls.Add(CoursesTabPage);
             OtherManagementTabControl.Location = new Point(9, 9);
             OtherManagementTabControl.Margin = new Padding(0);
             OtherManagementTabControl.Name = "OtherManagementTabControl";
@@ -226,6 +236,7 @@
             // MajorListView
             // 
             MajorListView.AllowColumnReorder = true;
+            MajorListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             MajorListView.BackColor = Color.FromArgb(231, 246, 242);
             MajorListView.FullRowSelect = true;
             MajorListView.Location = new Point(3, 3);
@@ -236,7 +247,7 @@
             MajorListView.TabIndex = 4;
             MajorListView.UseCompatibleStateImageBehavior = false;
             MajorListView.View = View.Details;
-            MajorListView.SelectedIndexChanged += MajorListView_SelectedIndexChanged;
+            MajorListView.ItemActivate += MajorListView_ItemActivate;
             // 
             // MajorDeleteButton
             // 
@@ -353,6 +364,7 @@
             // DegreeListView
             // 
             DegreeListView.AllowColumnReorder = true;
+            DegreeListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DegreeListView.BackColor = Color.FromArgb(231, 246, 242);
             DegreeListView.FullRowSelect = true;
             DegreeListView.Location = new Point(3, 3);
@@ -363,7 +375,7 @@
             DegreeListView.TabIndex = 7;
             DegreeListView.UseCompatibleStateImageBehavior = false;
             DegreeListView.View = View.Details;
-            DegreeListView.ItemSelectionChanged += DegreeListView_ItemSelectionChanged;
+            DegreeListView.ItemActivate += DegreeListView_ItemActivate;
             // 
             // label5
             // 
@@ -459,6 +471,7 @@
             // TermIDNumericUpDown
             // 
             TermIDNumericUpDown.Location = new Point(85, 12);
+            TermIDNumericUpDown.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
             TermIDNumericUpDown.Name = "TermIDNumericUpDown";
             TermIDNumericUpDown.Size = new Size(406, 23);
             TermIDNumericUpDown.TabIndex = 10;
@@ -483,7 +496,7 @@
             // 
             TermResetFormLinkLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             TermResetFormLinkLabel.AutoSize = true;
-            TermResetFormLinkLabel.Location = new Point(5, 343);
+            TermResetFormLinkLabel.Location = new Point(5, 361);
             TermResetFormLinkLabel.Name = "TermResetFormLinkLabel";
             TermResetFormLinkLabel.Size = new Size(35, 15);
             TermResetFormLinkLabel.TabIndex = 6;
@@ -495,9 +508,9 @@
             // 
             TermSaveCreateButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TermSaveCreateButton.BackColor = Color.FromArgb(231, 246, 242);
-            TermSaveCreateButton.Location = new Point(3, 361);
+            TermSaveCreateButton.Location = new Point(3, 379);
             TermSaveCreateButton.Name = "TermSaveCreateButton";
-            TermSaveCreateButton.Size = new Size(499, 58);
+            TermSaveCreateButton.Size = new Size(499, 40);
             TermSaveCreateButton.TabIndex = 4;
             TermSaveCreateButton.Text = "Save/Create";
             TermSaveCreateButton.UseVisualStyleBackColor = false;
@@ -511,6 +524,22 @@
             label7.Size = new Size(61, 15);
             label7.TabIndex = 0;
             label7.Text = "Start Date:";
+            // 
+            // TermsListView
+            // 
+            TermsListView.AllowColumnReorder = true;
+            TermsListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            TermsListView.BackColor = Color.FromArgb(231, 246, 242);
+            TermsListView.FullRowSelect = true;
+            TermsListView.Location = new Point(3, 3);
+            TermsListView.MultiSelect = false;
+            TermsListView.Name = "TermsListView";
+            TermsListView.ShowItemToolTips = true;
+            TermsListView.Size = new Size(287, 387);
+            TermsListView.TabIndex = 8;
+            TermsListView.UseCompatibleStateImageBehavior = false;
+            TermsListView.View = View.Details;
+            TermsListView.ItemActivate += TermsListView_ItemActivate;
             // 
             // label8
             // 
@@ -552,21 +581,152 @@
             label9.TabIndex = 2;
             label9.Text = "Search:";
             // 
-            // TermsListView
+            // CoursesTabPage
             // 
-            TermsListView.AllowColumnReorder = true;
-            TermsListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            TermsListView.BackColor = Color.FromArgb(231, 246, 242);
-            TermsListView.FullRowSelect = true;
-            TermsListView.Location = new Point(3, 3);
-            TermsListView.MultiSelect = false;
-            TermsListView.Name = "TermsListView";
-            TermsListView.ShowItemToolTips = true;
-            TermsListView.Size = new Size(287, 387);
-            TermsListView.TabIndex = 8;
-            TermsListView.UseCompatibleStateImageBehavior = false;
-            TermsListView.View = View.Details;
-            TermsListView.ItemSelectionChanged += TermsListView_ItemSelectionChanged;
+            CoursesTabPage.Controls.Add(panel1);
+            CoursesTabPage.Location = new Point(4, 24);
+            CoursesTabPage.Name = "CoursesTabPage";
+            CoursesTabPage.Padding = new Padding(3);
+            CoursesTabPage.Size = new Size(808, 428);
+            CoursesTabPage.TabIndex = 3;
+            CoursesTabPage.Text = "Courses";
+            CoursesTabPage.UseVisualStyleBackColor = true;
+            CoursesTabPage.Enter += CoursesTabPage_Enter;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(splitContainer4);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(802, 422);
+            panel1.TabIndex = 1;
+            // 
+            // splitContainer4
+            // 
+            splitContainer4.BackColor = Color.FromArgb(165, 201, 202);
+            splitContainer4.Dock = DockStyle.Fill;
+            splitContainer4.Location = new Point(0, 0);
+            splitContainer4.Margin = new Padding(0);
+            splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            splitContainer4.Panel1.BackColor = Color.FromArgb(165, 201, 202);
+            splitContainer4.Panel1.Controls.Add(CourseResetLinkLabel);
+            splitContainer4.Panel1.Controls.Add(CourseSaveCreateButton);
+            splitContainer4.Panel1.Controls.Add(CourseNameTextBox);
+            splitContainer4.Panel1.Controls.Add(label11);
+            // 
+            // splitContainer4.Panel2
+            // 
+            splitContainer4.Panel2.BackColor = Color.FromArgb(165, 201, 202);
+            splitContainer4.Panel2.Controls.Add(label12);
+            splitContainer4.Panel2.Controls.Add(CourseSearchTextBox);
+            splitContainer4.Panel2.Controls.Add(CourseListView);
+            splitContainer4.Panel2.Controls.Add(CourseDeleteButton);
+            splitContainer4.Panel2.Controls.Add(label13);
+            splitContainer4.Size = new Size(802, 422);
+            splitContainer4.SplitterDistance = 505;
+            splitContainer4.TabIndex = 0;
+            // 
+            // CourseResetLinkLabel
+            // 
+            CourseResetLinkLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CourseResetLinkLabel.AutoSize = true;
+            CourseResetLinkLabel.Location = new Point(5, 359);
+            CourseResetLinkLabel.Name = "CourseResetLinkLabel";
+            CourseResetLinkLabel.Size = new Size(35, 15);
+            CourseResetLinkLabel.TabIndex = 6;
+            CourseResetLinkLabel.TabStop = true;
+            CourseResetLinkLabel.Text = "Reset";
+            CourseResetLinkLabel.VisitedLinkColor = Color.Blue;
+            // 
+            // CourseSaveCreateButton
+            // 
+            CourseSaveCreateButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CourseSaveCreateButton.BackColor = Color.FromArgb(231, 246, 242);
+            CourseSaveCreateButton.Location = new Point(5, 377);
+            CourseSaveCreateButton.Name = "CourseSaveCreateButton";
+            CourseSaveCreateButton.Size = new Size(497, 42);
+            CourseSaveCreateButton.TabIndex = 4;
+            CourseSaveCreateButton.Text = "Save/Create";
+            CourseSaveCreateButton.UseVisualStyleBackColor = false;
+            CourseSaveCreateButton.Click += CourseSaveCreateButton_Click;
+            // 
+            // CourseNameTextBox
+            // 
+            CourseNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            CourseNameTextBox.BackColor = Color.FromArgb(231, 246, 242);
+            CourseNameTextBox.Location = new Point(85, 13);
+            CourseNameTextBox.Name = "CourseNameTextBox";
+            CourseNameTextBox.Size = new Size(406, 23);
+            CourseNameTextBox.TabIndex = 0;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(5, 16);
+            label11.Name = "label11";
+            label11.Size = new Size(82, 15);
+            label11.TabIndex = 0;
+            label11.Text = "Course Name:";
+            // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label12.AutoSize = true;
+            label12.Location = new Point(3, 401);
+            label12.Name = "label12";
+            label12.Size = new Size(45, 15);
+            label12.TabIndex = 6;
+            label12.Text = "Search:";
+            // 
+            // CourseSearchTextBox
+            // 
+            CourseSearchTextBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CourseSearchTextBox.BackColor = Color.FromArgb(231, 246, 242);
+            CourseSearchTextBox.Location = new Point(54, 396);
+            CourseSearchTextBox.Name = "CourseSearchTextBox";
+            CourseSearchTextBox.Size = new Size(168, 23);
+            CourseSearchTextBox.TabIndex = 5;
+            // 
+            // CourseListView
+            // 
+            CourseListView.AllowColumnReorder = true;
+            CourseListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CourseListView.BackColor = Color.FromArgb(231, 246, 242);
+            CourseListView.FullRowSelect = true;
+            CourseListView.Location = new Point(3, 3);
+            CourseListView.MultiSelect = false;
+            CourseListView.Name = "CourseListView";
+            CourseListView.ShowItemToolTips = true;
+            CourseListView.Size = new Size(287, 387);
+            CourseListView.TabIndex = 4;
+            CourseListView.UseCompatibleStateImageBehavior = false;
+            CourseListView.View = View.Details;
+            CourseListView.ItemActivate += CoursesListView_ItemActivate;
+            // 
+            // CourseDeleteButton
+            // 
+            CourseDeleteButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            CourseDeleteButton.Location = new Point(228, 394);
+            CourseDeleteButton.Name = "CourseDeleteButton";
+            CourseDeleteButton.Size = new Size(62, 25);
+            CourseDeleteButton.TabIndex = 3;
+            CourseDeleteButton.Text = "Delete";
+            CourseDeleteButton.UseVisualStyleBackColor = true;
+            CourseDeleteButton.Click += CourseDeleteButton_Click;
+            // 
+            // label13
+            // 
+            label13.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label13.AutoSize = true;
+            label13.Location = new Point(3, 1038);
+            label13.Name = "label13";
+            label13.Size = new Size(45, 15);
+            label13.TabIndex = 2;
+            label13.Text = "Search:";
             // 
             // OtherManagementForm
             // 
@@ -575,7 +735,6 @@
             BackColor = Color.FromArgb(57, 91, 100);
             ClientSize = new Size(834, 474);
             Controls.Add(OtherManagementTabControl);
-            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "OtherManagementForm";
             Text = "OtherManagementForm";
@@ -605,12 +764,18 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
             splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)TermIDNumericUpDown).EndInit();
+            CoursesTabPage.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            splitContainer4.Panel1.ResumeLayout(false);
+            splitContainer4.Panel1.PerformLayout();
+            splitContainer4.Panel2.ResumeLayout(false);
+            splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer4).EndInit();
+            splitContainer4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel panel1;
         private TabControl OtherManagementTabControl;
         private TabPage MajorTabPage;
         private Panel MainPanel;
@@ -650,5 +815,17 @@
         private Label label10;
         private ListView DegreeListView;
         private ListView TermsListView;
+        private TabPage CoursesTabPage;
+        private Panel panel1;
+        private SplitContainer splitContainer4;
+        private LinkLabel CourseResetLinkLabel;
+        private Button CourseSaveCreateButton;
+        private TextBox CourseNameTextBox;
+        private Label label11;
+        private Label label12;
+        private TextBox CourseSearchTextBox;
+        private ListView CourseListView;
+        private Button CourseDeleteButton;
+        private Label label13;
     }
 }

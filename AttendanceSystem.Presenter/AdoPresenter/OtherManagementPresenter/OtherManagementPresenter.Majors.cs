@@ -36,6 +36,7 @@ namespace AttendanceSystem.Presenter.AdoPresenter.OtherManagementPresenter
             try
             {
                 otherManagementView.Majors = unitOFWork.MajorRepository.GetAll();
+                otherManagementView.IsSucess = true;
             }
             catch (Exception ex)
             {
