@@ -6,5 +6,5 @@ public interface IRepository<T>
     void Update(T entity);
     void Delete(T entity);
     List<T> GetAll();
-    int GetByID(int id);
+    T? GetByID(int id);
 }

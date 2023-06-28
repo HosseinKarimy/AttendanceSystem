@@ -1,7 +1,10 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Search_Models;
+using System.Data;
 using System.Data.SqlClient;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
 
@@ -11,7 +14,7 @@ public class StudentRepository_AdoSqlServer : IStudentRepository
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
-        var command = new SqlCommand("INSERT INTO Student (FirstName, LastName, FatherName, BirthDate, MajorID, DegreeID, StudentID) VALUES (@FirstName, @LastName, @FatherName, @BirthDate, @MajorID, @DegreeID, @StudentID); SELECT SCOPE_IDENTITY();", connection);
+        var command = new SqlCommand("INSERT INTO Student (FirstName, LastName, FatherName, BirthDate, MajorID, DegreeID, StudentID) VALUES (@FirstName, @LastName, @FatherName, @BirthDate, @MajorID, @DegreeID, @StudentID)", connection);
         command.Parameters.AddWithValue("@FirstName", entity.FirstName);
         command.Parameters.AddWithValue("@LastName", entity.LastName);
         command.Parameters.AddWithValue("@FatherName", (object?)entity.FatherName ?? DBNull.Value);
@@ -19,7 +22,8 @@ public class StudentRepository_AdoSqlServer : IStudentRepository
         command.Parameters.AddWithValue("@MajorID", entity.MajorID);
         command.Parameters.AddWithValue("@DegreeID", entity.DegreeID);
         command.Parameters.AddWithValue("@StudentID", entity.StudentID);
-        return Convert.ToInt32(command.ExecuteScalar());
+        command.ExecuteScalar();
+        return entity.StudentID;
     }
 
     public void Update(StudentModel entity)
@@ -63,7 +67,7 @@ public class StudentRepository_AdoSqlServer : IStudentRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public StudentModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -71,7 +75,55 @@ public class StudentRepository_AdoSqlServer : IStudentRepository
         command.Parameters.AddWithValue("@StudentID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(6);
-        return -1;
+            return new StudentModel(
+                reader.GetString(0),
+                reader.GetString(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.IsDBNull(3) ? null : reader.GetDateTime(3),
+                reader.GetInt32(4),
+                reader.GetInt32(5),
+                reader.GetInt32(6));
+        return null;
+    }
+
+    public List<StudentInfoModel> GetAllWithInfo()
+    {
+        using var connection = DbConnection.SqlConnection;
+        connection.Open();
+        var command = new SqlCommand("SELECT * FROM Students_Info", connection);
+        using var reader = command.ExecuteReader();
+        var result = new List<StudentInfoModel>();
+        while (reader.Read())
+            result.Add(new StudentInfoModel(
+                reader.GetInt32(0),
+                reader.GetString(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.GetString(3),
+                reader.GetString(4)));
+        return result;
+    }
+
+    public List<StudentInfoModel> SearchInStudentInfo(SearchStudentModel searchModel)
+    {
+        using var connection = DbConnection.SqlConnection;
+        connection.Open();
+        var command = new SqlCommand("Search_Students_Info", connection)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+        command.Parameters.AddWithValue("@StudentID", (object?)searchModel.StudentID ?? DBNull.Value);
+        command.Parameters.AddWithValue("@FullName", (object?)searchModel.FullName ?? DBNull.Value);
+        command.Parameters.AddWithValue("@DegreeName", (object?)searchModel.DegreeName ?? DBNull.Value);
+        command.Parameters.AddWithValue("@MajorName", (object?)searchModel.MajorName ?? DBNull.Value);
+        using var reader = command.ExecuteReader();
+        var result = new List<StudentInfoModel>();
+        while (reader.Read())
+            result.Add(new StudentInfoModel(
+                reader.GetInt32(0),
+                reader.GetString(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.GetString(3),
+                reader.GetString(4)));
+        return result;
     }
 }

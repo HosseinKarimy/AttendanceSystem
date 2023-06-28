@@ -47,7 +47,7 @@ public class DegreeRepository_AdoSqlServer : IDegreeRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public DegreeModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -55,7 +55,7 @@ public class DegreeRepository_AdoSqlServer : IDegreeRepository
         command.Parameters.AddWithValue("@DegreeID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(0);
-        return -1;
+            return new DegreeModel(reader.GetInt32(0), reader.GetString(1));
+        return null;
     }
 }

@@ -11,10 +11,11 @@ public class TermRepository_AdoSqlServer :ITermRepository
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
-        var command = new SqlCommand("INSERT INTO Term (TermID, StartDate) VALUES (@TermID, @StartDate); SELECT SCOPE_IDENTITY();", connection);
+        var command = new SqlCommand("INSERT INTO Term (TermID, StartDate) VALUES (@TermID, @StartDate)", connection);
         command.Parameters.AddWithValue("@TermID", entity.TermID);
         command.Parameters.AddWithValue("@StartDate", entity.StartDate);
-        return Convert.ToInt32(command.ExecuteScalar());
+        command.ExecuteScalar();
+        return entity.TermID;
     }
 
     public void Update(TermModel entity)
@@ -50,7 +51,7 @@ public class TermRepository_AdoSqlServer :ITermRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public TermModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -58,7 +59,9 @@ public class TermRepository_AdoSqlServer :ITermRepository
         command.Parameters.AddWithValue("@TermID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(0);
-        return -1;
+            return new TermModel(
+                reader.GetInt32(0),
+                reader.GetDateTime(1));
+        return null;
     }
 }

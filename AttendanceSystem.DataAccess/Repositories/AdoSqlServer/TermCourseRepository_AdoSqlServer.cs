@@ -58,7 +58,7 @@ public class TermCourseRepository_AdoSqlServer : ITermCourseRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public TermCourseModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -66,7 +66,13 @@ public class TermCourseRepository_AdoSqlServer : ITermCourseRepository
         command.Parameters.AddWithValue("@TermCourseID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(0);
-        return -1;
+            return new TermCourseModel(
+                reader.GetInt32(0),
+                reader.IsDBNull(1) ? null : reader.GetDateTime(1),
+                reader.IsDBNull(2) ? null : reader.GetDateTime(2),
+                reader.GetInt32(3),
+                reader.GetInt32(4),
+                reader.GetInt32(5));
+        return null;
     }
 }

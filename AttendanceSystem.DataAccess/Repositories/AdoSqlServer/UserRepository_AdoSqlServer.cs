@@ -53,7 +53,7 @@ namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer
             return result;
         }
 
-        public int GetByID(int id)
+        public UsersModel? GetByID(int id)
         {
             using var connection = DbConnection.SqlConnection;
             connection.Open();
@@ -61,8 +61,11 @@ namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer
             command.Parameters.AddWithValue("@UserID", id);
             using var reader = command.ExecuteReader();
             if (reader.Read())
-                return reader.GetInt32(0);
-            return -1;
+                return new UsersModel(
+                    reader.GetInt32(0),
+                    reader.GetString(1),
+                    reader.GetInt32(2));
+            return null;
         }
     }
 }

@@ -50,7 +50,7 @@ public class AdminRepository_AdoSqlServer : IAdminRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public AdminModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -58,7 +58,7 @@ public class AdminRepository_AdoSqlServer : IAdminRepository
         command.Parameters.AddWithValue("@AdminID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(2);
-        return -1;
+            return new AdminModel(reader.GetString(0), reader.GetString(1), reader.GetInt32(2));
+        return null;
     }
 }

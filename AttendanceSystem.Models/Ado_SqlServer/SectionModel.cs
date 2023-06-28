@@ -1,3 +1,3 @@
 ﻿namespace AttendanceSystem.Models.Ado_SqlServer;
 
-public record SectionModel(int SectionID, int? SectionNumber, int? Duration, TimeSpan? StartTime, DateTime? Day, DateTime? Date, int TermCourseID);
+public record SectionModel(int SectionID, int? SectionNumber, TimeSpan? Duration, DateTime? Date, int TermCourseID);

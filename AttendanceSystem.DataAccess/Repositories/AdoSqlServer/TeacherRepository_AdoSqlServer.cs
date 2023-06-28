@@ -59,7 +59,7 @@ public class TeacherRepository_AdoSqlServer :  ITeacherRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public TeacherModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -67,7 +67,12 @@ public class TeacherRepository_AdoSqlServer :  ITeacherRepository
         command.Parameters.AddWithValue("@TeacherID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(4);
-        return -1;
+            return new TeacherModel(
+                reader.GetString(0),
+                reader.GetString(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.IsDBNull(3) ? null : reader.GetDateTime(3),
+                reader.GetInt32(4));
+        return null;
     }
 }

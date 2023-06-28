@@ -12,7 +12,9 @@ public class UnitOfWork : IUnitOFWork
     private readonly ITeacherRepository _TeacherRepository;
     private readonly IUserRepository _UserRepository;
     private readonly IDegreeRepository _DegreeRepository;
-    private readonly IMajorRepository _MejorRepository;
+    private readonly IMajorRepository _MajorsRepository;
+    private readonly ITermRepository _TermRepository;
+    private readonly ITermCourseRepository _TermCourseRepository;
 
     public UnitOfWork()
     {
@@ -24,8 +26,9 @@ public class UnitOfWork : IUnitOFWork
         _TeacherRepository = new TeacherRepository_AdoSqlServer();
         _UserRepository = new UserRepository_AdoSqlServer();
         _DegreeRepository = new DegreeRepository_AdoSqlServer();
-        _MejorRepository = new MajorRepository_AdoSqlServer();
-        
+        _MajorsRepository = new MajorRepository_AdoSqlServer();
+        _TermRepository = new TermRepository_AdoSqlServer();
+        _TermCourseRepository = new TermCourseRepository_AdoSqlServer();
 
     }
 
@@ -36,11 +39,11 @@ public class UnitOfWork : IUnitOFWork
     public ITeacherRepository TeacherRepository => _TeacherRepository;
     public IUserRepository UserRepository => _UserRepository;  
     public IDegreeRepository DegreeRepository => _DegreeRepository;
-    public IMajorRepository MajorRepository => _MejorRepository;
+    public IMajorRepository MajorRepository => _MajorsRepository;
+    public ITermRepository TermRepository => _TermRepository;
+    public ITermCourseRepository TermCourseRepository => _TermCourseRepository;
 
     public IProtestRepository ProtestRepository => throw new NotImplementedException();
 
-    public ITermCourseRepository TermCourseRepository => throw new NotImplementedException();
 
-    public ITermRepository TermRepository => throw new NotImplementedException();
 }

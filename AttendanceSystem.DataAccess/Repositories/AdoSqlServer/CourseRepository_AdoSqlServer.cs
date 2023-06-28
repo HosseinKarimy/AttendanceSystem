@@ -47,7 +47,7 @@ public class CourseRepository_AdoSqlServer : ICourseRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public CourseModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -55,7 +55,7 @@ public class CourseRepository_AdoSqlServer : ICourseRepository
         command.Parameters.AddWithValue("@CourseID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(0);
-        return -1;
+            return new CourseModel(reader.GetInt32(0), reader.GetString(1));
+        return null;
     }
 }

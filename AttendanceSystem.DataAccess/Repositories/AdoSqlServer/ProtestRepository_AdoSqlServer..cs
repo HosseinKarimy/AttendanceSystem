@@ -56,7 +56,7 @@ public class ProtestRepository : IProtestRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public ProtestModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -64,7 +64,11 @@ public class ProtestRepository : IProtestRepository
         command.Parameters.AddWithValue("@StudentStatusID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(3);
-        return -1;
+            return new ProtestModel(
+                reader.IsDBNull(0) ? null : reader.GetInt32(0),
+                reader.IsDBNull(1) ? null : reader.GetInt32(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.GetInt32(3));
+        return null;
     }
 }

@@ -56,7 +56,7 @@ public class StudentStatusRepository_AdoSqlServer : IStudentStatusRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public StudentStatusModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -64,7 +64,12 @@ public class StudentStatusRepository_AdoSqlServer : IStudentStatusRepository
         command.Parameters.AddWithValue("@StudentStatusID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(0);
-        return -1;
+            return new StudentStatusModel(
+                reader.GetInt32(0),
+                reader.IsDBNull(1) ? null : reader.GetBoolean(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.GetInt32(3),
+                reader.GetInt32(4));
+        return null;
     }
 }

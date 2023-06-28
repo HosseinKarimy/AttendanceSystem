@@ -47,7 +47,7 @@ public class MajorRepository_AdoSqlServer : IMajorRepository
         return result;
     }
 
-    public int GetByID(int id)
+    public MajorModel? GetByID(int id)
     {
         using var connection = DbConnection.SqlConnection;
         connection.Open();
@@ -55,7 +55,7 @@ public class MajorRepository_AdoSqlServer : IMajorRepository
         command.Parameters.AddWithValue("@MajorID", id);
         using var reader = command.ExecuteReader();
         if (reader.Read())
-            return reader.GetInt32(0);
-        return -1;
+            return new MajorModel(reader.GetInt32(0), reader.GetString(1));
+        return null;
     }
 }
