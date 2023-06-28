@@ -1,16 +1,11 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.ViewModels;
 
-namespace AttendanceSystem.Presenter.IPresenter
+namespace AttendanceSystem.Presenter.IPresenter;
+
+public interface ISectionUCView
 {
-    public interface ISectionUCView
-    {
-        public SectionModel SectionModel { get; set; }
+    public SectionPerWeekModel SectionPerWeek { get; set; }
 
-        public event EventHandler RemoveSection;
-    }
+    public event EventHandler RemoveSection;
 }

@@ -1,14 +1,6 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.ViewModels;
 using AttendanceSystem.Presenter.IPresenter;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AttendanceSystem.WinFormUI
 {
@@ -19,14 +11,15 @@ namespace AttendanceSystem.WinFormUI
             InitializeComponent();
         }
 
-        public SectionModel SectionModel { get; set; }
+        public SectionPerWeekModel SectionPerWeek { get; set; }
+
         public event EventHandler RemoveSection;
 
         private void SectionUserControl_Load(object sender, EventArgs e)
         {
-            ClassDurationMAskedTextBox.Text = SectionModel.ClassDuration.ToString();
-            ClassDayTextBox.Text = SectionModel.Day.ToString();
-            StartTimeTextBox.Text = SectionModel.StartTime.ToString();
+            ClassDurationMAskedTextBox.Text = SectionPerWeek.Duration.ToString();
+            ClassDayTextBox.Text = SectionPerWeek.Day.ToString();
+            StartTimeTextBox.Text = SectionPerWeek.StartTime.ToString();
         }
 
         private void RemoveSectionButton_Click(object sender, EventArgs e)

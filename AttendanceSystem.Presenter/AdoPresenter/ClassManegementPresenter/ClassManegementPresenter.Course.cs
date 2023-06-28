@@ -1,16 +1,30 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
-using AttendanceSystem.Models.EfCore_Sqllite.ModelValidator;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 using AttendanceSystem.Models.Enums;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace AttendanceSystem.Presenter.Presenter.ClassManegementPresenter;
+namespace AttendanceSystem.Presenter.Presenter.ClassManagementPresenter;
 
-public partial class ClassManegementPresenter
+public partial class ClassManagementPresenter
 {
     private void RaiseCourseEvents()
     {
-        view.LoadTeachers += View_LoadTeachers;
+        view.LoadTeachersAndCoursesAndTerms += LoadTeachersAndCoursesAndTerms;
         view.CourseSaveEdit += View_CourseSaveEdit;
+    }
+
+    private void LoadTeachersAndCoursesAndTerms(object? sender, EventArgs e)
+    {
+        try
+        {
+            view.Teachers = unitOFWork.TeacherRepository.GetAll();
+            view.Courses = unitOFWork.CourseRepository.GetAll();
+            view.Terms = unitOFWork.TermRepository.GetAll();
+            view.IsSucess = true;
+        }
+        catch (Exception ex)
+        {
+            view.Message = ex.Message;
+            view.IsSucess = false;
+        }
     }
 
     private void View_CourseSaveEdit(object? sender, EventArgs e)
@@ -19,78 +33,42 @@ public partial class ClassManegementPresenter
         {
             try
             {
-                ModelValidation.IsValid<CourseModel>(view.CourseModel);
+                var termCourseID = unitOFWork.TermCourseRepository.Add(view.TermCourse);
 
-                //load studens from db
-                var students = new List<StudentModel>();
-                foreach (StudentModel student in view.CourseModel.Students)
-                {
-                    students.Add(unitOFWork.StudentRepository.FirstOrDefault(u => u.Id == student.Id, "Courses"));
-                }
-                view.CourseModel.Students = students;
-
-                //load sections 
+                var termStartDate = unitOFWork.TermRepository.GetByID(view.TermCourse.TermID)!.StartDate;
+                var termEndDate = termStartDate.AddMonths(4);
+                var tempSectionsOfWeek = view.SectionsPerWeek.ToList();
                 var baseSections = new List<SectionModel>();
-                int SectionPerWeek = view.CourseModel.Sections.Count;
-                DayOfWeek StartDayOfWeek = view.CourseModel.CourseStartDate.DayOfWeek;
-                DateOnly FirstDayDate = new DateOnly(view.CourseModel.CourseStartDate.Year, view.CourseModel.CourseStartDate.Month , view.CourseModel.CourseStartDate.Day);
-                for (int i = 0; i < SectionPerWeek; i++)
-                {
-                    int SectionDiff = 0;
-                    while (!view.CourseModel.Sections.Any(u => u.Day == StartDayOfWeek))
-                    {
-                        SectionDiff++;
-                        StartDayOfWeek = (DayOfWeek)(((int)StartDayOfWeek + 1) % 7);
-                    }
-                    SectionModel FirstSection = view.CourseModel.Sections.FirstOrDefault(u => u.Day == StartDayOfWeek)!;
-                    FirstSection.ClassDate = FirstDayDate.AddDays(SectionDiff);
-                    baseSections.Add(new SectionModel()
-                    {
-                        ClassDate = FirstSection.ClassDate,
-                        ClassDuration = FirstSection.ClassDuration,
-                        Day = FirstSection.Day,
-                        StartTime = FirstSection.StartTime
-                    });
-                    FirstDayDate = FirstDayDate.AddDays(SectionDiff);
-                    StartDayOfWeek = FirstSection.Day;
-                    view.CourseModel.Sections.Remove(FirstSection);
+
+                while (tempSectionsOfWeek.Count>0)
+                {                
+                    while (tempSectionsOfWeek.Any(u=>u.Day == termStartDate.DayOfWeek) is false)
+                        termStartDate = termStartDate.AddDays(1);
+                    var temp = tempSectionsOfWeek.Find(u => u.Day == termStartDate.DayOfWeek);
+                    baseSections.Add(new SectionModel(0, 1, temp!.Duration, 
+                        new DateTime(termStartDate.Year,termStartDate.Month,termStartDate.Day,
+                        temp.StartTime.Hour,temp.StartTime.Minute,temp.StartTime.Second)
+                        , termCourseID));
+                    tempSectionsOfWeek.Remove(temp);
                 }
 
-                var sections = new List<SectionModel>();
-
-                int diffDay = 0;
-                for (int numberOfCreatedSections = 1; numberOfCreatedSections <= view.CourseModel.NumberOfSections; )
+                int sectionSwitch = 0;
+                do
                 {
-                    foreach (SectionModel section in baseSections)
+                    var current = baseSections.ElementAt(sectionSwitch);
+                    var sectionID = unitOFWork.SectionRepository.Add(current);
+                    foreach (var student in view.Students)
                     {
-                        List<StudentStatusModel> studnetsStatus = view.CourseModel.Students.Select(
-                            u => new StudentStatusModel()
-                            {
-                                StudentId = u.Id,
-                                IsPresent = null                            
-                            }
-                        ).ToList();
-                        sections.Add(new()
-                        {
-                            ClassDate = section.ClassDate.AddDays(diffDay),
-                            ClassDuration = section.ClassDuration,
-                            Day = section.Day,
-                            StartTime = section.StartTime,
-                            SectionNumber = numberOfCreatedSections++,
-                            StudentsStatus = studnetsStatus                            
-                        });
-                        if (view.CourseModel.NumberOfSections < numberOfCreatedSections)
-                            break;
+                        unitOFWork.StudentStatusRepository.Add(new StudentStatusModel(0, null, null, sectionID, student.StudentID));
                     }
-                    diffDay += 7;
-                }
+                    current = current with { Date = current.Date!.Value.AddDays(7) };
+                    baseSections[sectionSwitch] = current;
+                    sectionSwitch = sectionSwitch++ % baseSections.Count;
+                    termStartDate = (DateTime)baseSections.ElementAt(sectionSwitch).Date!;
 
-                view.CourseModel.Sections = sections;
+                } while (termStartDate < termEndDate);
 
-                //try to add course to db
-                unitOFWork.CourseRepository.Add(view.CourseModel);
-                unitOFWork.Save();
-                view.IsSucess = true;
+                    view.IsSucess = true;
                 view.Message = "Added Successfully";
             }
             catch (Exception ex)
@@ -100,18 +78,8 @@ public partial class ClassManegementPresenter
                     view.Message = ex.InnerException.Message;
                 else
                     view.Message = ex.Message;
-
-            }
-            finally
-            {
-                unitOFWork.ClearTracker();
             }
 
         }
-    }
-
-    private void View_LoadTeachers(object? sender, EventArgs e)
-    {
-        view.Teachers = unitOFWork.TeacherRepository.GetAll();
     }
 }

@@ -1,19 +1,16 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 using AttendanceSystem.Models.Search_Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AttendanceSystem.Presenter.IPresenter
+namespace AttendanceSystem.Presenter.IPresenter;
+
+public partial interface IClassManagementView
 {
-    public partial interface IClassManagementView
-    {
-        public List<StudentModel> Students { get; set; }
-        public SearchStudentModel SearchStudentModel { get; set; }
+    public List<StudentInfoModel> Students { get; set; }
+    public List<MajorModel> Majors { get; set; }
+    public List<DegreeModel> Degrees { get; set; }
+    public SearchStudentModel SearchStudentModel { get; set; }
 
-        public event EventHandler LoadStudents;
-        public event EventHandler Search;
-    }
+    public event EventHandler LoadStudents;
+    public event EventHandler LoadDegreesAndMajors;
+    public event EventHandler SearchStudents;
 }

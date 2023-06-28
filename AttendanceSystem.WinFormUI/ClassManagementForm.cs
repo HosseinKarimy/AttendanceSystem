@@ -1,13 +1,19 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 using AttendanceSystem.Models.Enums;
 using AttendanceSystem.Models.Search_Models;
+using AttendanceSystem.Models.ViewModels;
 using AttendanceSystem.Presenter.IPresenter;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text;
 
 namespace AttendanceSystem.WinFormUI;
 
 public partial class ClassManagementForm : Form, IClassManagementView
 {
+
+    public ActionType ActionType { get; set; }
+    public bool IsSucess { get; set; }
+    public string Message { get; set; }
+
     public ClassManagementForm()
     {
         InitializeComponent();
@@ -19,57 +25,42 @@ public partial class ClassManagementForm : Form, IClassManagementView
         InitializeCourseTabPage();
     }
 
-    public bool IsSucess { get; set; }
-    public string Message { get; set; }
-    public ActionType ActionType { get; set; } = ActionType.Create;
-
     #region StudentsTabPage
+    public List<StudentInfoModel> Students { get; set; }
+    public List<StudentInfoModel> SelectedStudents { get; set; } = new();
+    public SearchStudentModel SearchStudentModel { get; set; }
+    public List<MajorModel> Majors { get; set; }
+    public List<DegreeModel> Degrees { get; set; }
 
-    public List<StudentModel> Students { get; set; } = new();
-    public SearchStudentModel SearchStudentModel { get; set; } = new();
-    public SectionModel SectionModel { get; set; } = new();
-    public event EventHandler Search;
     public event EventHandler LoadStudents;
+    public event EventHandler SearchStudents;
+    public event EventHandler LoadDegreesAndMajors;
 
     private void InitializeStudentsTabPage()
     {
-        DayOfWeekComboBox.DataSource = Enum.GetValues(typeof(DayOfWeek));
-        GradeComboBox.DataSource = Enum.GetValues(typeof(Grade));
-        MajorComboBox.DataSource = Enum.GetValues(typeof(Major));
-
-        const int shamsi_miladi_diff = 621;
-        EntryYearNumric.Minimum = DateTime.Now.AddYears(-8).Year - shamsi_miladi_diff;
-        EntryYearNumric.Maximum = DateTime.Now.Year - shamsi_miladi_diff;
-        ClassDurationTimePicker.CustomFormat = "hh:mm";
-
-        SearchStudentTextBox.TextChanged += delegate
-        {
-            PrepairingSearch();
-            Search?.Invoke(this, EventArgs.Empty);
+        SearchFullNameStudentTextBox.TextChanged += delegate {
+            PreparingSearch();
+            SearchStudents?.Invoke(this, EventArgs.Empty);
             ReloadStudentsInListView(Students);
         };
-        MajorComboBox.SelectedIndexChanged += delegate
-        {
-            PrepairingSearch();
-            Search?.Invoke(this, EventArgs.Empty);
+        MajorComboBox.SelectedIndexChanged += delegate {
+            PreparingSearch();
+            SearchStudents?.Invoke(this, EventArgs.Empty);
             ReloadStudentsInListView(Students);
         };
-        GradeComboBox.SelectedIndexChanged += delegate
-        {
-            PrepairingSearch();
-            Search?.Invoke(this, EventArgs.Empty);
+        DegreeComboBox.SelectedIndexChanged += delegate {
+            PreparingSearch();
+            SearchStudents?.Invoke(this, EventArgs.Empty);
             ReloadStudentsInListView(Students);
         };
-        EntryYearCheckBox.CheckedChanged += delegate
-        {
-            PrepairingSearch();
-            Search?.Invoke(this, EventArgs.Empty);
+        StudentIDCheckBox.CheckedChanged += delegate {
+            PreparingSearch();
+            SearchStudents?.Invoke(this, EventArgs.Empty);
             ReloadStudentsInListView(Students);
         };
-        EntryYearNumric.ValueChanged += delegate
-        {
-            PrepairingSearch();
-            Search?.Invoke(this, EventArgs.Empty);
+        StudentIDNumric.ValueChanged += delegate {
+            PreparingSearch();
+            SearchStudents?.Invoke(this, EventArgs.Empty);
             ReloadStudentsInListView(Students);
         };
     }
@@ -78,28 +69,62 @@ public partial class ClassManagementForm : Form, IClassManagementView
 
     private void StudentSectionTabPage_Enter(object sender, EventArgs e)
     {
-        LoadStudents?.Invoke(this, EventArgs.Empty);
-        ReloadStudentsInListView(Students);
-        ReloadSelectedStudents();
+        ReloadStudentsForm();
     }
 
-    private void EntryYearCheckBox_CheckedChanged(object sender, EventArgs e)
+    private void ReloadStudentsForm()
     {
-        if (EntryYearCheckBox.Checked)
+        LoadStudents?.Invoke(this, EventArgs.Empty);
+        if (IsSucess)
         {
-            EntryYearNumric.Enabled = true;
-        }
-        else
+            ReloadStudentsInListView(Students);
+            ReloadSelectedStudents();
+        } else
+            MessageBox.Show(Message);
+
+        LoadDegreesAndMajors?.Invoke(this, EventArgs.Empty);
+        if (IsSucess)
         {
-            EntryYearNumric.Enabled = false;
+            LoadMajorsInComboBox(Majors);
+            LoadDegreesInComboBox(Degrees);
+        } else
+            MessageBox.Show(Message);
+    }
+
+    private void LoadMajorsInComboBox(List<MajorModel> majors)
+    {
+        List<MajorModel> temp = new() { new MajorModel(0, "None") };
+        temp.AddRange(majors);
+        MajorComboBox.DataSource = temp;
+        MajorComboBox.DisplayMember = "Name";
+        MajorComboBox.ValueMember = "Name";
+    }
+
+    private void LoadDegreesInComboBox(List<DegreeModel> degrees)
+    {
+        List<DegreeModel> temp = new() { new DegreeModel(0, "None") };
+        temp.AddRange(degrees);
+        DegreeComboBox.DataSource = temp;
+        DegreeComboBox.DisplayMember = "Name";
+        DegreeComboBox.ValueMember = "Name";
+    }
+
+    private void StudentIDCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        if (StudentIDCheckBox.Checked)
+        {
+            StudentIDNumric.Enabled = true;
+        } else
+        {
+            StudentIDNumric.Enabled = false;
         }
     }
 
-    private void AddStudnetsButton_Click(object sender, EventArgs e)
+    private void AddStudentsButton_Click(object sender, EventArgs e)
     {
         foreach (ListViewItem item in AllStudentsListView.CheckedItems)
         {
-            SelectedStudents.Add((item.Tag as StudentModel)!);
+            SelectedStudents.Add((item.Tag as StudentInfoModel)!);
         }
         ReloadStudentsInListView(Students);
         ReloadSelectedStudents();
@@ -109,7 +134,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
     {
         foreach (ListViewItem item in SelectedStudentsListView.CheckedItems)
         {
-            var student = item.Tag as StudentModel;
+            var student = item.Tag as StudentInfoModel;
             SelectedStudents.Remove(student!);
         }
         ReloadStudentsInListView(Students);
@@ -118,78 +143,75 @@ public partial class ClassManagementForm : Form, IClassManagementView
 
     //Methods
 
-    private void ReloadStudentsInListView(List<StudentModel> students)
+    private void ReloadStudentsInListView(List<StudentInfoModel> students)
     {
-        AllStudentsListView.Columns.Clear();
-        AllStudentsListView.Items.Clear();
+        AllStudentsListView.Clear();
 
         AllStudentsListView.View = View.Details;
-        AllStudentsListView.Columns.Add("StudentId");
-        AllStudentsListView.Columns.Add("Name");
-        AllStudentsListView.Columns.Add("Major");
-        AllStudentsListView.Columns.Add("Grade");
-        AllStudentsListView.Columns.Add("Entry Year");
+        AllStudentsListView.SetHeaders(new string[] { "StudentId", "FullName", "Major", "Degree" });
 
         foreach (var student in students)
         {
-            if (SelectedStudents.Any(u => u.Id == student.Id))
+            if (SelectedStudents.Any(u => u.StudentID == student.StudentID))
                 continue;
-            var item = new ListViewItem(new String[] { student.StudentId, student.FullName, student.Major.ToString(), student.Grade.ToString(), student.EntryYear.ToString() });
-            item.Tag = student;
+            var item = new ListViewItem(new String[] { student.StudentID.ToString(), student.FullName, student.MajorName, student.DegreeName })
+            {
+                Tag = student
+            };
             AllStudentsListView.Items.Add(item);
         }
-        AllStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        AllStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        AllStudentsListView.SetSize();
     }
 
     private void ReloadSelectedStudents()
     {
-        SelectedStudentsListView.Columns.Clear();
-        SelectedStudentsListView.Items.Clear();
+        SelectedStudentsListView.Clear();
 
         SelectedStudentsListView.View = View.Details;
-        SelectedStudentsListView.Columns.Add("StudentId");
-        SelectedStudentsListView.Columns.Add("Name");
-        SelectedStudentsListView.Columns.Add("Major");
+        SelectedStudentsListView.SetHeaders(new string[] { "StudentId", "FullName", "Major", "Degree" });
 
         foreach (var student in SelectedStudents)
         {
-            var item = new ListViewItem(new String[] { student.StudentId, student.FullName, student.Major.ToString() });
-            item.Tag = student;
+            var item = new ListViewItem(new String[] { student.StudentID.ToString(), student.FullName, student.MajorName, student.DegreeName })
+            {
+                Tag = student
+            };
             SelectedStudentsListView.Items.Add(item);
         }
-        SelectedStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        SelectedStudentsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        SelectedStudentsListView.SetSize();
     }
 
-    private void PrepairingSearch()
+    private void PreparingSearch()
     {
-        SearchStudentModel = new()
-        {
-            SearchString = SearchStudentTextBox.Text,
-            Major = (Major)MajorComboBox.SelectedValue,
-            Grade = (Grade)GradeComboBox.SelectedValue,
-            EntryYear = EntryYearCheckBox.Checked ? (int)EntryYearNumric.Value : 0
-        };
+        SearchStudentModel = new(
+            string.IsNullOrEmpty(SearchFullNameStudentTextBox.Text) ? null : SearchFullNameStudentTextBox.Text,
+            (string)DegreeComboBox.SelectedValue == "None" ? null : (string)DegreeComboBox.SelectedValue,
+            (string)MajorComboBox.SelectedValue == "None" ? null : (string)MajorComboBox.SelectedValue,
+            StudentIDCheckBox.Checked == false ? null : Convert.ToInt32(StudentIDNumric.Value));
     }
 
     #endregion
 
+
     #region CourseTabPage
 
     //members
-    public List<TeacherModel> Teachers { get; set; } = new();
-    public List<StudentModel> SelectedStudents { get; set; } = new();
-    public List<SectionModel> SelectedSections { get; set; } = new();
-    public CourseModel CourseModel { get; set; } = new();
+    public TermCourseModel TermCourse { get; set; }
+    public List<CourseModel> Courses { get; set; }
+    public List<TermModel> Terms { get; set; }
+    public List<TeacherModel> Teachers { get; set; }
+    public List<SectionPerWeekModel> SectionsPerWeek { get; set; } = new();
 
     public event EventHandler CourseSaveEdit;
-    public event EventHandler LoadTeachers;
+    public event EventHandler LoadTeachersAndCoursesAndTerms;
 
     private void InitializeCourseTabPage()
     {
+        DayOfWeekComboBox.DataSource = Enum.GetValues(typeof(DayOfWeek));
+
+        ClassDurationTimePicker.CustomFormat = "hh:mm";
+
         RemoveFromSelectedStudentsToolTip.SetToolTip(this.RemoveCheckedStudentsFromSelectedStudentsButton, "Remove Checked Students From Course");
-        LoadCourseTabPageComponentsContext();
     }
 
     //events
@@ -201,55 +223,100 @@ public partial class ClassManagementForm : Form, IClassManagementView
     private void LoadCourseTabPageComponentsContext()
     {
         LoadSelectedSections();
-        LoadTeachersInListView();
+        LoadTeachersAndCoursesAndTerms?.Invoke(this, EventArgs.Empty);
+        LoadCoursesInComboBox();
+        LoadTermsInComboBox();
+        ReloadTeachersInListView(Teachers);
+    }
+
+    private void LoadTermsInComboBox()
+    {
+        List<TermModel> temp = new() { new TermModel(0, DateTime.Now) };
+        temp.AddRange(Terms);
+        SelectTermComboBox.DataSource = temp;
+        SelectTermComboBox.DisplayMember = "TermID";
+        SelectTermComboBox.ValueMember = "TermID";
+    }
+
+    private void LoadCoursesInComboBox()
+    {
+        List<CourseModel> temp = new() { new CourseModel(0, "None") };
+        temp.AddRange(Courses);
+        SelectCourseComboBox.DataSource = temp;
+        SelectCourseComboBox.DisplayMember = "Name";
+        SelectCourseComboBox.ValueMember = "CourseID";
     }
 
     private void TeachersListView_ItemActivate(object sender, EventArgs e)
     {
         var teacher = TeachersListView.SelectedItems[0].Tag as TeacherModel;
-        SelectedTeacherTextBox.Text = teacher?.FullName;
+        SelectedTeacherTextBox.Text = $"{teacher?.FirstName} {teacher?.LastName}";
         SelectedTeacherTextBox.Tag = teacher;
     }
 
     private void SearchTeacherTextBox_TextChanged(object sender, EventArgs e)
     {
-        ReloadTeachersInListView(Teachers.Where(u => u.TeacherId.Contains(SearchTeacherTextBox.Text) || u.FullName.Contains(SearchTeacherTextBox.Text)).ToList());
+        ReloadTeachersInListView(Teachers.Where(u => u.TeacherID.ToString().Contains(SearchTeacherTextBox.Text) || u.FirstName.Contains(SearchTeacherTextBox.Text) || u.LastName.Contains(SearchTeacherTextBox.Text)).ToList());
     }
 
     private void CreateCourseButton_Click(object sender, EventArgs e)
     {
-        if (SelectedTeacherTextBox.Tag is null)
-        {
-            MessageBox.Show("Please Select Teacher", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        if (CreateCourseInputValidation() is false)
             return;
-        }
-        if (SelectedSections.Count < 1)
-        {
-            MessageBox.Show("Please Create at least 1 section", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
 
-        CourseModel = new()
-        {
-            Name = CourseNameTextBox.Text,
-            MidTermExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
-            FinalExam = MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
-            Students = SelectedStudents,
-            Sections = SelectedSections,
-            TeacherId = (SelectedTeacherTextBox.Tag as TeacherModel).Id,
-            CourseStartDate = CourseStartDate.Value,
-            NumberOfSections = (int)NumberOfSectionNumericUpDown.Value
-        };
+        TermCourse = new(
+            0,
+            MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
+            MidTermDateTimePicker.Checked ? MidTermDateTimePicker.Value : null,
+            (SelectCourseComboBox.SelectedItem as CourseModel)!.CourseID,
+            (SelectTermComboBox.SelectedItem as TermModel)!.TermID,
+            (SelectedTeacherTextBox.Tag as TeacherModel)!.TeacherID
+        );
 
+        Students=SelectedStudents.ToList();
         CourseSaveEdit?.Invoke(this, EventArgs.Empty);
 
         if (IsSucess)
         {
             MessageBox.Show(Message, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Dispose();
-        }
-        else
+        } else
             MessageBox.Show(Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+
+    private bool CreateCourseInputValidation()
+    {
+        var errors = new StringBuilder();
+        bool flag = true;
+        if (SelectedTeacherTextBox.Tag is null)
+        {
+            errors.AppendLine("Please Select Teacher");
+            flag = false;
+        }
+        if (SectionsPerWeek.Count < 1)
+        {
+            errors.AppendLine("Please Create at least 1 section");
+            flag = false;
+        }
+        if ((SelectCourseComboBox.SelectedItem as CourseModel)!.CourseID == 0)
+        {
+            errors.AppendLine("Please Select Course");
+            flag = false;
+        }
+        if ((SelectTermComboBox.SelectedItem as TermModel)!.TermID == 0)
+        {
+            errors.AppendLine("Please Select Term");
+            flag = false;
+        }
+        if (SelectedStudents.Count < 1)
+        {
+            errors.AppendLine("Please Select Student");
+            flag = false;
+        }
+
+        if (flag is false)
+            MessageBox.Show(errors.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return flag;
     }
 
     private void AddSectionButton_Click(object sender, EventArgs e)
@@ -257,13 +324,7 @@ public partial class ClassManagementForm : Form, IClassManagementView
         var duration = new TimeSpan(ClassDurationTimePicker.Value.Hour % 12, ClassDurationTimePicker.Value.Minute, ClassDurationTimePicker.Value.Second);
         var time = new TimeOnly(SectionTimePicker.Value.Hour, SectionTimePicker.Value.Minute, SectionTimePicker.Value.Second);
 
-        SectionModel = new()
-        {
-            ClassDuration = duration,
-            StartTime = time,
-            Day = (DayOfWeek)DayOfWeekComboBox.SelectedItem
-        };
-        SelectedSections.Add(SectionModel);
+        SectionsPerWeek.Add(new(time, duration, (DayOfWeek)DayOfWeekComboBox.SelectedItem));
         LoadSelectedSections();
     }
 
@@ -274,44 +335,40 @@ public partial class ClassManagementForm : Form, IClassManagementView
 
     //methods
 
-    private void LoadTeachersInListView()
-    {
-        LoadTeachers?.Invoke(this, EventArgs.Empty);
-        ReloadTeachersInListView(Teachers);
-    }
 
     private void ReloadTeachersInListView(List<TeacherModel> teachers)
     {
-        TeachersListView.Columns.Clear();
-        TeachersListView.Items.Clear();
-
+        TeachersListView.Clear();
         TeachersListView.View = View.Details;
-        TeachersListView.Columns.Add("TeacherId");
-        TeachersListView.Columns.Add("Name");
+        TeachersListView.SetHeaders(new string[] { "TeacherId", "Name" });
 
         foreach (var teacher in teachers)
         {
-            var item = new ListViewItem(new String[] { teacher.TeacherId, teacher.FullName });
-            item.Tag = teacher;
+            var item = new ListViewItem(new String[] { teacher.TeacherID.ToString(), $"{teacher.FirstName} {teacher.LastName}" })
+            {
+                Tag = teacher
+            };
             TeachersListView.Items.Add(item);
         }
-        TeachersListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        TeachersListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        TeachersListView.SetSize();
     }
 
     private void LoadSelectedSections()
     {
         SelectedSectionPanel.Controls.Clear();
 
-        foreach (SectionModel section in SelectedSections)
+        foreach (var section in SectionsPerWeek)
         {
-            SectionUserControl sectionUserControl = new();
-            sectionUserControl.SectionModel = section;
+            SectionUserControl sectionUserControl = new()
+            {
+                SectionPerWeek = section
+            };
             sectionUserControl.RemoveSection += (sender, e) =>
             {
-                SectionModel = (sender as SectionUserControl)?.SectionModel!;
+                var sectionPerWeek = (sender as SectionUserControl)?.SectionPerWeek!;
                 SelectedSectionPanel.Controls.Remove(sender as SectionUserControl);
-                SelectedSections.Remove(SectionModel);
+                SectionsPerWeek.Remove(sectionPerWeek);
+                (sender as Form)?.Dispose();
             };
             sectionUserControl.Dock = DockStyle.Top;
             SelectedSectionPanel.Controls.Add(sectionUserControl);
@@ -320,5 +377,5 @@ public partial class ClassManagementForm : Form, IClassManagementView
 
     #endregion
 
-    
+
 }

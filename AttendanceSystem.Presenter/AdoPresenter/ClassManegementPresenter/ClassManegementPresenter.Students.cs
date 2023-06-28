@@ -1,31 +1,56 @@
-﻿using AttendanceSystem.Models.Enums;
+﻿using AttendanceSystem.Presenter.IPresenter.OtherManagementView;
 
-namespace AttendanceSystem.Presenter.Presenter.ClassManegementPresenter;
+namespace AttendanceSystem.Presenter.Presenter.ClassManagementPresenter;
 
-public partial class ClassManegementPresenter
+public partial class ClassManagementPresenter
 {
     private void RaiseStudentSectionEvents()
     {
         view.LoadStudents += View_LoadStudents;
-        view.Search += View_Search;
+        view.LoadDegreesAndMajors += LoadDegreesAndMajors;
+        view.SearchStudents += SearchStudents;
     }
-   
-    private void View_Search(object? sender, EventArgs e)
+
+    private void SearchStudents(object? sender, EventArgs e)
     {
-        var searchModel = view.SearchStudentModel;
-        var students = unitOFWork.StudentRepository.GetAll();
-        students = students.Where(u => u.StudentId.Contains(searchModel.SearchString) || u.FullName.Contains(searchModel.SearchString)).ToList();
-        if (searchModel.Grade != Grade.none)
-            students = students.Where(u => u.Grade == searchModel.Grade).ToList();
-        if (searchModel.Major != Major.none)
-            students = students.Where(u => u.Major == searchModel.Major).ToList();
-        if (searchModel.EntryYear != 0)
-            students = students.Where(u => u.EntryYear == searchModel.EntryYear).ToList();
-        view.Students = students;
+        try
+        {
+            view.Students = unitOFWork.StudentRepository.SearchInStudentInfo(view.SearchStudentModel);
+            view.IsSucess = true;
+        }
+        catch (Exception ex)
+        {
+            view.Message = ex.Message;
+            view.IsSucess = false;
+        }
+    }
+
+    private void LoadDegreesAndMajors(object? sender, EventArgs e)
+    {
+        try
+        {
+            view.Degrees = unitOFWork.DegreeRepository.GetAll();
+            view.Majors = unitOFWork.MajorRepository.GetAll();
+            view.IsSucess = true;
+        }
+        catch (Exception ex)
+        {
+            view.Message = ex.Message;
+            view.IsSucess = false;
+        }
     }
 
     private void View_LoadStudents(object? sender, EventArgs e)
     {
-        view.Students = unitOFWork.StudentRepository.GetAll();
+        try
+        {
+            view.Students = unitOFWork.StudentRepository.GetAllWithInfo();
+            view.IsSucess = true;
+        }
+        catch (Exception ex)
+        {
+            view.Message = ex.Message;
+            view.IsSucess = false;
+        }        
     }
 }

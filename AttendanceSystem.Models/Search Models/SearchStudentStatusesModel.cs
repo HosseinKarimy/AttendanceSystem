@@ -1,9 +1,4 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 
 namespace AttendanceSystem.Models.Search_Models
 {
