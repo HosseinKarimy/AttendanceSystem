@@ -1,5 +1,7 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Ado_SqlServer.Views;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
+using Microsoft.VisualBasic.Devices;
 using System.Data;
 
 namespace AttendanceSystem.WinFormUI;
@@ -11,21 +13,37 @@ public partial class StudentDetailsForm : Form, IStudentDetailsView
         InitializeComponent();
     }
 
-    public StudentModel StudentModel { get; set; } = new();
+    public StudentFullInfoModel StudentFullInfoModel { get; set; }
+    public List<TermCourseDetailsModel> TermCoursesDetails { get; set; } = new();
+    public bool IsSucess { get; set; }
+    public string Message { get; set; }
+    public List<StudentStatusInfoPerTermCourse> StudentStatusInfoPerTermCourse { get; set; } = new();
+
+    public event EventHandler LoadTermCoursesOfStudent;
+    public event EventHandler GetSSOfTermCourseForSpecificStudent;
 
     private void StudentDetailsForm_Load(object sender, EventArgs e)
     {
-        this.Text = StudentModel.FullName;
 
-        NameTextBox.Text = StudentModel?.FirstName;
-        LastNameTextBox.Text = StudentModel?.LastName;
-        FatherNameTextBox.Text = StudentModel?.FatherName;
-        StudentIdTextBox.Text = StudentModel?.StudentId?.ToString();
-        MajorTextBox.Text = StudentModel?.Major.ToString();
-        GradeTextBox.Text = StudentModel?.Grade.ToString();
+        this.Text = StudentFullInfoModel.StudentID.ToString(); ;
 
-        CoursesComboBox.DisplayMember = "Name";
-        foreach (CourseModel course in StudentModel?.Courses ?? new())
+        NameTextBox.Text = StudentFullInfoModel?.FirstName;
+        LastNameTextBox.Text = StudentFullInfoModel?.LastName;
+        FatherNameTextBox.Text = StudentFullInfoModel?.FatherName;
+        StudentIdTextBox.Text = StudentFullInfoModel?.StudentID.ToString();
+        MajorTextBox.Text = StudentFullInfoModel?.MajorName;
+        GradeTextBox.Text = StudentFullInfoModel?.DegreeName;
+        BirthDateTextBox.Text = StudentFullInfoModel?.BirthDate?.ToShortDateString() ?? "N/A";
+
+        LoadTermCoursesOfStudent?.Invoke(this, EventArgs.Empty);
+        if (IsSucess)
+        LoadTermCoursesInComboBox(TermCoursesDetails);
+    }
+
+    private void LoadTermCoursesInComboBox(List<TermCourseDetailsModel> termCoursesDetails)
+    {
+        CoursesComboBox.DisplayMember = "CourseInfo";
+        foreach (var course in termCoursesDetails)
         {
             CoursesComboBox.Items.Add(course);
         }
@@ -33,35 +51,39 @@ public partial class StudentDetailsForm : Form, IStudentDetailsView
 
     private void CoursesComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var course = CoursesComboBox.SelectedItem as CourseModel;
-        CourseNameTextBox.Text = course?.Name;
-        SectionCountLabel.Text = course?.Sections.Count().ToString();
-        var statuses = course?.Sections.Select(u => u.StudentsStatus.First(p => p.StudentId == StudentModel.Id)).ToList();
-        AbsentCountLabel.Text = statuses?.Where(u => u.IsPresent == false).Count().ToString();
-        PresentCountLabel.Text = statuses?.Where(u => u.IsPresent == true).Count().ToString();
+        var course = CoursesComboBox.SelectedItem as TermCourseDetailsModel;
+        CourseNameTextBox.Text = course?.CourseName;
 
-        LoadStatusInListView(course);
+        GetSSOfTermCourseForSpecificStudent?.Invoke(course?.TermCourseID, EventArgs.Empty);
+        if (IsSucess)
+        {
+            LoadStatusInListView(StudentStatusInfoPerTermCourse);
+        }                      
     }
 
-    private void LoadStatusInListView(CourseModel? course)
+    private void LoadStatusInListView(List<StudentStatusInfoPerTermCourse> studentStatusInfoPerTermCourse)
     {
         SectionsListView.Clear();
-        SectionsListView.View = View.Details;
-        SectionsListView.Columns.Add("Section");
-        SectionsListView.Columns.Add("Date");
-        SectionsListView.Columns.Add("Day");
-        SectionsListView.Columns.Add("Status");
+        SectionCountLabel.Text = studentStatusInfoPerTermCourse.Count.ToString();
+        AbsentCountLabel.Text = studentStatusInfoPerTermCourse?.Where(u => u.IsPresent == false).Count().ToString();
+        PresentCountLabel.Text = studentStatusInfoPerTermCourse?.Where(u => u.IsPresent == true).Count().ToString();
 
-        foreach (SectionModel section in course.Sections ?? new())
+        SectionsListView.Clear();
+        SectionsListView.View = View.Details;
+        SectionsListView.SetHeaders(new string[] { "Section", "Date" , "Day" , "Status" });
+
+        foreach (var SS in studentStatusInfoPerTermCourse)
         {
-            var isPresent = section.StudentsStatus.First(section => section.StudentId == StudentModel.Id).IsPresent;
-            if (isPresent is not null)
-                SectionsListView.Items.Add(new ListViewItem(new String[] { section.SectionNumber.ToString(), section.ClassDate.ToString(), section.Day.ToString(), (bool)isPresent ? "Present" : "Absent" }));
-            else
-                SectionsListView.Items.Add(new ListViewItem(new String[] { section.SectionNumber.ToString(), section.ClassDate.ToString(), section.Day.ToString(), "Unknown" }));
+            SectionsListView.Items.Add(
+                new ListViewItem(new String[]
+                    { 
+                        SS.SectionNumber.ToString() ?? "N/A",
+                        SS.Date?.ToString() ?? "N/A",
+                        SS.Date?.DayOfWeek.ToString() ?? "N/A" ,
+                        SS.IsPresent is null ? "Unknown" : SS.IsPresent is true ? "Present" : "Absent"
+                    }));            
         }
-        SectionsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        SectionsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        SectionsListView.SetSize();
     }
 
 }
