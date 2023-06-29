@@ -1,3 +1,6 @@
 ﻿namespace AttendanceSystem.Models.Ado_SqlServer;
 
-public record SectionModel(int SectionID, int? SectionNumber, TimeSpan? Duration, DateTime? Date, int TermCourseID);
+public record SectionModel(int SectionID, int? SectionNumber, TimeSpan? Duration, DateTime? Date, int TermCourseID)
+{
+    public string SectionDetails => $"{SectionNumber} {Date}";
+}

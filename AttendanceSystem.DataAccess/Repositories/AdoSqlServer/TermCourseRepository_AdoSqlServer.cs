@@ -1,6 +1,8 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Ado_SqlServer.Views;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace AttendanceSystem.DataAccess.Repositories.AdoSqlServer;
@@ -74,5 +76,45 @@ public class TermCourseRepository_AdoSqlServer : ITermCourseRepository
                 reader.GetInt32(4),
                 reader.GetInt32(5));
         return null;
+    }
+
+    public List<TermCourseDetailsModel> GetTermCoursesByTeacherID(int TeacherID)
+    {
+        using var connection = DbConnection.SqlConnection;
+        connection.Open();
+        var command = new SqlCommand("Get_Courses_Of_Teacher", connection)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+        command.Parameters.AddWithValue("@TeacherID", TeacherID);
+
+        using var reader = command.ExecuteReader();
+        var result = new List<TermCourseDetailsModel>();
+        while (reader.Read())
+            result.Add(new TermCourseDetailsModel(
+                reader.GetInt32(0),
+                reader.GetInt32(1),
+                reader.GetString(2)));
+        return result;
+    }
+
+    public List<TermCourseDetailsModel> GetTermCoursesByStudentID(int StudentID)
+    {
+        using var connection = DbConnection.SqlConnection;
+        connection.Open();
+        var command = new SqlCommand("Get_Courses_Of_Student", connection)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+        command.Parameters.AddWithValue("@StudentID", StudentID);
+
+        using var reader = command.ExecuteReader();
+        var result = new List<TermCourseDetailsModel>();
+        while (reader.Read())
+            result.Add(new TermCourseDetailsModel(
+                reader.GetInt32(0),
+                reader.GetInt32(1),
+                reader.GetString(2)));
+        return result;
     }
 }

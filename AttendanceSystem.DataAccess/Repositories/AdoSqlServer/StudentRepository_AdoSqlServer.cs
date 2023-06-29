@@ -1,6 +1,7 @@
 ﻿using AttendanceSystem.DataAccess.Data;
 using AttendanceSystem.DataAccess.Repositories.IRepositories;
 using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Ado_SqlServer.Views;
 using AttendanceSystem.Models.Search_Models;
 using System.Data;
 using System.Data.SqlClient;
@@ -125,5 +126,32 @@ public class StudentRepository_AdoSqlServer : IStudentRepository
                 reader.GetString(3),
                 reader.GetString(4)));
         return result;
+    }
+
+    public StudentFullInfoModel GetStudentFullInfo(int StudentID)
+    {
+        using var connection = DbConnection.SqlConnection;
+        connection.Open();
+        var command = new SqlCommand("Get_Student_Full_Info", connection)
+        {
+            CommandType = CommandType.StoredProcedure
+        };
+        command.Parameters.AddWithValue("@StudentID", StudentID);
+        using var reader = command.ExecuteReader();
+        if (reader.Read())
+            return new StudentFullInfoModel(
+                reader.GetString(0),
+                reader.GetString(1),
+                reader.IsDBNull(2) ? null : reader.GetString(2),
+                reader.IsDBNull(3) ? null : reader.GetDateTime(3),
+                reader.GetString(4),
+                reader.GetString(5),
+                reader.GetInt32(6));
+        throw new Exception(message: "User Not Found");
+    }
+
+    public StudentFullInfoModel GetAllStudentFullInfoOfSection(int SectionID)
+    {
+        throw new NotImplementedException();
     }
 }

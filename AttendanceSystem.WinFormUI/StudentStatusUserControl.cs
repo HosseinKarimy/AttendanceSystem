@@ -1,6 +1,7 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Ado_SqlServer.Views;
 using AttendanceSystem.Presenter.IPresenter;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Windows.Forms;
 
 namespace AttendanceSystem.WinFormUI;
 
@@ -14,7 +15,8 @@ public partial class StudentStatusUserControl : UserControl, IStudentStatusUCVie
 
     public bool IsReadOnly { get; set; } = false;
     public StudentStatusModel StudentStatusModel { get; set; }
-    public event EventHandler ShowStudentDetails;
+    public StudentFullInfoModel StudentFullInfoModel { get; set; }
+
     public event EventHandler ChangePresentStatus;
 
     private void DescriptionCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -38,14 +40,14 @@ public partial class StudentStatusUserControl : UserControl, IStudentStatusUCVie
         if (IsReadOnly is false)
         {
             StudentStatusModel.IsPresent = PresentCheckBox.Checked;
-            ChangePresentStatus?.Invoke(this, EventArgs.Empty);
+            ChangePresentStatus?.Invoke(StudentStatusModel, EventArgs.Empty);
         }
     }
 
     private void StudentStatusUserControl_Load(object sender, EventArgs e)
     {
-        NameTextBox.Text = StudentStatusModel.Student.FullName;
-        StudentIdTextBox.Text = StudentStatusModel.Student.StudentId;
+        NameTextBox.Text = StudentFullInfoModel.FirstName;
+        StudentIdTextBox.Text = StudentFullInfoModel.StudentID.ToString();
         DescriptionTextBox.Text = StudentStatusModel.Description;
         if (StudentStatusModel.IsPresent is not null)
         {
@@ -60,9 +62,9 @@ public partial class StudentStatusUserControl : UserControl, IStudentStatusUCVie
 
     private void ShowStudentDetailsButton_Click(object sender, EventArgs e)
     {
-        var newDetailForm = new StudentDetailsForm();
-        newDetailForm.StudentModel = StudentStatusModel.Student;
-        newDetailForm.ShowDialog();
+        var newDetailForm = FormContainer.StudentDetailsView;
+        newDetailForm.StudentFullInfoModel = StudentFullInfoModel;
+        (newDetailForm as Form)?.ShowDialog();
     }
 
     private void DescriptionTextBox_Leave(object sender, EventArgs e)

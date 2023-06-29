@@ -1,83 +1,128 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Ado_SqlServer.Views;
 using AttendanceSystem.Models.Enums;
 using AttendanceSystem.Models.Search_Models;
-using AttendanceSystem.Presenter.IIntraction;
+using AttendanceSystem.Presenter.IInteraction;
 using AttendanceSystem.Presenter.IPresenter.Show_Data_Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace AttendanceSystem.WinFormUI;
 
-public partial class AttendanceListForm : Form, IAttendanceListView , IRole
+public partial class AttendanceListForm : Form, IAttendanceListView, IRole
 {
+    public Role Role { get; init; } = Role.Admin;
+    public UsersModel CurrentUser { get; init; }
+    public List<TeacherModel> Teachers { get; set; } = new();
+    public TeacherModel SelectedTeacher { get; set; }
+    public List<TermCourseDetailsModel> TermCoursesOfTeacher { get; set; } = new();
+    public TermCourseDetailsModel SelectedTermCourse { get; set; }
+    public List<SectionModel> Sections { get; set; } = new();
+    public SectionModel SelectedSection { get; set; }
+    public List<StudentStatusModel> StudentStatuses { get; set; } = new();
+    public bool IsSucess { get; set; }
+    public string Message { get; set; }
+    public StudentFullInfoModel StudentFullInfo { get; set; }
+
     public AttendanceListForm()
     {
         InitializeComponent();
     }
 
-    public SearchStudentStatusesModel SearchSectionModel { get; set; }
-    public List<StudentStatusModel> StudentStatuses { get; set; }
-    public List<TeacherModel> Teachers { get; set; } = new();
-    public SectionModel Section { get; set; } = new();
-    public bool IsSucess { get; set; }
-    public string Message { get; set; }
-    public Role Role { get; init; }
-    public UserModel CurrentUser { get; init; }
-
     public event EventHandler LoadTeachers;
+    public event EventHandler LoadTermCoursesOfTeacher;
+    public event EventHandler LoadSectionsOfTermCourse;
+    public event EventHandler LoadStudentsStatusOfSection;
     public event EventHandler UpdateSection;
+    public event EventHandler LoadStudentsFullInfo;
 
     private void AttendanceListForm_Load(object sender, EventArgs e)
     {
-        LoadTeachersInTeacherComboBox();
+        LoadForm();
     }
 
-    private void LoadTeachersInTeacherComboBox()
+    private void LoadForm()
     {
-        LoadTeachers?.Invoke(this, EventArgs.Empty);
+        //Teachers.Clear();
         TeacherComboBox.Items.Clear();
         CourseComboBox.Items.Clear();
         SectionComboBox.Items.Clear();
+        ResultPanel.Controls.Clear();
+        StudentStatuses.Clear();
         if (Role == Role.Admin)
         {
-            foreach (TeacherModel teacher in Teachers)
-            {
-                TeacherComboBox.Items.Add(teacher);
-                TeacherComboBox.DisplayMember = "FullName";
-            } 
-        }
-        else if (Role == Role.Teacher)
+            LoadTeachers?.Invoke(this, EventArgs.Empty);
+        } else if (Role == Role.Teacher)
         {
-            TeacherComboBox.Items.Add(CurrentUser.TeacherModel);
+            //Todo - Form For Teacher Role
+        }
+        if (IsSucess)
+        {
+            LoadTeachersInTeacherComboBox(Teachers);
+        } else
+        {
+            MessageBox.Show(Message);
+        }
+    }
+
+    private void LoadTeachersInTeacherComboBox(List<TeacherModel> teachers)
+    {
+        foreach (TeacherModel teacher in teachers)
+        {
+            TeacherComboBox.Items.Add(teacher);
             TeacherComboBox.DisplayMember = "FullName";
         }
     }
 
     private void TeacherComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        TeacherModel selected = (TeacherComboBox.SelectedItem as TeacherModel)!;
-        LoadTeachersCourseInCourseComboBox(selected);
+        LoadTeachersCourses((TeacherComboBox.SelectedItem as TeacherModel)!);
     }
 
-    private void LoadTeachersCourseInCourseComboBox(TeacherModel selected)
+    private void LoadTeachersCourses(TeacherModel selected)
     {
         CourseComboBox.Items.Clear();
         SectionComboBox.Items.Clear();
-        foreach (CourseModel course in selected.Courses)
+        ResultPanel.Controls.Clear();
+        StudentStatuses.Clear();
+        SelectedTeacher = selected;
+        LoadTermCoursesOfTeacher?.Invoke(this, EventArgs.Empty);
+        if (IsSucess)
         {
-            CourseComboBox.Items.Add(course);
-            CourseComboBox.DisplayMember = "Name";
+            LoadTermCoursesInComboBox(TermCoursesOfTeacher);
+        } else
+        {
+            MessageBox.Show(Message);
+        }
+    }
+
+    private void LoadTermCoursesInComboBox(List<TermCourseDetailsModel> termCoursesOfTeacher)
+    {
+        foreach (var termCourse in termCoursesOfTeacher)
+        {
+            CourseComboBox.Items.Add(termCourse);
+            CourseComboBox.DisplayMember = "CourseInfo";
         }
     }
 
     private void CourseComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        CourseModel selectedCourse = (CourseComboBox.SelectedItem as CourseModel)!;
-        LoadSectionsOfCourseInSectionComboBox(selectedCourse);
+        SectionComboBox.Items.Clear();
+        ResultPanel.Controls.Clear();
+        StudentStatuses.Clear();
+        SelectedTermCourse = (CourseComboBox.SelectedItem as TermCourseDetailsModel)!;
+        LoadSectionsOfTermCourse?.Invoke(this, EventArgs.Empty);
+        if (IsSucess)
+        {
+            LoadSectionsOfCourse(Sections);
+        } else
+        {
+            MessageBox.Show(Message);
+        }
     }
 
-    private void LoadSectionsOfCourseInSectionComboBox(CourseModel selectedCourse)
+    private void LoadSectionsOfCourse(List<SectionModel> sections)
     {
-        SectionComboBox.Items.Clear();
-        foreach (SectionModel section in selectedCourse.Sections)
+        foreach (SectionModel section in sections)
         {
             SectionComboBox.Items.Add(section);
             SectionComboBox.DisplayMember = "SectionDetails";
@@ -86,21 +131,32 @@ public partial class AttendanceListForm : Form, IAttendanceListView , IRole
 
     private void SectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Section = (SectionComboBox.SelectedItem as SectionModel)!;
-        LoadStudentsStatusOfSelectedSection(Section);
+        SelectedSection = (SectionComboBox.SelectedItem as SectionModel)!;
+        LoadStudentsStatusOfSection?.Invoke(this, EventArgs.Empty);
+        if (IsSucess)
+        {
+            LoadStudentsStatusOfSelectedSection(StudentStatuses);
+        } else
+        {
+            MessageBox.Show(Message);
+        }
     }
 
-    private void LoadStudentsStatusOfSelectedSection(SectionModel selectedSection)
+    private void LoadStudentsStatusOfSelectedSection(List<StudentStatusModel> studentStatuses)
     {
-        AllStudentsCountLabel.Text = selectedSection.StudentsStatus.Count.ToString();
+        AllStudentsCountLabel.Text = studentStatuses.Count.ToString();
         AbsenteesStudentsCountLabel.Text = "0";
         AttendeesStudentsCountLabel.Text = "0";
         ResultPanel.Controls.Clear();
-        foreach (StudentStatusModel studentStatus in selectedSection.StudentsStatus)
+        foreach (StudentStatusModel studentStatus in studentStatuses)
         {
-            var newSSUC = new StudentStatusUserControl();
-            newSSUC.StudentStatusModel = studentStatus;
-            newSSUC.Dock = DockStyle.Top;
+            LoadStudentsFullInfo?.Invoke(studentStatus.StudentID, EventArgs.Empty);
+            var newSSUC = new StudentStatusUserControl
+            {
+                StudentFullInfoModel = StudentFullInfo,
+                StudentStatusModel = studentStatus,
+                Dock = DockStyle.Top
+            };
             newSSUC.ChangePresentStatus += NewSSUC_ChangePresentStatus;
             ResultPanel.Controls.Add(newSSUC);
         }
@@ -108,8 +164,8 @@ public partial class AttendanceListForm : Form, IAttendanceListView , IRole
 
     private void NewSSUC_ChangePresentStatus(object? sender, EventArgs e)
     {
-        AbsenteesStudentsCountLabel.Text = Section.StudentsStatus.Where(u => u.IsPresent is false).Count().ToString();
-        AttendeesStudentsCountLabel.Text = Section.StudentsStatus.Where(u => u.IsPresent is true).Count().ToString();
+        AbsenteesStudentsCountLabel.Text = StudentStatuses.Where(u => u.IsPresent is false).Count().ToString();
+        AttendeesStudentsCountLabel.Text = StudentStatuses.Where(u => u.IsPresent is true).Count().ToString();
     }
 
     private void SaveListButton_Click(object sender, EventArgs e)
