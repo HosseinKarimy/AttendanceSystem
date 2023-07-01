@@ -1,20 +1,20 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
-using AttendanceSystem.Presenter.IIntraction;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Presenter.IInteraction;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
 
 namespace AttendanceSystem.WinFormUI;
 
 public partial class LoginForm : Form, ILoginView
 {
-    private readonly LoginFormMainMenuIntraction intractionWithMain;
+    private readonly ILoginFormMainMenuIntraction interactionWithMain;
 
-    public LoginForm(LoginFormMainMenuIntraction intractionWithMain)
+    public LoginForm(ILoginFormMainMenuIntraction intractionWithMain)
     {
         InitializeComponent();
-        this.intractionWithMain = intractionWithMain;
+        this.interactionWithMain = intractionWithMain;
     }
 
-    public UserModel UserModel { get; set; }
+    public UsersModel UserModel { get; set; }
     public bool IsSucess { get; set; }
     public string Message { get; set; }
 
@@ -22,17 +22,17 @@ public partial class LoginForm : Form, ILoginView
 
     private void LoginButton_Click(object sender, EventArgs e)
     {
-        UserModel = new UserModel()
-        {
-            Username = UsernameTextBox.Text,
-            Password = PasswordTextBox.Text
-        };
-        Login?.Invoke(sender, e);
-        if (IsSucess)
-        {
-            intractionWithMain.CompleteLoginProgress(UserModel, this);
-        }
-        else
-            MessageBox.Show(Message);
+        //UserModel = new UsersModel()
+        //{
+        //    Username = UsernameTextBox.Text,
+        //    Password = PasswordTextBox.Text
+        //};
+        //Login?.Invoke(sender, e);
+        //if (IsSucess)
+        //{
+        //    interactionWithMain.CompleteLoginProgress(UserModel, this);
+        //}
+        //else
+        //    MessageBox.Show(Message);
     }
 }

@@ -1,8 +1,8 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 
 namespace AttendanceSystem.Presenter.IPresenter.MainMenuView;
 
 public interface IMainMenu_Login
 {
-    public UserModel UserModel { get; set; }
+    public UsersModel UserModel { get; set; }
 }

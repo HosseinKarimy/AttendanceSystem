@@ -1,5 +1,5 @@
 ﻿using AttendanceSystem.DataAccess.UnitOfWork;
-using AttendanceSystem.Models.EfCore_Sqllite.Models;
+using AttendanceSystem.Models.Ado_SqlServer;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
 
 namespace AttendanceSystem.Presenter.Presenter.MainMenuPresenter;
@@ -20,17 +20,17 @@ public class LoginPresenter
     {
         try
         {
-            UserModel userModel = unitOFWork.UserRepository.FirstOrDefault(u => u.Username == view.UserModel.Username , "StudentModel,TeacherModel,AdminModel");
-            if (userModel is null)
-            {
-                view.IsSucess = false;
-                view.Message = "The username or password is incorrect";
-            }
-            else
-            {
-                view.IsSucess = true;
-                view.UserModel = userModel;
-            }
+            //UsersModel userModel = unitOFWork.UsersRepository.FirstOrDefault(u => u.Username == view.UserModel.Username , "StudentModel,TeacherModel,AdminModel");
+            //if (userModel is null)
+            //{
+            //    view.IsSucess = false;
+            //    view.Message = "The username or password is incorrect";
+            //}
+            //else
+            //{
+            //    view.IsSucess = true;
+            //    view.UserModel = userModel;
+            //}
         }
         catch (Exception ex)
         {

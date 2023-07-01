@@ -20,5 +20,6 @@ namespace AttendanceSystem.DataAccess.UnitOfWork
         public IProtestRepository ProtestRepository { get; }
         public ITermCourseRepository TermCourseRepository { get; }
         public ITermRepository TermRepository { get; }
+        public IAllRepositories AllRepositories { get; }
     }
 }

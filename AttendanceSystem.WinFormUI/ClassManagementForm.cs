@@ -1,4 +1,5 @@
 ﻿using AttendanceSystem.Models.Ado_SqlServer;
+using AttendanceSystem.Models.Ado_SqlServer.Views;
 using AttendanceSystem.Models.Enums;
 using AttendanceSystem.Models.Search_Models;
 using AttendanceSystem.Models.ViewModels;

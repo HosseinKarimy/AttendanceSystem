@@ -31,6 +31,20 @@ public partial class OtherManagementForm : Form, IOtherManagementView
         ReloadMajorForm();
     }
 
+    private void ReloadMajorForm()
+    {
+        MajorNameTextBox.Clear();
+        MajorSearchTextBox.Clear();
+        MajorCreateSaveButton.Text = "Create";
+        ActionType = ActionType.Create;
+
+        LoadMajors?.Invoke(this, EventArgs.Empty);
+        if (IsSucess is false)
+            MessageBox.Show(Message);
+        else
+            LoadMajorsInListView(Majors);
+    }
+
     private void LoadMajorsInListView(List<MajorModel> majors)
     {
         MajorListView.Clear();
@@ -105,19 +119,7 @@ public partial class OtherManagementForm : Form, IOtherManagementView
 
     }
 
-    private void ReloadMajorForm()
-    {
-        MajorNameTextBox.Clear();
-        MajorSearchTextBox.Clear();
-        MajorCreateSaveButton.Text = "Create";
-        ActionType = ActionType.Create;
-
-        LoadMajors?.Invoke(this, EventArgs.Empty);
-        if (IsSucess is false)
-            MessageBox.Show(Message);
-        else
-            LoadMajorsInListView(Majors);
-    }
+    
 
     //Todo - Search For Majors
 

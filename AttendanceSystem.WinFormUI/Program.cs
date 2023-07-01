@@ -15,9 +15,8 @@ namespace AttendanceSystem.WinFormUI
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            var frm = new OtherManagementForm();
-            _ = new OtherManagementPresenter(frm, new UnitOfWork());
-            Application.Run(frm);
+            
+            Application.Run(new MainForm());
         }
     }
 }

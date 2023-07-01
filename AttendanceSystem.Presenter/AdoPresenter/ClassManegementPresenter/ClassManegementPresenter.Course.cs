@@ -53,9 +53,10 @@ public partial class ClassManagementPresenter
                 }
 
                 int sectionSwitch = 0;
+                int sectionNumber = 1;
                 do
                 {
-                    var current = baseSections.ElementAt(sectionSwitch);
+                    var current = baseSections.ElementAt(sectionSwitch) with { SectionNumber = sectionNumber++ };
                     var sectionID = unitOFWork.SectionRepository.Add(current);
                     foreach (var student in view.Students)
                     {

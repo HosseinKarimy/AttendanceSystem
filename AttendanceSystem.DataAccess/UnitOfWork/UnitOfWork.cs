@@ -15,6 +15,8 @@ public class UnitOfWork : IUnitOFWork
     private readonly IMajorRepository _MajorsRepository;
     private readonly ITermRepository _TermRepository;
     private readonly ITermCourseRepository _TermCourseRepository;
+    private readonly IAllRepositories _AllRepositories;
+    
 
     public UnitOfWork()
     {
@@ -29,6 +31,7 @@ public class UnitOfWork : IUnitOFWork
         _MajorsRepository = new MajorRepository_AdoSqlServer();
         _TermRepository = new TermRepository_AdoSqlServer();
         _TermCourseRepository = new TermCourseRepository_AdoSqlServer();
+        _AllRepositories = new AllRepositories();
 
     }
 
@@ -42,8 +45,8 @@ public class UnitOfWork : IUnitOFWork
     public IMajorRepository MajorRepository => _MajorsRepository;
     public ITermRepository TermRepository => _TermRepository;
     public ITermCourseRepository TermCourseRepository => _TermCourseRepository;
+    public IAllRepositories AllRepositories => _AllRepositories;
 
     public IProtestRepository ProtestRepository => throw new NotImplementedException();
-
 
 }

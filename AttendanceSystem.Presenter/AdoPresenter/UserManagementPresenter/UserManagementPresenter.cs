@@ -1,4 +1,7 @@
-﻿namespace AttendanceSystem.Presenter.AdoPresenter.UserManagementPresenter;
+﻿using AttendanceSystem.DataAccess.UnitOfWork;
+using AttendanceSystem.Presenter.IPresenter;
+
+namespace AttendanceSystem.Presenter.AdoPresenter.UserManagementPresenter;
 
 public partial class UserManagementPresenter
 {

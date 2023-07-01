@@ -28,194 +28,204 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ToolBarPanel = new System.Windows.Forms.Panel();
-            this.UserManagmentButton = new System.Windows.Forms.Button();
-            this.ClassManagementButton = new System.Windows.Forms.Button();
-            this.AttendanceListButton = new System.Windows.Forms.Button();
-            this.DisplayDataButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.StatusPanel = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.NameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.RoleTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.ContainerPanel = new System.Windows.Forms.Panel();
-            this.ToolBarPanel.SuspendLayout();
-            this.StatusPanel.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            ToolBarPanel = new Panel();
+            OtherManagementButton = new Button();
+            UserManagmentButton = new Button();
+            ClassManagementButton = new Button();
+            AttendanceListButton = new Button();
+            DisplayDataButton = new Button();
+            panel1 = new Panel();
+            StatusPanel = new Panel();
+            menuStrip1 = new MenuStrip();
+            NameMenuItem = new ToolStripMenuItem();
+            toolStripTextBox1 = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            toolStripTextBox2 = new ToolStripMenuItem();
+            RoleTextBox = new ToolStripTextBox();
+            ContainerPanel = new Panel();
+            ToolBarPanel.SuspendLayout();
+            StatusPanel.SuspendLayout();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // ToolBarPanel
             // 
-            this.ToolBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ToolBarPanel.Controls.Add(this.UserManagmentButton);
-            this.ToolBarPanel.Controls.Add(this.ClassManagementButton);
-            this.ToolBarPanel.Controls.Add(this.AttendanceListButton);
-            this.ToolBarPanel.Controls.Add(this.DisplayDataButton);
-            this.ToolBarPanel.Controls.Add(this.panel1);
-            this.ToolBarPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ToolBarPanel.Location = new System.Drawing.Point(0, 0);
-            this.ToolBarPanel.Name = "ToolBarPanel";
-            this.ToolBarPanel.Size = new System.Drawing.Size(149, 664);
-            this.ToolBarPanel.TabIndex = 0;
+            ToolBarPanel.BackColor = Color.FromArgb(44, 51, 51);
+            ToolBarPanel.Controls.Add(OtherManagementButton);
+            ToolBarPanel.Controls.Add(UserManagmentButton);
+            ToolBarPanel.Controls.Add(ClassManagementButton);
+            ToolBarPanel.Controls.Add(AttendanceListButton);
+            ToolBarPanel.Controls.Add(DisplayDataButton);
+            ToolBarPanel.Controls.Add(panel1);
+            ToolBarPanel.Dock = DockStyle.Left;
+            ToolBarPanel.Location = new Point(0, 0);
+            ToolBarPanel.Name = "ToolBarPanel";
+            ToolBarPanel.Size = new Size(149, 664);
+            ToolBarPanel.TabIndex = 0;
+            // 
+            // OtherManagementButton
+            // 
+            OtherManagementButton.BackColor = Color.FromArgb(57, 91, 100);
+            OtherManagementButton.Dock = DockStyle.Top;
+            OtherManagementButton.FlatStyle = FlatStyle.Flat;
+            OtherManagementButton.ForeColor = SystemColors.ButtonFace;
+            OtherManagementButton.Location = new Point(0, 260);
+            OtherManagementButton.Name = "OtherManagementButton";
+            OtherManagementButton.Size = new Size(149, 39);
+            OtherManagementButton.TabIndex = 5;
+            OtherManagementButton.Text = "Other";
+            OtherManagementButton.UseVisualStyleBackColor = false;
+            OtherManagementButton.Click += OtherManagementButton_Click;
             // 
             // UserManagmentButton
             // 
-            this.UserManagmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
-            this.UserManagmentButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UserManagmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UserManagmentButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.UserManagmentButton.Location = new System.Drawing.Point(0, 221);
-            this.UserManagmentButton.Name = "UserManagmentButton";
-            this.UserManagmentButton.Size = new System.Drawing.Size(149, 39);
-            this.UserManagmentButton.TabIndex = 4;
-            this.UserManagmentButton.Text = "User Managment";
-            this.UserManagmentButton.UseVisualStyleBackColor = false;
-            this.UserManagmentButton.Visible = false;
-            this.UserManagmentButton.Click += new System.EventHandler(this.UserManagmentButton_Click);
+            UserManagmentButton.BackColor = Color.FromArgb(57, 91, 100);
+            UserManagmentButton.Dock = DockStyle.Top;
+            UserManagmentButton.FlatStyle = FlatStyle.Flat;
+            UserManagmentButton.ForeColor = SystemColors.ButtonFace;
+            UserManagmentButton.Location = new Point(0, 221);
+            UserManagmentButton.Name = "UserManagmentButton";
+            UserManagmentButton.Size = new Size(149, 39);
+            UserManagmentButton.TabIndex = 4;
+            UserManagmentButton.Text = "User Managment";
+            UserManagmentButton.UseVisualStyleBackColor = false;
+            UserManagmentButton.Visible = false;
+            UserManagmentButton.Click += UserManagmentButton_Click;
             // 
             // ClassManagementButton
             // 
-            this.ClassManagementButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
-            this.ClassManagementButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ClassManagementButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClassManagementButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClassManagementButton.Location = new System.Drawing.Point(0, 182);
-            this.ClassManagementButton.Name = "ClassManagementButton";
-            this.ClassManagementButton.Size = new System.Drawing.Size(149, 39);
-            this.ClassManagementButton.TabIndex = 3;
-            this.ClassManagementButton.Text = "Class Management";
-            this.ClassManagementButton.UseVisualStyleBackColor = false;
-            this.ClassManagementButton.Visible = false;
-            this.ClassManagementButton.Click += new System.EventHandler(this.ClassManagementButton_Click);
+            ClassManagementButton.BackColor = Color.FromArgb(57, 91, 100);
+            ClassManagementButton.Dock = DockStyle.Top;
+            ClassManagementButton.FlatStyle = FlatStyle.Flat;
+            ClassManagementButton.ForeColor = SystemColors.ButtonFace;
+            ClassManagementButton.Location = new Point(0, 182);
+            ClassManagementButton.Name = "ClassManagementButton";
+            ClassManagementButton.Size = new Size(149, 39);
+            ClassManagementButton.TabIndex = 3;
+            ClassManagementButton.Text = "Class Management";
+            ClassManagementButton.UseVisualStyleBackColor = false;
+            ClassManagementButton.Visible = false;
+            ClassManagementButton.Click += ClassManagementButton_Click;
             // 
             // AttendanceListButton
             // 
-            this.AttendanceListButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
-            this.AttendanceListButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AttendanceListButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AttendanceListButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.AttendanceListButton.Location = new System.Drawing.Point(0, 143);
-            this.AttendanceListButton.Name = "AttendanceListButton";
-            this.AttendanceListButton.Size = new System.Drawing.Size(149, 39);
-            this.AttendanceListButton.TabIndex = 2;
-            this.AttendanceListButton.Text = "Attendance List";
-            this.AttendanceListButton.UseVisualStyleBackColor = false;
-            this.AttendanceListButton.Visible = false;
-            this.AttendanceListButton.Click += new System.EventHandler(this.AttendanceListButton_Click);
+            AttendanceListButton.BackColor = Color.FromArgb(57, 91, 100);
+            AttendanceListButton.Dock = DockStyle.Top;
+            AttendanceListButton.FlatStyle = FlatStyle.Flat;
+            AttendanceListButton.ForeColor = SystemColors.ButtonFace;
+            AttendanceListButton.Location = new Point(0, 143);
+            AttendanceListButton.Name = "AttendanceListButton";
+            AttendanceListButton.Size = new Size(149, 39);
+            AttendanceListButton.TabIndex = 2;
+            AttendanceListButton.Text = "Attendance List";
+            AttendanceListButton.UseVisualStyleBackColor = false;
+            AttendanceListButton.Visible = false;
+            AttendanceListButton.Click += AttendanceListButton_Click;
             // 
             // DisplayDataButton
             // 
-            this.DisplayDataButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(91)))), ((int)(((byte)(100)))));
-            this.DisplayDataButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DisplayDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DisplayDataButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.DisplayDataButton.Location = new System.Drawing.Point(0, 104);
-            this.DisplayDataButton.Name = "DisplayDataButton";
-            this.DisplayDataButton.Size = new System.Drawing.Size(149, 39);
-            this.DisplayDataButton.TabIndex = 1;
-            this.DisplayDataButton.Text = "Search";
-            this.DisplayDataButton.UseVisualStyleBackColor = false;
-            this.DisplayDataButton.Visible = false;
-            this.DisplayDataButton.Click += new System.EventHandler(this.DisplayDataButton_Click);
+            DisplayDataButton.BackColor = Color.FromArgb(57, 91, 100);
+            DisplayDataButton.Dock = DockStyle.Top;
+            DisplayDataButton.FlatStyle = FlatStyle.Flat;
+            DisplayDataButton.ForeColor = SystemColors.ButtonFace;
+            DisplayDataButton.Location = new Point(0, 104);
+            DisplayDataButton.Name = "DisplayDataButton";
+            DisplayDataButton.Size = new Size(149, 39);
+            DisplayDataButton.TabIndex = 1;
+            DisplayDataButton.Text = "Search";
+            DisplayDataButton.UseVisualStyleBackColor = false;
+            DisplayDataButton.Visible = false;
+            DisplayDataButton.Click += DisplayDataButton_Click;
             // 
             // panel1
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(149, 104);
-            this.panel1.TabIndex = 0;
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(149, 104);
+            panel1.TabIndex = 0;
             // 
             // StatusPanel
             // 
-            this.StatusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.StatusPanel.Controls.Add(this.menuStrip1);
-            this.StatusPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.StatusPanel.Location = new System.Drawing.Point(149, 0);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(900, 43);
-            this.StatusPanel.TabIndex = 1;
+            StatusPanel.BackColor = Color.FromArgb(44, 51, 51);
+            StatusPanel.Controls.Add(menuStrip1);
+            StatusPanel.Dock = DockStyle.Top;
+            StatusPanel.Location = new Point(149, 0);
+            StatusPanel.Name = "StatusPanel";
+            StatusPanel.Size = new Size(900, 43);
+            StatusPanel.TabIndex = 1;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NameMenuItem,
-            this.RoleTextBox});
-            this.menuStrip1.Location = new System.Drawing.Point(612, 9);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStrip1.Size = new System.Drawing.Size(279, 27);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            menuStrip1.Dock = DockStyle.None;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { NameMenuItem, RoleTextBox });
+            menuStrip1.Location = new Point(732, 9);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.RightToLeft = RightToLeft.Yes;
+            menuStrip1.Size = new Size(159, 27);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
             // NameMenuItem
             // 
-            this.NameMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripTextBox1,
-            this.toolStripSeparator1,
-            this.toolStripTextBox2});
-            this.NameMenuItem.Name = "NameMenuItem";
-            this.NameMenuItem.Size = new System.Drawing.Size(49, 23);
-            this.NameMenuItem.Text = "Login";
+            NameMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripTextBox1, toolStripSeparator1, toolStripTextBox2 });
+            NameMenuItem.Name = "NameMenuItem";
+            NameMenuItem.Size = new Size(49, 23);
+            NameMenuItem.Text = "Login";
             // 
             // toolStripTextBox1
             // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripTextBox1.Text = "Setting";
+            toolStripTextBox1.Name = "toolStripTextBox1";
+            toolStripTextBox1.Size = new Size(112, 22);
+            toolStripTextBox1.Text = "Setting";
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(109, 6);
             // 
             // toolStripTextBox2
             // 
-            this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(180, 22);
-            this.toolStripTextBox2.Text = "Logout";
-            this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
+            toolStripTextBox2.Name = "toolStripTextBox2";
+            toolStripTextBox2.Size = new Size(112, 22);
+            toolStripTextBox2.Text = "Logout";
+            //toolStripTextBox2.Click += toolStripTextBox2_Click;
             // 
             // RoleTextBox
             // 
-            this.RoleTextBox.Name = "RoleTextBox";
-            this.RoleTextBox.ReadOnly = true;
-            this.RoleTextBox.Size = new System.Drawing.Size(100, 23);
-            this.RoleTextBox.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            RoleTextBox.Name = "RoleTextBox";
+            RoleTextBox.ReadOnly = true;
+            RoleTextBox.Size = new Size(100, 23);
+            RoleTextBox.TextBoxTextAlign = HorizontalAlignment.Center;
             // 
             // ContainerPanel
             // 
-            this.ContainerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ContainerPanel.Location = new System.Drawing.Point(149, 43);
-            this.ContainerPanel.Name = "ContainerPanel";
-            this.ContainerPanel.Size = new System.Drawing.Size(900, 621);
-            this.ContainerPanel.TabIndex = 2;
+            ContainerPanel.Dock = DockStyle.Fill;
+            ContainerPanel.Location = new Point(149, 43);
+            ContainerPanel.Name = "ContainerPanel";
+            ContainerPanel.Size = new Size(900, 621);
+            ContainerPanel.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(1049, 664);
-            this.Controls.Add(this.ContainerPanel);
-            this.Controls.Add(this.StatusPanel);
-            this.Controls.Add(this.ToolBarPanel);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Attendance System";
-            this.ToolBarPanel.ResumeLayout(false);
-            this.StatusPanel.ResumeLayout(false);
-            this.StatusPanel.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(44, 51, 51);
+            ClientSize = new Size(1049, 664);
+            Controls.Add(ContainerPanel);
+            Controls.Add(StatusPanel);
+            Controls.Add(ToolBarPanel);
+            MainMenuStrip = menuStrip1;
+            Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Attendance System";
+            ToolBarPanel.ResumeLayout(false);
+            StatusPanel.ResumeLayout(false);
+            StatusPanel.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -234,5 +244,6 @@
         private ToolStripMenuItem toolStripTextBox1;
         private ToolStripMenuItem toolStripTextBox2;
         private ToolStripTextBox RoleTextBox;
+        private Button OtherManagementButton;
     }
 }

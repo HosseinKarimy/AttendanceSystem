@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceSystem.WinFormUI"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceSystem.DataAccess", "AttendanceSystem.DataAccess\AttendanceSystem.DataAccess.csproj", "{45115390-2AD9-475D-8F83-1310AA22AA23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceSystem.Presenter", "AttendanceSystem.Presenter\AttendanceSystem.Presenter.csproj", "{F24A1FA2-3203-40BA-85A6-B06661F7C0A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendanceSystem.Presenter", "AttendanceSystem.Presenter\AttendanceSystem.Presenter.csproj", "{F24A1FA2-3203-40BA-85A6-B06661F7C0A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

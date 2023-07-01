@@ -1,9 +1,9 @@
-﻿using AttendanceSystem.Models.EfCore_Sqllite.Models;
+﻿using AttendanceSystem.Models.Ado_SqlServer;
 using AttendanceSystem.Presenter.IPresenter.MainMenuView;
 
-namespace AttendanceSystem.Presenter.IIntraction;
+namespace AttendanceSystem.Presenter.IInteraction;
 
-public interface LoginFormMainMenuIntraction
+public interface ILoginFormMainMenuIntraction
 {
-    void CompleteLoginProgress(UserModel usermodel, ILoginView loginView);
+    void CompleteLoginProgress(UsersModel Usermodel, ILoginView loginView);
 }
